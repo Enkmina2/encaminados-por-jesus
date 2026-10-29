@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://enkmina2.github.io/encaminados-por-jesus/sitemap.xml

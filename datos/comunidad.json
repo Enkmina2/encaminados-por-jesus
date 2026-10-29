@@ -1,0 +1,4 @@
+{
+ "instrucciones": "Noticias y avisos de la comunidad. Las más recientes, arriba. Cada una: titulo (obligatorio), fecha (AAAA-MM-DD), texto (opcional, una o dos frases) y enlace (opcional). Mientras la lista esté vacía, la web muestra un aviso de que aquí aparecerán.",
+ "noticias": []
+}

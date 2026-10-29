@@ -1,0 +1,30 @@
+# Una vez al día actualiza los últimos vídeos del canal y los titulares cristianos
+# (datos/videos.json y datos/noticias.json). La web los lee, así que se renuevan solos.
+name: Actualizar vídeos y noticias
+
+on:
+  schedule:
+    - cron: "17 6 * * *"   # todos los días a las 06:17 UTC
+  workflow_dispatch:        # y a mano desde la pestaña Actions
+
+permissions:
+  contents: write
+
+jobs:
+  actualizar:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Últimos vídeos de YouTube
+        run: python3 scripts/actualizar_videos.py
+        continue-on-error: true   # si YouTube falla un día, las noticias se actualizan igual
+      - name: Titulares cristianos
+        run: python3 scripts/actualizar_noticias.py
+        continue-on-error: true
+      - name: Guardar si hay cambios
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add datos/videos.json datos/noticias.json
+          git diff --cached --quiet || git commit -m "Actualizar vídeos y noticias"
+          git push

@@ -1,0 +1,137 @@
+{
+ "instrucciones": [
+  "Tema del día, por fechas. La web muestra el día de hoy (fecha del visitante). Empezó el 29 de octubre de 2026.",
+  "Cada día: fecha (AAAA-MM-DD), tema, versiculo {referencia, texto} de la Reina-Valera 1960, hoy_en_el_mundo (una o dos frases), estudio {resumen, parrafos}, para_hoy (texto o lista de frases) y concordancia (lista de {cita, frase}).",
+  "La concordancia solo lleva la referencia y una frase: la web enlaza cada cita a BibleGateway (RVR1960) sin copiar el texto.",
+  "Si a un día le falta el estudio, la web muestra el último estudio disponible. 'hoy_en_el_mundo' solo se muestra en su propia fecha.",
+  "Si hoy no tiene entrada, se muestra el último día disponible. Los textos los aprueba el autor; \"aprobado\": false oculta un día."
+ ],
+ "dias": [
+  {
+   "fecha": "2026-10-29",
+   "tema": "El Dios eterno en tiempos de luto",
+   "versiculo": {
+    "referencia": "Génesis 21:33",
+    "texto": "Y plantó Abraham un árbol tamarisco en Beerseba, e invocó allí el nombre de Jehová Dios eterno."
+   },
+   "hoy_en_el_mundo": "España vive el primer día de luto oficial por el accidente de tren de Urda (Toledo), y hoy se cumplen dos años de la dana de Valencia. Muchas familias lloran a sus seres queridos.",
+   "estudio": {
+    "parrafos": [
+     "Abraham había vivido conflictos, viajes y esperas. En Beerseba plantó un árbol, algo que crece despacio y dura años, y allí invocó a Dios con un nombre nuevo: el Dios eterno. En medio de lo pasajero, se agarró a lo que no pasa.",
+     "Cuando una tragedia nos recuerda lo frágil que es la vida, ese nombre cobra fuerza. Todo puede cambiar en un instante, pero Dios sigue siendo el mismo. Y ese Dios eterno se acercó a nuestro dolor en Jesucristo, que lloró ante la tumba de un amigo."
+    ]
+   },
+   "para_hoy": "Dedica un momento a orar por las familias de Urda y de Valencia, y por los equipos que siguen trabajando.",
+   "concordancia": [
+    {
+     "cita": "Deuteronomio 33:27",
+     "frase": "el eterno Dios es tu refugio"
+    },
+    {
+     "cita": "Salmo 90:1-2",
+     "frase": "de siglo y hasta el siglo, tú eres Dios"
+    },
+    {
+     "cita": "Isaías 40:28",
+     "frase": "el Dios eterno no desfallece"
+    },
+    {
+     "cita": "Salmo 34:18",
+     "frase": "cercano está a los quebrantados de corazón"
+    },
+    {
+     "cita": "Juan 11:35",
+     "frase": "Jesús lloró"
+    },
+    {
+     "cita": "2 Corintios 1:3-4",
+     "frase": "el Dios de toda consolación"
+    }
+   ]
+  },
+  {
+   "fecha": "2026-10-30",
+   "tema": "Dios proveerá",
+   "versiculo": {
+    "referencia": "Génesis 22:14",
+    "texto": "Y llamó Abraham el nombre de aquel lugar, Jehová proveerá. Por tanto se dice hoy: En el monte de Jehová será provisto."
+   },
+   "hoy_en_el_mundo": "En Urda siguen los trabajos de rescate y muchas familias esperan noticias. Por toda España se suceden minutos de silencio y muestras de solidaridad.",
+   "estudio": {
+    "parrafos": [
+     "Abraham subió al monte sin entender lo que Dios le pedía, con el corazón lleno de preguntas. Aun así confió, y allí arriba descubrió un nombre de Dios: Jehová proveerá, el Dios que ve y provee.",
+     "Hay subidas que no elegimos: una espera en un hospital, una llamada que no llega, una pérdida. Este versículo no promete respuestas fáciles, pero sí que Dios ve y no nos deja solos en el monte. Y a veces su provisión llega a través de manos humanas: rescatistas, vecinos, desconocidos que ayudan."
+    ]
+   },
+   "para_hoy": "Pide a Dios que te muestre a quién puedes ayudar tú, aunque sea con algo pequeño.",
+   "concordancia": [
+    {
+     "cita": "Filipenses 4:19",
+     "frase": "mi Dios suplirá todo lo que os falta"
+    },
+    {
+     "cita": "Romanos 8:32",
+     "frase": "el que no escatimó ni a su propio Hijo"
+    },
+    {
+     "cita": "Hebreos 11:17-19",
+     "frase": "la fe de Abraham en el monte"
+    },
+    {
+     "cita": "Salmo 121:1-2",
+     "frase": "mi socorro viene de Jehová"
+    },
+    {
+     "cita": "Mateo 6:31-33",
+     "frase": "vuestro Padre sabe lo que necesitáis"
+    },
+    {
+     "cita": "Gálatas 6:2",
+     "frase": "sobrellevad los unos las cargas de los otros"
+    }
+   ]
+  },
+  {
+   "fecha": "2026-10-31",
+   "tema": "El Cordero que Dios provee",
+   "versiculo": {
+    "referencia": "Génesis 22:8",
+    "texto": "Y respondió Abraham: Dios se proveerá de cordero para el holocausto, hijo mío. E iban juntos."
+   },
+   "hoy_en_el_mundo": "Termina el luto oficial por el accidente de Urda. Las banderas vuelven a ondear arriba, pero para muchas familias el duelo apenas empieza.",
+   "estudio": {
+    "parrafos": [
+     "Isaac preguntó dónde estaba el cordero, y Abraham respondió con fe: Dios se proveerá. Siglos después, Juan el Bautista vio venir a Jesús y dijo: «He aquí el Cordero de Dios» (Juan 1:29). Dios mismo, manifestado en carne, se dio por nosotros.",
+     "Por eso el dolor no tiene la última palabra. El que se dio como Cordero también venció a la muerte, y dijo: «Yo soy la resurrección y la vida». Cuando el luto oficial termina y llega el silencio, esa esperanza sigue en pie."
+    ]
+   },
+   "para_hoy": "Escribe o llama a alguien que esté pasando un duelo, aunque haya pasado tiempo. Que sepa que no está olvidado.",
+   "concordancia": [
+    {
+     "cita": "Juan 1:29",
+     "frase": "he aquí el Cordero de Dios"
+    },
+    {
+     "cita": "Isaías 53:4-5",
+     "frase": "llevó él nuestros dolores"
+    },
+    {
+     "cita": "Juan 11:25",
+     "frase": "yo soy la resurrección y la vida"
+    },
+    {
+     "cita": "1 Pedro 1:18-19",
+     "frase": "rescatados con la sangre preciosa de Cristo"
+    },
+    {
+     "cita": "Apocalipsis 21:4",
+     "frase": "enjugará Dios toda lágrima"
+    },
+    {
+     "cita": "Romanos 12:15",
+     "frase": "llorad con los que lloran"
+    }
+   ]
+  }
+ ]
+}
