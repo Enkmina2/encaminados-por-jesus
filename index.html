@@ -911,6 +911,8 @@ leerDatos("datos/noticias.json").then(d => d && pintarNoticias("lista-titulares"
 
 /* últimos vídeos: el archivo lo actualiza GitHub cada día; si no llega, se quedan los que ya trae la página */
 const fecha = f => new Date(f + "T12:00:00").toLocaleDateString("es-ES", { day: "numeric", month: "short" });
+/* el título se muestra sin hashtags (en YouTube se quedan como están); si solo tuviera hashtags, se deja tal cual */
+const sinHashtags = t => t.replace(/(^|\s)#[\p{L}\p{N}_]*/gu, " ").replace(/\s+/g, " ").trim() || t;
 leerDatos("datos/videos.json").then(d => {
   if (!d || !d.videos || !d.videos.length) return;
   const lista = document.getElementById("lista-videos");
@@ -918,7 +920,7 @@ leerDatos("datos/videos.json").then(d => {
     const a = document.createElement("a"); a.className = "corto"; a.href = v.enlace; a.target = "_blank"; a.rel = "noopener";
     const m = document.createElement("span"); m.className = "miniatura";
     const img = document.createElement("img"); img.src = `https://i.ytimg.com/vi/${v.id}/hqdefault.jpg`; img.alt = ""; img.loading = "lazy"; img.width = 480; img.height = 360; m.append(img);
-    const b = document.createElement("b"); b.textContent = v.titulo;
+    const b = document.createElement("b"); b.textContent = sinHashtags(v.titulo);
     const s = document.createElement("span"); s.textContent = fecha(v.fecha);
     a.append(m, b, s); return a; }));
 }).catch(() => {});
