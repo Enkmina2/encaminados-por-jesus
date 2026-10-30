@@ -1,10 +1,13 @@
-# Una vez al día actualiza los últimos vídeos del canal y los titulares cristianos
+# Dos veces al día actualiza los últimos vídeos del canal y los titulares cristianos
 # (datos/videos.json y datos/noticias.json). La web los lee, así que se renuevan solos.
 name: Actualizar vídeos y noticias
 
 on:
   schedule:
-    - cron: "17 6 * * *"   # todos los días a las 06:17 UTC
+    # Después de cada publicación del robot (8:00 y 20:30 hora de España).
+    # GitHub usa UTC: 9:05 y 21:35 en invierno; 10:05 y 22:35 en verano.
+    - cron: "5 8 * * *"
+    - cron: "35 20 * * *"
   workflow_dispatch:        # y a mano desde la pestaña Actions
 
 permissions:
