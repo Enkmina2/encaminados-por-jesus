@@ -60,6 +60,8 @@
   ]
 }
 </script>
+<!-- animaciones al bajar: solo con JavaScript y si el visitante no pidió reducir el movimiento -->
+<script>if ("IntersectionObserver" in window && !matchMedia("(prefers-reduced-motion: reduce)").matches) document.documentElement.classList.add("anim");</script>
 
 <style>
 /* Diseño "Lino y luz": portada en bloques; verde bosque sobre lino; Hanken Grotesk para títulos y textos, Literata para las Escrituras. */
@@ -94,6 +96,7 @@ p{margin:0}
 .etiqueta{font-size:12.5px;font-weight:700;letter-spacing:.14em;text-transform:uppercase}
 .boton{display:inline-flex;align-items:center;gap:8px;border-radius:999px;padding:12px 20px;font:700 15px/1 var(--f-ui);text-decoration:none;border:1.5px solid transparent;cursor:pointer;transition:transform .15s ease,background .15s ease}
 .boton:hover{transform:translateY(-1px)}
+.boton:active{transform:scale(.97)}
 .boton-claro{background:var(--crema);color:var(--bosque)}
 .boton-borde{border-color:rgba(242,244,239,.5);color:var(--crema)}
 .boton-bosque{background:var(--bosque);color:var(--crema)}
@@ -101,8 +104,11 @@ p{margin:0}
 
 /* ---------- cabecera ---------- */
 body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:60;background:var(--lino)}
-.cabecera{position:sticky;top:env(safe-area-inset-top,0px);z-index:50;padding-block:12px}
-.barra{display:flex;align-items:center;justify-content:space-between;gap:12px;background:rgba(255,255,255,.88);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);border:1px solid var(--linea);border-radius:999px;padding:7px 7px 7px 10px}
+.cabecera{position:sticky;top:env(safe-area-inset-top,0px);z-index:50;padding-block:12px;transition:padding .3s ease}
+.barra{display:flex;align-items:center;justify-content:space-between;gap:12px;background:rgba(255,255,255,.88);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);border:1px solid var(--linea);border-radius:999px;padding:7px 7px 7px 10px;transition:padding .3s ease,box-shadow .3s ease,background .3s ease}
+/* al bajar, la barra se compacta y flota */
+.cabecera.compacta{padding-block:6px}
+.cabecera.compacta .barra{background:rgba(255,255,255,.94);box-shadow:0 12px 30px -18px rgba(30,36,33,.45);padding-block:4px}
 .marca{display:flex;align-items:center;gap:10px;text-decoration:none;color:var(--carbon);font-weight:800;font-size:17px;letter-spacing:-.015em;white-space:nowrap}
 .marca img{width:36px;height:36px;border-radius:50%;flex:none}
 .barra .marca{min-width:0}
@@ -111,27 +117,42 @@ body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset
 .menu{display:flex;align-items:center;gap:4px}
 .menu a{text-decoration:none;color:var(--gris);font-weight:600;font-size:15px;padding:8px 12px;border-radius:999px}
 .menu a:hover{color:var(--carbon);background:var(--lino)}
+.menu a.actual{color:var(--bosque);background:var(--salvia)}
+.menu a{transition:color .2s ease,background .2s ease}
 .barra .wa{padding:10px 16px;font-size:14px}
 .abrir-menu{display:none;background:none;border:0;color:var(--carbon);padding:8px;cursor:pointer;border-radius:999px}
 .abrir-menu svg{width:24px;height:24px}
 @media (max-width:960px){
-  .menu,.barra .wa{display:none}
+  .barra .wa{display:none}
   .abrir-menu{display:inline-flex}
-  .cabecera.abierta .menu{display:flex;position:absolute;left:var(--lado);right:var(--lado-d);top:calc(100% - 4px);flex-direction:column;align-items:stretch;gap:2px;background:var(--blanco);border:1px solid var(--linea);border-radius:var(--radio);padding:10px;box-shadow:0 20px 40px -20px rgba(30,36,33,.35)}
-  .cabecera.abierta .menu a{font-size:17px;padding:12px 14px}
+  /* menú del móvil: se despliega con una transición suave */
+  .menu{position:absolute;left:var(--lado);right:var(--lado-d);top:calc(100% - 4px);flex-direction:column;align-items:stretch;gap:2px;background:var(--blanco);border:1px solid var(--linea);border-radius:var(--radio);padding:10px;box-shadow:0 20px 40px -20px rgba(30,36,33,.35);
+    opacity:0;visibility:hidden;transform:translateY(-10px) scale(.98);transform-origin:top center;transition:opacity .22s ease,transform .22s ease,visibility 0s linear .22s}
+  .cabecera.abierta .menu{opacity:1;visibility:visible;transform:none;transition:opacity .22s ease,transform .22s ease}
+  .menu a{font-size:17px;padding:13px 16px}
 }
 
 /* ---------- portada en bloques ---------- */
 .portada{padding-block:8px 56px}
-.rejilla{display:grid;grid-template-columns:1.35fr 1fr .8fr;grid-template-rows:auto auto;gap:16px}
+/* el versículo del día comparte protagonismo con el mensaje; debajo, directo y música */
+.rejilla{display:grid;grid-template-columns:1.2fr 1fr .8fr;grid-template-areas:"mensaje verso verso" "directo directo musica";gap:16px}
 .bloque{border-radius:var(--radio);padding:26px;display:flex;flex-direction:column;gap:12px}
-.b-mensaje{grid-row:span 2;background:var(--bosque);color:var(--crema);justify-content:space-between;gap:40px;padding:36px}
+.b-mensaje{grid-area:mensaje;background:var(--bosque);color:var(--crema);justify-content:space-between;gap:40px;padding:36px;position:relative;overflow:hidden;isolation:isolate}
+/* luz suave que se mueve despacio detrás del mensaje (solo degradados) */
+.b-mensaje::before{content:"";position:absolute;inset:-30%;z-index:-1;pointer-events:none;
+  background:radial-gradient(40% 35% at 80% 15%,rgba(233,217,181,.42),transparent 70%),radial-gradient(45% 40% at 10% 95%,rgba(188,211,226,.30),transparent 70%),radial-gradient(30% 30% at 60% 60%,rgba(61,97,81,.9),transparent 70%);
+  animation:luz 18s ease-in-out infinite alternate}
+@keyframes luz{to{transform:translate(-6%,5%) rotate(8deg)}}
 .b-mensaje .etiqueta{opacity:.75}
 .b-mensaje h1{font-size:clamp(40px,5.6vw,68px);font-weight:800;letter-spacing:-.04em;line-height:1}
 .b-mensaje p{font-family:var(--f-lectura);font-size:18px;line-height:1.6;opacity:.88;max-width:44ch}
 .b-mensaje .botones{display:flex;flex-wrap:wrap;gap:10px}
-.b-directo{grid-column:span 2;background:var(--blanco);flex-direction:row;align-items:center;gap:20px;text-decoration:none;color:var(--carbon);border:1px solid var(--linea)}
-.b-directo .pantallita{flex:none;width:46%;aspect-ratio:16/9;border-radius:var(--radio-s);background:linear-gradient(135deg,#9DB9CB,#E9D9B5 55%,#B5C7A7);display:grid;place-items:center}
+.b-directo{grid-area:directo;background:var(--blanco);flex-direction:row;align-items:center;gap:20px;text-decoration:none;color:var(--carbon);border:1px solid var(--linea);transition:transform .25s ease,box-shadow .25s ease}
+.b-directo .pantallita{flex:none;width:46%;aspect-ratio:16/9;border-radius:var(--radio-s);background:linear-gradient(135deg,#9DB9CB,#E9D9B5 55%,#B5C7A7);background-size:200% 200%;animation:amanecer 14s ease-in-out infinite alternate;display:grid;place-items:center}
+@keyframes amanecer{to{background-position:100% 100%}}
+.b-directo:hover,.b-musica:hover{transform:translateY(-3px);box-shadow:0 18px 36px -22px rgba(30,36,33,.45)}
+.b-directo:hover .circulo-play{transform:scale(1.08)}
+.circulo-play{transition:transform .2s ease}
 .b-directo .tit{font-weight:700;font-size:20px;line-height:1.25;letter-spacing:-.01em}
 .b-directo .sub{color:var(--gris);font-size:15px;margin-top:4px}
 .en-vivo{display:inline-flex;align-items:center;gap:7px;color:var(--vivo);font-size:12.5px;font-weight:800;letter-spacing:.14em;text-transform:uppercase}
@@ -139,25 +160,28 @@ body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset
 @keyframes latido{50%{opacity:.3}}
 .circulo-play{width:56px;height:56px;border-radius:50%;background:rgba(255,255,255,.95);color:var(--bosque);display:grid;place-items:center;box-shadow:0 8px 24px -8px rgba(0,0,0,.35)}
 .circulo-play svg{width:22px;height:22px;margin-left:3px;fill:currentColor;stroke:none}
-.b-verso{background:var(--salvia);justify-content:space-between}
-.b-verso blockquote{margin:0;font:italic 400 20px/1.45 var(--f-lectura)}
-.tema-dia{font-weight:800;font-size:24px;letter-spacing:-.02em;line-height:1.15;color:var(--carbon)}
+.b-verso{grid-area:verso;position:relative;overflow:hidden;isolation:isolate;gap:14px;padding:32px;
+  background:radial-gradient(70% 90% at 100% 0%,rgba(188,211,226,.85),transparent 60%),radial-gradient(60% 80% at 0% 100%,rgba(233,217,181,.55),transparent 65%),var(--salvia)}
+/* comilla grande decorativa */
+.b-verso::after{content:"“";position:absolute;right:18px;top:-34px;z-index:-1;font:italic 400 220px/1 var(--f-lectura);color:rgba(46,74,62,.10);pointer-events:none}
+.b-verso blockquote{margin:0;font:italic 400 clamp(21px,2.1vw,27px)/1.45 var(--f-lectura);max-width:46ch}
+.tema-dia{font-weight:800;font-size:clamp(24px,2.4vw,30px);letter-spacing:-.025em;line-height:1.12;color:var(--carbon)}
 .b-verso cite{font-style:normal;font-size:12.5px;font-weight:800;letter-spacing:.14em;text-transform:uppercase;color:var(--bosque)}
-.b-musica{background:var(--cielo);text-decoration:none;color:var(--carbon)}
+.b-verso .acciones{display:flex;flex-wrap:wrap;align-items:center;gap:10px;margin-top:auto;padding-top:6px}
+.b-musica{grid-area:musica;background:var(--cielo);text-decoration:none;color:var(--carbon);transition:transform .25s ease,box-shadow .25s ease}
 .b-musica .tit{font-weight:800;font-size:20px;letter-spacing:-.015em}
 .pista{display:flex;justify-content:space-between;align-items:center;font-size:15px;font-weight:600;border-top:1px solid rgba(30,36,33,.15);padding-top:10px}
 @media (max-width:960px){
-  .rejilla{grid-template-columns:1fr 1fr}
-  .b-mensaje{grid-column:span 2;grid-row:auto}
-  .b-directo{grid-column:span 2}
-}
-@media (max-width:600px){
-  .rejilla{grid-template-columns:1fr;gap:12px}
-  .b-mensaje,.b-directo{grid-column:auto}
-  .b-mensaje{padding:28px 24px;gap:28px}
+  .rejilla{grid-template-columns:1.4fr 1fr;grid-template-areas:"mensaje mensaje" "verso verso" "directo musica"}
   .b-directo{flex-direction:column;align-items:stretch}
   .b-directo .pantallita{width:100%}
+}
+@media (max-width:600px){
+  .rejilla{grid-template-columns:1fr;grid-template-areas:"mensaje" "verso" "directo" "musica";gap:12px}
+  .b-mensaje{padding:28px 24px;gap:28px}
   .bloque{padding:22px}
+  .b-verso{padding:26px 22px}
+  .b-verso::after{font-size:170px;top:-24px;right:10px}
 }
 
 /* ---------- secciones ---------- */
@@ -213,6 +237,18 @@ body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset
 .pasaje p+p{margin-top:10px}
 .pasaje sup{font:700 12px var(--f-ui);color:#A9C7B7;margin-right:4px;vertical-align:.45em}
 .derechos{margin-top:22px;font-size:13px;color:#A9C7B7}
+/* pasaje de la semana en desplegable */
+.pasaje details{border-top:1px solid rgba(242,244,239,.18);padding-top:6px}
+.pasaje summary{cursor:pointer;font-weight:700;color:var(--crema);list-style:none;display:flex;justify-content:space-between;align-items:center;gap:12px;min-height:48px}
+.pasaje summary::-webkit-details-marker{display:none}
+.pasaje summary::after{content:"+";font-size:26px;line-height:1;transition:transform .2s}
+.pasaje details[open] summary::after{transform:rotate(45deg)}
+.pasaje summary:hover{color:#fff}
+.pasaje #ps-texto{padding:8px 0 4px}
+/* los desplegables se abren y cierran suavemente (en navegadores que lo permiten) */
+.pasaje details,.reflexion details{interpolate-size:allow-keywords}
+.pasaje details::details-content,.reflexion details::details-content{block-size:0;overflow:hidden;transition:block-size .35s ease,content-visibility .35s allow-discrete}
+.pasaje details[open]::details-content,.reflexion details[open]::details-content{block-size:auto}
 
 /* música */
 .musica{display:grid;grid-template-columns:minmax(0,.9fr) minmax(0,1.1fr);gap:20px;align-items:start}
@@ -334,6 +370,69 @@ textarea{min-height:130px;resize:vertical}
   .wa-flotante svg{width:26px;height:26px}
   .pie{padding-bottom:calc(96px + env(safe-area-inset-bottom,0px))}
 }
+
+/* ---------- compartir ---------- */
+.compartir{display:flex;flex-wrap:wrap;align-items:center;gap:8px}
+.compartir .red{width:44px;height:44px;border-radius:50%;display:grid;place-items:center;border:1px solid rgba(30,36,33,.12);background:rgba(255,255,255,.75);color:var(--carbon);cursor:pointer;padding:0;transition:transform .18s ease,background .18s ease,color .18s ease,border-color .18s ease}
+.compartir .red svg{width:19px;height:19px}
+.compartir .red:hover{transform:translateY(-2px);color:#fff;border-color:transparent}
+.compartir .red:active{transform:scale(.94)}
+.compartir .r-wa:hover{background:#1F8A55}
+.compartir .r-fb:hover{background:#1877F2}
+.compartir .r-x:hover{background:#111}
+.compartir .r-tg:hover{background:#229ED9}
+.compartir .r-copiar:hover{background:var(--bosque)}
+.compartir .boton{padding:11px 16px;font-size:14px;min-height:44px}
+.banda-bosque .compartir .red{background:rgba(255,255,255,.08);border-color:rgba(242,244,239,.3);color:var(--crema)}
+.compartir .etiqueta{flex-basis:100%;color:var(--bosque-2)}
+.banda-bosque .compartir .etiqueta{color:#A9C7B7}
+.dia .compartir{padding:2px 0}
+.pasaje .compartir{margin-top:18px}
+@media (max-width:400px){.compartir{gap:6px}.compartir .red{width:42px;height:42px}}
+/* imagen del versículo para estados e historias */
+.ventana{border:0;border-radius:var(--radio);padding:0;max-width:min(420px,calc(100vw - 32px));width:100%;background:var(--blanco);color:var(--carbon);box-shadow:0 30px 80px -20px rgba(0,0,0,.5)}
+.ventana::backdrop{background:rgba(20,26,23,.6);backdrop-filter:blur(4px);-webkit-backdrop-filter:blur(4px)}
+.ventana[open]{animation:aparecer .25s ease}
+@keyframes aparecer{from{opacity:0;transform:translateY(12px) scale(.98)}}
+.ventana .dentro{display:flex;flex-direction:column;gap:14px;padding:18px}
+.ventana .arriba-v{display:flex;justify-content:space-between;align-items:center;gap:10px}
+.ventana .arriba-v b{font-size:17px}
+.ventana .cerrar{width:40px;height:40px;border-radius:50%;border:1px solid var(--linea);background:var(--lino);color:var(--carbon);display:grid;place-items:center;cursor:pointer;padding:0}
+.ventana .cerrar svg{width:20px;height:20px}
+.ventana img{width:100%;max-height:62vh;object-fit:contain;border-radius:var(--radio-s);background:var(--salvia);aspect-ratio:9/16}
+.ventana .botones-v{display:flex;flex-wrap:wrap;gap:8px}
+.ventana .botones-v .boton{flex:1 1 auto;justify-content:center}
+.ventana small{color:var(--gris);font-size:13px}
+/* aviso breve ("Copiado") */
+.aviso{position:fixed;left:50%;bottom:calc(24px + env(safe-area-inset-bottom,0px));z-index:70;translate:-50% 0;background:var(--carbon);color:var(--crema);padding:12px 18px;border-radius:999px;font-weight:700;font-size:15px;box-shadow:0 14px 30px -12px rgba(0,0,0,.45);opacity:0;transform:translateY(10px);transition:opacity .2s ease,transform .2s ease;pointer-events:none}
+.aviso.ver{opacity:1;transform:none}
+
+/* barra fina que avanza mientras se lee el estudio */
+.progreso{position:fixed;left:0;right:0;top:env(safe-area-inset-top,0px);height:3px;z-index:61;background:var(--bosque-2);transform-origin:left;transform:scaleX(0);opacity:0;transition:opacity .3s ease}
+.progreso.ver{opacity:1}
+
+/* volver arriba */
+.subir{position:fixed;right:calc(16px + env(safe-area-inset-right,0px));bottom:calc(16px + env(safe-area-inset-bottom,0px));z-index:40;width:48px;height:48px;border-radius:50%;border:1px solid var(--linea);background:var(--blanco);color:var(--bosque);display:grid;place-items:center;cursor:pointer;padding:0;box-shadow:0 10px 26px -10px rgba(0,0,0,.35);opacity:0;visibility:hidden;transform:translateY(10px);transition:opacity .25s ease,transform .25s ease,visibility 0s linear .25s}
+.subir svg{width:22px;height:22px}
+.subir.ver{opacity:1;visibility:visible;transform:none;transition:opacity .25s ease,transform .25s ease}
+@media (max-width:960px){.subir{bottom:calc(82px + env(safe-area-inset-bottom,0px));right:calc(19px + env(safe-area-inset-right,0px))}}
+
+/* tarjetas que responden al pasar el ratón */
+.reflexiones .reflexion,.titular,.pista-tarjeta,.album,.radio-tarjeta{transition:transform .25s ease,box-shadow .25s ease,border-color .25s ease}
+.reflexiones .reflexion:hover,.titular:hover,.pista-tarjeta:hover{transform:translateY(-3px);box-shadow:0 18px 36px -24px rgba(30,36,33,.45);border-color:#D2D7CE}
+.corto .miniatura{transition:box-shadow .25s ease}
+.corto:hover .miniatura{box-shadow:0 16px 30px -18px rgba(30,36,33,.6)}
+.reflexion summary{transition:color .2s ease}
+
+/* aparición suave al bajar (inspirada en el componente "Reveal" de 21st) */
+.anim :is(.seccion .cabeza,.reflexiones .reflexion,.subtitulo,#dia,.lectura-dia,.pasaje,.album,.radio-tarjeta,.pista-tarjeta,.directo>*,.videos,.noticias-col,.oracion-caja>form):not(.listo){transition:opacity .7s ease,transform .7s cubic-bezier(.2,.7,.2,1),filter .7s ease}
+.anim :is(.seccion .cabeza,.reflexiones .reflexion,.subtitulo,#dia,.lectura-dia,.pasaje,.album,.radio-tarjeta,.pista-tarjeta,.directo>*,.videos,.noticias-col,.oracion-caja>form):not(.visto){opacity:0;transform:translateY(22px);filter:blur(4px)}
+/* la portada entra al cargar */
+.anim .rejilla>.bloque{animation:entrar .7s cubic-bezier(.2,.7,.2,1) backwards}
+.anim .rejilla>.bloque:nth-child(2){animation-delay:.08s}
+.anim .rejilla>.bloque:nth-child(3){animation-delay:.16s}
+.anim .rejilla>.bloque:nth-child(4){animation-delay:.24s}
+@keyframes entrar{from{opacity:0;transform:translateY(18px)}}
 </style>
 </head>
 <body>
@@ -356,9 +455,17 @@ textarea{min-height:130px;resize:vertical}
 <symbol id="i-hand-heart" viewBox="0 0 24 24"><path d="M11 14h2a2 2 0 1 0 0-4h-3c-.6 0-1.1.2-1.4.6L3 16" /> <path d="m7 20 1.6-1.4c.3-.4.8-.6 1.4-.6h4c1.1 0 2.1-.4 2.8-1.2l4.6-4.4a2 2 0 0 0-2.75-2.91l-4.2 3.9" /> <path d="m2 15 6 6" /> <path d="M19.5 8.5c.7-.7 1.5-1.6 1.5-2.7A2.73 2.73 0 0 0 16 4a2.78 2.78 0 0 0-5 1.8c0 1.2.8 2 1.5 2.8L16 12Z" /></symbol>
 <symbol id="i-arrow-up-right" viewBox="0 0 24 24"><path d="M7 7h10v10" /> <path d="M7 17 17 7" /></symbol>
 <symbol id="i-send" viewBox="0 0 24 24"><path d="m22 2-7 20-4-9-9-4Z" /> <path d="M22 2 11 13" /></symbol>
+<symbol id="i-xcom" viewBox="0 0 24 24"><path fill="currentColor" d="M18.901 1.153h3.68l-8.04 9.19L24 22.846h-7.406l-5.8-7.584-6.638 7.584H.474l8.6-9.83L0 1.154h7.594l5.243 6.932ZM17.61 20.644h2.039L6.486 3.24H4.298Z"/></symbol>
+<symbol id="i-telegram" viewBox="0 0 24 24"><path fill="currentColor" d="M11.944 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0a12 12 0 0 0-.056 0zm4.962 7.224c.1-.002.321.023.465.14a.506.506 0 0 1 .171.325c.016.093.036.306.02.472-.18 1.898-.962 6.502-1.36 8.627-.168.9-.499 1.201-.82 1.23-.696.065-1.225-.46-1.9-.902-1.056-.693-1.653-1.124-2.678-1.8-1.185-.78-.417-1.21.258-1.91.177-.184 3.247-2.977 3.307-3.23.007-.032.014-.15-.056-.212s-.174-.041-.249-.024c-.106.024-1.793 1.14-5.061 3.345-.48.33-.913.49-1.302.48-.428-.008-1.252-.241-1.865-.44-.752-.245-1.349-.374-1.297-.789.027-.216.325-.437.893-.663 3.498-1.524 5.83-2.529 6.998-3.014 3.332-1.386 4.025-1.627 4.476-1.635z"/></symbol>
+<symbol id="i-copy" viewBox="0 0 24 24"><rect width="14" height="14" x="8" y="8" rx="2" ry="2" /> <path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2" /></symbol>
+<symbol id="i-share" viewBox="0 0 24 24"><circle cx="18" cy="5" r="3" /> <circle cx="6" cy="12" r="3" /> <circle cx="18" cy="19" r="3" /> <line x1="8.59" x2="15.42" y1="13.51" y2="17.49" /> <line x1="15.41" x2="8.59" y1="6.51" y2="10.49" /></symbol>
+<symbol id="i-image" viewBox="0 0 24 24"><rect width="18" height="18" x="3" y="3" rx="2" ry="2" /> <circle cx="9" cy="9" r="2" /> <path d="m21 15-3.086-3.086a2 2 0 0 0-2.828 0L6 21" /></symbol>
+<symbol id="i-download" viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" /> <polyline points="7 10 12 15 17 10" /> <line x1="12" x2="12" y1="15" y2="3" /></symbol>
+<symbol id="i-arrow-up" viewBox="0 0 24 24"><path d="m5 12 7-7 7 7" /> <path d="M12 19V5" /></symbol>
 <symbol id="i-lock" viewBox="0 0 24 24"><rect width="18" height="11" x="3" y="11" rx="2" ry="2" /> <path d="M7 11V7a5 5 0 0 1 10 0v4" /></symbol>
 </svg>
 <a class="saltar" href="#contenido">Saltar al contenido</a>
+<div class="progreso" id="progreso" aria-hidden="true"></div>
 
 <header class="cabecera" id="cabecera">
   <div class="contenedor">
@@ -397,18 +504,22 @@ textarea{min-height:130px;resize:vertical}
           </div>
         </div>
       </div>
-      <a class="bloque b-directo" href="#directo">
-        <span class="pantallita"><span class="circulo-play"><svg><use href="#i-play"/></svg></span></span>
-        <span><span class="en-vivo">En directo</span><span class="tit" style="display:block;margin-top:8px">Refugio 24/7: música instrumental y promesas bíblicas</span><span class="sub" style="display:block">Para orar y descansar, a cualquier hora</span></span>
-      </a>
       <div class="bloque b-verso" id="versiculo-dia">
         <span class="etiqueta" style="color:var(--bosque)">Tema del día</span>
         <span class="tema-dia" id="vd-tema">Muy pronto</span>
         <blockquote id="vd-texto">El tema del día, con su versículo y su estudio, aparecerá aquí cada mañana.</blockquote>
         <cite id="vd-ref" hidden></cite>
         <div class="lector" data-leer="#versiculo-dia" hidden></div>
-        <a class="boton boton-bosque" id="vd-estudio" href="#estudios" style="align-self:flex-start;padding:10px 16px;font-size:14px" hidden><svg class="icono icono-t"><use href="#i-book-open"/></svg>Leer el estudio</a>
+        <div class="acciones">
+          <a class="boton boton-bosque" id="vd-estudio" href="#estudios" style="align-self:flex-start;padding:10px 16px;font-size:14px" hidden><svg class="icono icono-t"><use href="#i-book-open"/></svg>Leer el estudio</a>
+          <!-- compartir el versículo: se rellena al cargar el tema del día -->
+          <div class="compartir" data-compartir="versiculo" hidden></div>
+        </div>
       </div>
+      <a class="bloque b-directo" href="#directo">
+        <span class="pantallita"><span class="circulo-play"><svg><use href="#i-play"/></svg></span></span>
+        <span><span class="en-vivo">En directo</span><span class="tit" style="display:block;margin-top:8px">Refugio 24/7: música instrumental y promesas bíblicas</span><span class="sub" style="display:block">Para orar y descansar, a cualquier hora</span></span>
+      </a>
       <a class="bloque b-musica" href="#musica">
         <span class="etiqueta" style="color:var(--bosque)">Álbum</span>
         <span class="tit">Entre la multitud</span>
@@ -427,6 +538,7 @@ textarea{min-height:130px;resize:vertical}
       <div class="dia" id="dia">
         <div class="hoy-mundo" id="hoy-mundo" hidden><span class="etiqueta">Hoy en el mundo</span><p id="hm-texto"></p></div>
         <div id="lista-estudios"><div class="vacio">El estudio del día aparecerá aquí.</div></div>
+        <div class="compartir" data-compartir="estudio" hidden></div>
         <div class="para-hoy" id="para-hoy" hidden><span class="etiqueta">Para hoy</span><div id="ph-texto"></div></div>
       </div>
       <h3 class="subtitulo" id="reflexiones">Reflexiones</h3>
@@ -464,8 +576,12 @@ textarea{min-height:130px;resize:vertical}
         <span class="etiqueta" id="ps-semana">Pasaje de la semana</span>
         <h3 id="ps-ref">Pasaje de la semana</h3>
         <div class="lector" data-leer="#pasaje-semana" hidden></div>
-        <div id="ps-texto"><p>El pasaje de esta semana aparecerá aquí.</p></div>
+        <details>
+          <summary>Leer el pasaje completo</summary>
+          <div id="ps-texto"><p>El pasaje de esta semana aparecerá aquí.</p></div>
+        </details>
         <a class="boton boton-claro" id="ps-bg" href="https://www.biblegateway.com/versions/Reina-Valera-1960-RVR1960-Biblia/" target="_blank" rel="noopener" hidden>Leer en BibleGateway<svg class="icono icono-t"><use href="#i-arrow-up-right"/></svg></a>
+        <div class="compartir" data-compartir="pasaje" hidden></div>
         <p class="derechos">Texto bíblico: Reina-Valera 1960.</p>
       </article>
     </div>
@@ -611,6 +727,21 @@ textarea{min-height:130px;resize:vertical}
 </footer>
 
 <a class="wa-flotante" href="https://whatsapp.com/channel/0029VbDXQJGFSAtAMI6SkH3v" target="_blank" rel="noopener" aria-label="Canal de WhatsApp"><svg><use href="#i-whatsapp"/></svg></a>
+<button class="subir icono-t" id="subir" type="button" aria-label="Volver arriba" title="Volver arriba"><svg><use href="#i-arrow-up"/></svg></button>
+<div class="aviso" id="aviso" role="status" aria-live="polite"></div>
+
+<!-- imagen del versículo (9:16) para estados de WhatsApp e historias de Instagram -->
+<dialog class="ventana" id="ventana-imagen" aria-labelledby="vi-titulo">
+  <div class="dentro">
+    <div class="arriba-v"><b id="vi-titulo">Imagen para estados e historias</b><button class="cerrar icono-t" type="button" data-cerrar aria-label="Cerrar"><svg><use href="#i-x"/></svg></button></div>
+    <img id="vi-img" alt="" width="1080" height="1920">
+    <div class="botones-v">
+      <a class="boton boton-bosque" id="vi-descargar" download="versiculo-del-dia.jpg"><svg class="icono icono-t"><use href="#i-download"/></svg>Descargar</a>
+      <button class="boton boton-linea" id="vi-compartir" type="button" hidden><svg class="icono icono-t"><use href="#i-share"/></svg>Compartir imagen</button>
+    </div>
+    <small>Formato vertical 9:16, listo para estados de WhatsApp e historias de Instagram.</small>
+  </div>
+</dialog>
 
 <script>
 "use strict";
@@ -637,7 +768,7 @@ fetch("datos/pasaje.json", { cache: "no-cache" }).then(r => r.ok ? r.json() : nu
   document.getElementById("ps-texto").replaceChildren(...p.versiculos.map(v => {
     const par = document.createElement("p"), n = document.createElement("sup"); n.textContent = v.n; par.append(n, v.texto); return par; }));
   const bg = document.getElementById("ps-bg"); bg.href = enlaceBG(p.referencia); bg.hidden = false;
-  prepararLectores();
+  prepararLectores(); pintarCompartir(document.querySelector('[data-compartir="pasaje"]'));
 }).catch(() => {});
 
 /* reproductores: YouTube solo se carga al pulsar (la web abre mucho más rápido) */
@@ -706,7 +837,7 @@ function pintarDia(d) {
     a.className = "boton boton-claro"; a.href = enlaceBG(x.cita); a.target = "_blank"; a.rel = "noopener";
     a.innerHTML = 'Leer en BibleGateway<svg class="icono icono-t"><use href="#i-arrow-up-right"/></svg>';
     li.append(txt, a); return li; }));
-  abrirEstudio(); prepararLectores();
+  abrirEstudio(); prepararLectores(); mostrarCompartir();
 }
 fetch("datos/dias.json", { cache: "no-cache" }).then(r => r.ok ? r.json() : null).then(pintarDia).catch(() => {});
 window.addEventListener("hashchange", abrirEstudio); abrirEstudio();
@@ -892,6 +1023,153 @@ pLetra.addEventListener("click", e => { const b = e.target.closest("[data-letra]
   tamano = TAMANOS[Math.min(TAMANOS.length - 1, Math.max(0, TAMANOS.indexOf(tamano) + +b.dataset.letra))]; aplicarLetra(); });
 document.addEventListener("click", e => { if (!e.target.closest(".letra") && !pLetra.hidden) { pLetra.hidden = true; bLetra.setAttribute("aria-expanded", "false"); } });
 aplicarLetra();
+
+/* ---------- Compartir: versículo del día, estudio y pasaje de la semana ---------- */
+const WEB = "https://enkmina2.github.io/encaminados-por-jesus/";
+const REDES = [   // [icono, clase, nombre, enlace para compartir]
+  ["whatsapp", "r-wa", "WhatsApp", t => "https://wa.me/?text=" + encodeURIComponent(t.texto + "\n\n" + t.url)],
+  ["facebook", "r-fb", "Facebook", t => "https://www.facebook.com/sharer/sharer.php?u=" + encodeURIComponent(t.url)],
+  ["xcom", "r-x", "X", t => "https://twitter.com/intent/tweet?text=" + encodeURIComponent(t.texto) + "&url=" + encodeURIComponent(t.url)],
+  ["telegram", "r-tg", "Telegram", t => "https://t.me/share/url?url=" + encodeURIComponent(t.url) + "&text=" + encodeURIComponent(t.texto)]
+];
+/* lo que se comparte sale de lo que ya muestra la página (el texto no se toca) */
+function datosCompartir(tipo) {
+  const txt = id => document.getElementById(id).textContent.trim();
+  if (tipo === "versiculo") return { texto: `${txt("vd-texto")} (${txt("vd-ref")})\n\nTema del día: ${txt("vd-tema")}`, url: WEB + "#versiculo-dia" };
+  if (tipo === "estudio") {
+    const art = document.querySelector("#lista-estudios .reflexion"), cita = art.querySelector(".cita");
+    const tema = art.querySelector(".tipo").textContent.split(" · ").pop();
+    return { texto: `Estudio bíblico: ${tema}\n\n${cita.firstChild.textContent} (${cita.querySelector("span").textContent})`, url: WEB + "#estudios" };
+  }
+  return { texto: `Pasaje de la semana: ${txt("ps-ref")} (Reina-Valera 1960)`, url: WEB + "#pasaje-semana" };
+}
+function pintarCompartir(caja) {
+  if (!caja) return;
+  const b = (clase, red, etiqueta, icono, trazo) => `<button type="button" class="red ${clase}" data-red="${red}" aria-label="${etiqueta}" title="${etiqueta}"><svg${trazo ? ' class="icono-t"' : ""} aria-hidden="true"><use href="#i-${icono}"/></svg></button>`;
+  const titulo = { estudio: "Compartir el estudio", pasaje: "Compartir el pasaje" }[caja.dataset.compartir];
+  caja.innerHTML = (titulo ? `<span class="etiqueta">${titulo}</span>` : "") + REDES.map(([ic, clase, nombre]) => b(clase, ic, "Compartir en " + nombre, ic)).join("")
+    + b("r-copiar", "copiar", "Copiar el texto y el enlace", "copy", true)
+    + (navigator.share ? b("r-copiar", "mas", "Más opciones para compartir", "share", true) : "")
+    + (caja.dataset.compartir === "versiculo" ? `<button type="button" class="boton boton-linea" data-red="imagen"><svg class="icono icono-t" aria-hidden="true"><use href="#i-image"/></svg>Imagen para estados</button>` : "");
+  caja.hidden = false;
+}
+function mostrarCompartir() {
+  if (!document.getElementById("vd-ref").hidden) pintarCompartir(document.querySelector('[data-compartir="versiculo"]'));
+  if (document.querySelector("#lista-estudios .reflexion")) pintarCompartir(document.querySelector('[data-compartir="estudio"]'));
+}
+const avisoCaja = document.getElementById("aviso"); let avisoReloj;
+function avisar(texto) { avisoCaja.textContent = texto; avisoCaja.classList.add("ver"); clearTimeout(avisoReloj); avisoReloj = setTimeout(() => avisoCaja.classList.remove("ver"), 2400); }
+async function copiar(texto) {
+  try { await navigator.clipboard.writeText(texto); }
+  catch (e) {   // navegadores antiguos
+    const a = document.createElement("textarea"); a.value = texto; a.setAttribute("readonly", ""); a.style.cssText = "position:fixed;opacity:0";
+    document.body.append(a); a.select(); document.execCommand("copy"); a.remove();
+  }
+  avisar("Copiado. Ya puedes pegarlo donde quieras.");
+}
+document.addEventListener("click", e => {
+  const b = e.target.closest(".compartir [data-red]"); if (!b) return;
+  const t = datosCompartir(b.closest(".compartir").dataset.compartir), red = b.dataset.red;
+  if (red === "copiar") copiar(t.texto + "\n\n" + t.url);
+  else if (red === "mas") navigator.share({ title: "Encaminados por Jesús", text: t.texto, url: t.url }).catch(() => {});
+  else if (red === "imagen") abrirImagen();
+  else window.open(REDES.find(x => x[0] === red)[3](t), "_blank", "noopener");
+});
+
+/* imagen vertical 9:16 del versículo (se dibuja en el navegador: sin servidor) */
+function lineas(g, texto, ancho) {
+  const out = []; let l = "";
+  texto.split(/\s+/).forEach(p => { const prueba = l ? l + " " + p : p; if (l && g.measureText(prueba).width > ancho) { out.push(l); l = p; } else l = prueba; });
+  if (l) out.push(l); return out;
+}
+async function crearImagen() {
+  const W = 1080, H = 1920, c = document.createElement("canvas"); c.width = W; c.height = H;
+  const g = c.getContext("2d");
+  await Promise.all(['italic 400 60px "Literata"', '800 40px "Hanken Grotesk"', '600 30px "Hanken Grotesk"'].map(f => document.fonts.load(f))).catch(() => {});
+  const logo = await new Promise(res => { const i = new Image(); i.onload = () => res(i); i.onerror = () => res(null); i.src = "logo.png"; });
+  const fondo = g.createLinearGradient(0, 0, W * .4, H); fondo.addColorStop(0, "#3D6151"); fondo.addColorStop(.55, "#2E4A3E"); fondo.addColorStop(1, "#1C2B24");
+  g.fillStyle = fondo; g.fillRect(0, 0, W, H);
+  const luz = (x, y, r, color) => { const l = g.createRadialGradient(x, y, 0, x, y, r); l.addColorStop(0, color); l.addColorStop(1, "rgba(0,0,0,0)"); g.fillStyle = l; g.fillRect(0, 0, W, H); };
+  luz(W * .9, H * .06, 950, "rgba(233,217,181,.40)"); luz(W * .05, H * .97, 1000, "rgba(188,211,226,.26)");
+  if (logo) { g.save(); g.beginPath(); g.arc(W / 2, 250, 92, 0, Math.PI * 2); g.clip(); g.drawImage(logo, W / 2 - 92, 158, 184, 184); g.restore(); }
+  g.textAlign = "center"; g.textBaseline = "alphabetic";
+  const txt = id => document.getElementById(id).textContent.trim();
+  /* tema del día */
+  g.fillStyle = "#A9C7B7"; g.font = '800 30px "Hanken Grotesk", sans-serif'; if ("letterSpacing" in g) g.letterSpacing = "6px";
+  g.fillText("TEMA DEL DÍA", W / 2, 432); if ("letterSpacing" in g) g.letterSpacing = "0px";
+  g.fillStyle = "#F2F4EF"; g.font = '800 54px "Hanken Grotesk", sans-serif';
+  let y = 508; lineas(g, txt("vd-tema"), 880).forEach(l => { g.fillText(l, W / 2, y); y += 64; });
+  /* versículo: la letra se ajusta para que quepa entero */
+  const arriba = y + 60, abajo = 1540; let tam = 66, ls;
+  do { g.font = `italic 400 ${tam}px "Literata", Georgia, serif`; ls = lineas(g, txt("vd-texto"), 900); tam -= 2; } while (ls.length * (tam + 2) * 1.42 > abajo - arriba - 90 && tam > 30);
+  tam += 2; const alto = ls.length * tam * 1.42;
+  let yv = arriba + Math.max(0, (abajo - arriba - 90 - alto) / 2) + tam;
+  g.fillStyle = "rgba(242,244,239,.10)"; g.font = 'italic 400 300px "Literata", Georgia, serif'; g.fillText("“", W / 2, yv + 120 - tam);
+  g.fillStyle = "#F2F4EF"; g.font = `italic 400 ${tam}px "Literata", Georgia, serif`;
+  ls.forEach(l => { g.fillText(l, W / 2, yv); yv += tam * 1.42; });
+  g.fillStyle = "#E9D9B5"; g.font = '800 34px "Hanken Grotesk", sans-serif'; if ("letterSpacing" in g) g.letterSpacing = "5px";
+  g.fillText(txt("vd-ref").toUpperCase(), W / 2, yv + 34); if ("letterSpacing" in g) g.letterSpacing = "0px";
+  /* pie: nombre y dirección de la web */
+  g.strokeStyle = "rgba(242,244,239,.25)"; g.lineWidth = 2; g.beginPath(); g.moveTo(W / 2 - 80, 1650); g.lineTo(W / 2 + 80, 1650); g.stroke();
+  g.fillStyle = "#F2F4EF"; g.font = '800 42px "Hanken Grotesk", sans-serif'; g.fillText("Encaminados por Jesús", W / 2, 1730);
+  g.fillStyle = "#C7D6CD"; g.font = '600 31px "Hanken Grotesk", sans-serif'; g.fillText("enkmina2.github.io/encaminados-por-jesus", W / 2, 1785);
+  return c;
+}
+const ventana = document.getElementById("ventana-imagen"), viImg = document.getElementById("vi-img"), viDescargar = document.getElementById("vi-descargar"), viCompartir = document.getElementById("vi-compartir");
+let archivoImagen = null;
+async function abrirImagen() {
+  const blob = await new Promise(async r => (await crearImagen()).toBlob(r, "image/jpeg", .92));   // JPG: pesa poco para WhatsApp
+  if (viImg.src.startsWith("blob:")) URL.revokeObjectURL(viImg.src);
+  const url = URL.createObjectURL(blob), nombre = "versiculo-del-dia-" + hoyISO() + ".jpg";
+  viImg.src = url; viImg.alt = document.getElementById("vd-texto").textContent + " " + document.getElementById("vd-ref").textContent;
+  viDescargar.href = url; viDescargar.download = nombre;
+  archivoImagen = new File([blob], nombre, { type: "image/jpeg" });
+  viCompartir.hidden = !(navigator.canShare && navigator.canShare({ files: [archivoImagen] }));
+  if (ventana.showModal) ventana.showModal(); else viDescargar.click();
+}
+viCompartir.addEventListener("click", () => navigator.share({ files: [archivoImagen], text: WEB }).catch(() => {}));
+ventana.addEventListener("click", e => { if (e.target === ventana || e.target.closest("[data-cerrar]")) ventana.close(); });
+
+/* ---------- Cabecera compacta, barra de lectura del estudio y botón de subir ---------- */
+const progreso = document.getElementById("progreso"), subir = document.getElementById("subir");
+let pendiente = false;
+function alDesplazar() {
+  pendiente = false;
+  const y = scrollY, vh = innerHeight;
+  cab.classList.toggle("compacta", y > 40);
+  subir.classList.toggle("ver", y > vh * 1.2);
+  if (document.getElementById("estudios").getBoundingClientRect().top > vh * .5)   // en la portada no se marca ninguna sección
+    document.querySelectorAll("#menu a.actual").forEach(a => { a.classList.remove("actual"); a.removeAttribute("aria-current"); });
+  const art = document.querySelector("#lista-estudios .reflexion");
+  if (!art) return;
+  const r = art.getBoundingClientRect();
+  progreso.style.transform = `scaleX(${Math.min(1, Math.max(0, (vh * .4 - r.top) / r.height))})`;
+  progreso.classList.toggle("ver", r.top < vh * .4 && r.bottom > vh * .4);
+}
+addEventListener("scroll", () => { if (!pendiente) { pendiente = true; requestAnimationFrame(alDesplazar); } }, { passive: true });
+alDesplazar();
+subir.addEventListener("click", () => { scrollTo({ top: 0 }); document.querySelector(".marca").focus({ preventScroll: true }); });
+
+/* menú: se resalta la sección en la que estás */
+if ("IntersectionObserver" in window) {
+  const enlaces = [...document.querySelectorAll("#menu a")];
+  const espia = new IntersectionObserver(es => es.forEach(en => {
+    if (!en.isIntersecting) return;
+    enlaces.forEach(a => { const si = a.hash === "#" + en.target.id; a.classList.toggle("actual", si); if (si) a.setAttribute("aria-current", "true"); else a.removeAttribute("aria-current"); });
+  }), { rootMargin: "-45% 0px -50% 0px" });
+  enlaces.forEach(a => { const s = document.querySelector(a.hash); if (s) espia.observe(s); });
+}
+
+/* aparición suave al bajar (si el visitante no pidió reducir el movimiento) */
+if (document.documentElement.classList.contains("anim")) {
+  const revelar = new IntersectionObserver(es => { let i = 0; es.forEach(en => {
+    if (!en.isIntersecting) return;
+    const el = en.target; revelar.unobserve(el);
+    el.style.transitionDelay = (i++ * 90) + "ms"; el.classList.add("visto");
+    setTimeout(() => { el.classList.add("listo"); el.style.transitionDelay = ""; }, 900 + i * 90);
+  }); }, { rootMargin: "0px 0px -6% 0px" });
+  document.querySelectorAll(".seccion .cabeza,.reflexiones .reflexion,.subtitulo,#dia,.lectura-dia,.pasaje,.album,.radio-tarjeta,.pista-tarjeta,.directo>*,.videos,.noticias-col,.oracion-caja>form").forEach(el => revelar.observe(el));
+}
 </script>
 </body>
 </html>
