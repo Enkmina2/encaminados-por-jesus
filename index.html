@@ -821,9 +821,15 @@ abrir.addEventListener("click", () => { const a = cab.classList.toggle("abierta"
   abrir.querySelector("use").setAttribute("href", a ? "#i-x" : "#i-menu"); });
 document.querySelectorAll("#menu a").forEach(a => a.addEventListener("click", () => { cab.classList.remove("abierta"); abrir.setAttribute("aria-expanded", "false"); abrir.querySelector("use").setAttribute("href", "#i-menu"); }));
 
-/* pasaje de la semana (datos/pasaje.json): solo el actual; si no llega otro, se queda el último */
-fetch("datos/pasaje.json", { cache: "no-cache" }).then(r => r.ok ? r.json() : null).then(p => {
-  if (!p || !p.versiculos || !p.versiculos.length) return;
+/* pasaje de la semana: el actual (datos/pasaje.json) o, cuando llega su domingo, uno de los ya
+   preparados en datos/pasajes-siguientes.json; si no llega ninguno, se queda el último */
+const leerJSON = n => fetch(n, { cache: "no-cache" }).then(r => r.ok ? r.json() : null).catch(() => null);
+Promise.all([leerJSON("datos/pasaje.json"), leerJSON("datos/pasajes-siguientes.json")]).then(([actual, siguientes]) => {
+  const hoy = hoyISO();
+  const p = [actual, ...((siguientes && siguientes.pasajes) || [])]
+    .filter(x => x && x.versiculos && x.versiculos.length && (!x.desde || x.desde <= hoy))
+    .sort((a, b) => (a.desde || "") < (b.desde || "") ? -1 : 1).pop();
+  if (!p) return;
   document.getElementById("ps-semana").textContent = "Pasaje de la semana · desde el " +
     new Date(p.desde + "T12:00:00").toLocaleDateString("es-ES", { weekday: "long", day: "numeric", month: "long" });
   document.getElementById("ps-ref").textContent = p.referencia;

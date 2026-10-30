@@ -1,0 +1,83 @@
+{
+ "instrucciones": "Pasajes de la semana ya preparados (RV1960). La web muestra cada uno desde su domingo (campo desde); hasta entonces sigue el de pasaje.json.",
+ "pasajes": [
+  {
+   "desde": "2026-11-01",
+   "referencia": "Génesis 24:10-27",
+   "versiculos": [
+    {
+     "n": 10,
+     "texto": "Y el criado tomó diez camellos de los camellos de su señor, y se fue, tomando toda clase de regalos escogidos de su señor; y puesto en camino, llegó a Mesopotamia, a la ciudad de Nacor."
+    },
+    {
+     "n": 11,
+     "texto": "E hizo arrodillar los camellos fuera de la ciudad, junto a un pozo de agua, a la hora de la tarde, la hora en que salen las doncellas por agua."
+    },
+    {
+     "n": 12,
+     "texto": "Y dijo: Oh Jehová, Dios de mi señor Abraham, dame, te ruego, el tener hoy buen encuentro, y haz misericordia con mi señor Abraham."
+    },
+    {
+     "n": 13,
+     "texto": "He aquí yo estoy junto a la fuente de agua, y las hijas de los varones de esta ciudad salen por agua."
+    },
+    {
+     "n": 14,
+     "texto": "Sea, pues, que la doncella a quien yo dijere: Baja tu cántaro, te ruego, para que yo beba, y ella respondiere: Bebe, y también daré de beber a tus camellos; que sea esta la que tú has destinado para tu siervo Isaac; y en esto conoceré que habrás hecho misericordia con mi señor."
+    },
+    {
+     "n": 15,
+     "texto": "Y aconteció que antes que él acabase de hablar, he aquí Rebeca, que había nacido a Betuel, hijo de Milca mujer de Nacor hermano de Abraham, la cual salía con su cántaro sobre su hombro."
+    },
+    {
+     "n": 16,
+     "texto": "Y la doncella era de aspecto muy hermoso, virgen, a la que varón no había conocido; la cual descendió a la fuente, y llenó su cántaro, y se volvía."
+    },
+    {
+     "n": 17,
+     "texto": "Entonces el criado corrió hacia ella, y dijo: Te ruego que me des a beber un poco de agua de tu cántaro."
+    },
+    {
+     "n": 18,
+     "texto": "Ella respondió: Bebe, señor mío; y se dio prisa a bajar su cántaro sobre su mano, y le dio a beber."
+    },
+    {
+     "n": 19,
+     "texto": "Y cuando acabó de darle de beber, dijo: También para tus camellos sacaré agua, hasta que acaben de beber."
+    },
+    {
+     "n": 20,
+     "texto": "Y se dio prisa, y vació su cántaro en la pila, y corrió otra vez al pozo para sacar agua, y sacó para todos sus camellos."
+    },
+    {
+     "n": 21,
+     "texto": "Y el hombre estaba maravillado de ella, callando, para saber si Jehová había prosperado su viaje, o no."
+    },
+    {
+     "n": 22,
+     "texto": "Y cuando los camellos acabaron de beber, le dio el hombre un pendiente de oro que pesaba medio siclo, y dos brazaletes que pesaban diez,"
+    },
+    {
+     "n": 23,
+     "texto": "y dijo: ¿De quién eres hija? Te ruego que me digas: ¿hay en casa de tu padre lugar donde posemos?"
+    },
+    {
+     "n": 24,
+     "texto": "Y ella respondió: Soy hija de Betuel hijo de Milca, el cual ella dio a luz a Nacor."
+    },
+    {
+     "n": 25,
+     "texto": "Y añadió: También hay en nuestra casa paja y mucho forraje, y lugar para posar."
+    },
+    {
+     "n": 26,
+     "texto": "El hombre entonces se inclinó, y adoró a Jehová,"
+    },
+    {
+     "n": 27,
+     "texto": "y dijo: Bendito sea Jehová, Dios de mi amo Abraham, que no apartó de mi amo su misericordia y su verdad, guiándome Jehová en el camino a casa de los hermanos de mi amo."
+    }
+   ]
+  }
+ ]
+}
