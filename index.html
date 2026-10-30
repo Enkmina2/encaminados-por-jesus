@@ -211,7 +211,7 @@ body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset
 .reflexion .oracion{background:var(--lino);border-radius:var(--radio-s);padding:14px 16px;font-style:italic}
 
 /* biblia */
-.lectura-dia{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.2fr);gap:20px 32px;align-items:start;background:rgba(255,255,255,.06);border:1px solid rgba(242,244,239,.16);border-radius:var(--radio);padding:26px clamp(20px,4vw,34px);margin-bottom:48px}
+.lectura-dia{display:grid;grid-template-columns:minmax(0,1fr);gap:16px;align-items:start;background:rgba(255,255,255,.06);border:1px solid rgba(242,244,239,.16);border-radius:var(--radio);padding:26px clamp(20px,4vw,34px);margin-bottom:48px}
 @media (max-width:820px){.lectura-dia{grid-template-columns:1fr}}
 .lectura-dia .etiqueta{color:#A9C7B7}
 .lectura-dia h3{font-size:26px;margin:8px 0}
@@ -221,6 +221,10 @@ body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset
 .lectura-dia li div{display:flex;flex-direction:column;gap:2px;min-width:0;flex:1 1 220px}
 .lectura-dia li b{font:400 19px/1.3 var(--f-lectura)}
 .lectura-dia li div span{font-size:15px;color:#C7D6CD}
+/* citas siempre a la vista, encima del desplegable */
+.lectura-dia ul.cc-refs{flex-direction:row;flex-wrap:wrap;gap:8px;margin-top:14px}
+.cc-refs li{border:1px solid rgba(242,244,239,.28);border-radius:999px;padding:6px 14px;font:400 16px/1.3 var(--f-lectura);color:var(--crema)}
+.lectura-dia details ul{padding:8px 0 4px}
 .dia{display:flex;flex-direction:column;gap:16px;max-width:820px}
 .hoy-mundo,.para-hoy{border-radius:var(--radio);padding:20px 24px;display:flex;flex-direction:column;gap:8px}
 .hoy-mundo{background:var(--cielo)}
@@ -238,17 +242,18 @@ body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset
 .pasaje sup{font:700 12px var(--f-ui);color:#A9C7B7;margin-right:4px;vertical-align:.45em}
 .derechos{margin-top:22px;font-size:13px;color:#A9C7B7}
 /* pasaje de la semana en desplegable */
-.pasaje details{border-top:1px solid rgba(242,244,239,.18);padding-top:6px}
-.pasaje summary{cursor:pointer;font-weight:700;color:var(--crema);list-style:none;display:flex;justify-content:space-between;align-items:center;gap:12px;min-height:48px}
-.pasaje summary::-webkit-details-marker{display:none}
-.pasaje summary::after{content:"+";font-size:26px;line-height:1;transition:transform .2s}
-.pasaje details[open] summary::after{transform:rotate(45deg)}
-.pasaje summary:hover{color:#fff}
+/* pasaje de la semana y concordancia en desplegable */
+:is(.pasaje,.lectura-dia) details{border-top:1px solid rgba(242,244,239,.18);padding-top:6px}
+:is(.pasaje,.lectura-dia) summary{cursor:pointer;font-weight:700;color:var(--crema);list-style:none;display:flex;justify-content:space-between;align-items:center;gap:12px;min-height:48px}
+:is(.pasaje,.lectura-dia) summary::-webkit-details-marker{display:none}
+:is(.pasaje,.lectura-dia) summary::after{content:"+";font-size:26px;line-height:1;transition:transform .2s}
+:is(.pasaje,.lectura-dia) details[open] summary::after{transform:rotate(45deg)}
+:is(.pasaje,.lectura-dia) summary:hover{color:#fff}
 .pasaje #ps-texto{padding:8px 0 4px}
 /* los desplegables se abren y cierran suavemente (en navegadores que lo permiten) */
-.pasaje details,.reflexion details{interpolate-size:allow-keywords}
-.pasaje details::details-content,.reflexion details::details-content{block-size:0;overflow:hidden;transition:block-size .35s ease,content-visibility .35s allow-discrete}
-.pasaje details[open]::details-content,.reflexion details[open]::details-content{block-size:auto}
+:is(.pasaje,.reflexion,.lectura-dia) details{interpolate-size:allow-keywords}
+:is(.pasaje,.reflexion,.lectura-dia) details::details-content{block-size:0;overflow:hidden;transition:block-size .35s ease,content-visibility .35s allow-discrete}
+:is(.pasaje,.reflexion,.lectura-dia) details[open]::details-content{block-size:auto}
 
 /* música */
 .musica{display:grid;grid-template-columns:minmax(0,.9fr) minmax(0,1.1fr);gap:20px;align-items:start}
@@ -603,8 +608,13 @@ textarea{min-height:130px;resize:vertical}
       <div class="cabeza"><span class="etiqueta">Las Sagradas Escrituras</span><h2 id="t-biblia">Lectura bíblica</h2>
         <p>La concordancia del tema de hoy y el pasaje de la semana, para meditar en la verdad de su Palabra.</p></div>
       <div class="lectura-dia" id="concordancia" hidden>
-        <div><span class="etiqueta">Concordancia bíblica</span><h3 id="cc-tema"></h3><p>Pasajes relacionados con el tema de hoy. Léelos completos en la Reina-Valera 1960.</p></div>
-        <ul id="cc-citas"></ul>
+        <div><span class="etiqueta">Concordancia bíblica</span><h3 id="cc-tema"></h3><p>Pasajes relacionados con el tema de hoy. Léelos completos en la Reina-Valera 1960.</p>
+          <!-- las citas, siempre a la vista: se copian de la lista de abajo al cargar el tema del día -->
+          <ul class="cc-refs" id="cc-refs" aria-label="Citas"></ul></div>
+        <details>
+          <summary>Leer la concordancia completa</summary>
+          <ul id="cc-citas"></ul>
+        </details>
       </div>
       <!-- Pasaje de la semana: cambia cada domingo; se rellena desde datos/pasaje.json -->
       <article class="pasaje pasaje-semana" id="pasaje-semana">
@@ -889,7 +899,12 @@ function pintarDia(d) {
     a.className = "boton boton-claro"; a.href = enlaceBG(x.cita); a.target = "_blank"; a.rel = "noopener";
     a.innerHTML = 'Leer en BibleGateway<svg class="icono icono-t"><use href="#i-arrow-up-right"/></svg>';
     li.append(txt, a); return li; }));
-  abrirEstudio(); prepararLectores(); mostrarCompartir();
+  abrirEstudio(); prepararLectores(); mostrarCompartir(); pintarRefsConcordancia();
+}
+/* concordancia: las citas siempre a la vista, copiadas de la lista del desplegable */
+function pintarRefsConcordancia() {
+  document.getElementById("cc-refs").replaceChildren(...[...document.querySelectorAll("#cc-citas li b")].map(b => {
+    const li = document.createElement("li"); li.textContent = b.textContent; return li; }));
 }
 fetch("datos/dias.json", { cache: "no-cache" }).then(r => r.ok ? r.json() : null).then(pintarDia).catch(() => {});
 window.addEventListener("hashchange", abrirEstudio); abrirEstudio();
