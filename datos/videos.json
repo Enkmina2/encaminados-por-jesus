@@ -2,6 +2,20 @@
  "canal": "UCba5HqD3ftT7QIRCyMqfXyA",
  "videos": [
   {
+   "id": "3BlwciDhTpI",
+   "titulo": "Incredulidad",
+   "fecha": "2026-10-31",
+   "corto": true,
+   "enlace": "https://www.youtube.com/shorts/3BlwciDhTpI"
+  },
+  {
+   "id": "S93g16OvtOw",
+   "titulo": "Creciendo",
+   "fecha": "2026-10-30",
+   "corto": true,
+   "enlace": "https://www.youtube.com/shorts/S93g16OvtOw"
+  },
+  {
    "id": "fTAyGP-fc_c",
    "titulo": "La respuesta llega. #esperanzaendios #familia # #palabradios #fe #reflexionesdeldia #reflexion",
    "fecha": "2026-10-29",
@@ -28,20 +42,6 @@
    "fecha": "2026-10-27",
    "corto": true,
    "enlace": "https://www.youtube.com/shorts/qkmSPS-3z8I"
-  },
-  {
-   "id": "HbWlQm3g35w",
-   "titulo": "Pablo y el Rey Agripa",
-   "fecha": "2026-10-27",
-   "corto": true,
-   "enlace": "https://www.youtube.com/shorts/HbWlQm3g35w"
-  },
-  {
-   "id": "T6VMaVdf3-Y",
-   "titulo": "La puerta abierta",
-   "fecha": "2026-10-26",
-   "corto": true,
-   "enlace": "https://www.youtube.com/shorts/T6VMaVdf3-Y"
   }
  ]
 }
