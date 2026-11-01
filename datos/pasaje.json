@@ -1,63 +1,78 @@
 {
- "instrucciones": "Pasaje de la semana (RV1960). Lo pone herramientas/pasaje_semana.py; el anterior se guarda fuera del repositorio.",
+ "instrucciones": "Pasaje de la semana (RV1960). Lo pone herramientas/pasaje_semana.py; el anterior se guarda fuera del repositorio. Para inglés: añadir campos _en (referencia_en, versiculos[].texto_en)",
  "desde": "2026-10-25",
  "referencia": "Génesis 22:1-14",
+ "referencia_en": "Genesis 22:1-14",
  "versiculos": [
   {
    "n": 1,
-   "texto": "Aconteció después de estas cosas, que probó Dios a Abraham, y le dijo: Abraham. Y él respondió: Heme aquí."
+   "texto": "Aconteció después de estas cosas, que probó Dios a Abraham, y le dijo: Abraham. Y él respondió: Heme aquí.",
+   "texto_en": "And it came to pass after these things, that God did tempt Abraham, and said unto him, Abraham: and he said, Behold, here I am."
   },
   {
    "n": 2,
-   "texto": "Y dijo: Toma ahora tu hijo, tu único, Isaac, a quien amas, y vete a tierra de Moriah, y ofrécelo allí en holocausto sobre uno de los montes que yo te diré."
+   "texto": "Y dijo: Toma ahora tu hijo, tu único, Isaac, a quien amas, y vete a tierra de Moriah, y ofrécelo allí en holocausto sobre uno de los montes que yo te diré.",
+   "texto_en": "And he said, Take now thy son, thine only son Isaac, whom thou lovest, and get thee into the land of Moriah; and offer him there for a burnt offering upon one of the mountains which I will tell thee of."
   },
   {
    "n": 3,
-   "texto": "Y Abraham se levantó muy de mañana, y enalbardó su asno, y tomó consigo dos siervos suyos, y a Isaac su hijo; y cortó leña para el holocausto, y se levantó, y fue al lugar que Dios le dijo."
+   "texto": "Y Abraham se levantó muy de mañana, y enalbardó su asno, y tomó consigo dos siervos suyos, y a Isaac su hijo; y cortó leña para el holocausto, y se levantó, y fue al lugar que Dios le dijo.",
+   "texto_en": "And Abraham rose up early in the morning, and saddled his ass, and took two of his young men with him, and Isaac his son, and clave the wood for the burnt offering, and rose up, and went unto the place of which God had told him."
   },
   {
    "n": 4,
-   "texto": "Al tercer día alzó Abraham sus ojos, y vio el lugar de lejos."
+   "texto": "Al tercer día alzó Abraham sus ojos, y vio el lugar de lejos.",
+   "texto_en": "Then on the third day Abraham lifted up his eyes, and saw the place afar off."
   },
   {
    "n": 5,
-   "texto": "Entonces dijo Abraham a sus siervos: Esperad aquí con el asno, y yo y el muchacho iremos hasta allí y adoraremos, y volveremos a vosotros."
+   "texto": "Entonces dijo Abraham a sus siervos: Esperad aquí con el asno, y yo y el muchacho iremos hasta allí y adoraremos, y volveremos a vosotros.",
+   "texto_en": "And Abraham said unto his young men, Abide ye here with the ass; and I and the lad will go yonder and worship, and come again to you."
   },
   {
    "n": 6,
-   "texto": "Y tomó Abraham la leña del holocausto, y la puso sobre Isaac su hijo, y él tomó en su mano el fuego y el cuchillo; y fueron ambos juntos."
+   "texto": "Y tomó Abraham la leña del holocausto, y la puso sobre Isaac su hijo, y él tomó en su mano el fuego y el cuchillo; y fueron ambos juntos.",
+   "texto_en": "And Abraham took the wood of the burnt offering, and laid it upon Isaac his son; and he took the fire in his hand, and a knife; and they went both of them together."
   },
   {
    "n": 7,
-   "texto": "Entonces habló Isaac a Abraham su padre, y dijo: Padre mío. Y él respondió: Heme aquí, mi hijo. Y él dijo: He aquí el fuego y la leña; mas ¿dónde está el cordero para el holocausto?"
+   "texto": "Entonces habló Isaac a Abraham su padre, y dijo: Padre mío. Y él respondió: Heme aquí, mi hijo. Y él dijo: He aquí el fuego y la leña; mas ¿dónde está el cordero para el holocausto?",
+   "texto_en": "And Isaac spake unto Abraham his father, and said, My father: and he said, Here am I, my son. And he said, Behold the fire and the wood: but where is the lamb for a burnt offering?"
   },
   {
    "n": 8,
-   "texto": "Y respondió Abraham: Dios se proveerá de cordero para el holocausto, hijo mío. E iban juntos."
+   "texto": "Y respondió Abraham: Dios se proveerá de cordero para el holocausto, hijo mío. E iban juntos.",
+   "texto_en": "And Abraham said, My son, God will provide himself a lamb for a burnt offering: so they went both of them together."
   },
   {
    "n": 9,
-   "texto": "Y cuando llegaron al lugar que Dios le había dicho, edificó allí Abraham un altar, y compuso la leña, y ató a Isaac su hijo, y lo puso en el altar sobre la leña."
+   "texto": "Y cuando llegaron al lugar que Dios le había dicho, edificó allí Abraham un altar, y compuso la leña, y ató a Isaac su hijo, y lo puso en el altar sobre la leña.",
+   "texto_en": "And they came to the place which God had told him of; and Abraham built an altar there, and laid the wood in order, and bound Isaac his son, and laid him on the altar upon the wood."
   },
   {
    "n": 10,
-   "texto": "Y extendió Abraham su mano y tomó el cuchillo para degollar a su hijo."
+   "texto": "Y extendió Abraham su mano y tomó el cuchillo para degollar a su hijo.",
+   "texto_en": "And Abraham stretched forth his hand, and took the knife to slay his son."
   },
   {
    "n": 11,
-   "texto": "Entonces el ángel de Jehová le dio voces desde el cielo, y dijo: Abraham, Abraham. Y él respondió: Heme aquí."
+   "texto": "Entonces el ángel de Jehová le dio voces desde el cielo, y dijo: Abraham, Abraham. Y él respondió: Heme aquí.",
+   "texto_en": "And the angel of the LORD called unto him out of heaven, and said, Abraham, Abraham: and he said, Here am I."
   },
   {
    "n": 12,
-   "texto": "Y dijo: No extiendas tu mano sobre el muchacho, ni le hagas nada; porque ya conozco que temes a Dios, por cuanto no me rehusaste tu hijo, tu único."
+   "texto": "Y dijo: No extiendas tu mano sobre el muchacho, ni le hagas nada; porque ya conozco que temes a Dios, por cuanto no me rehusaste tu hijo, tu único.",
+   "texto_en": "And he said, Lay not thine hand upon the lad, neither do thou any thing unto him: for now I know that thou fearest God, seeing thou hast not withheld thy son, thine only son from me."
   },
   {
    "n": 13,
-   "texto": "Entonces alzó Abraham sus ojos y miró, y he aquí a sus espaldas un carnero trabado en un zarzal por sus cuernos; y fue Abraham y tomó el carnero, y lo ofreció en holocausto en lugar de su hijo."
+   "texto": "Entonces alzó Abraham sus ojos y miró, y he aquí a sus espaldas un carnero trabado en un zarzal por sus cuernos; y fue Abraham y tomó el carnero, y lo ofreció en holocausto en lugar de su hijo.",
+   "texto_en": "And Abraham lifted up his eyes, and looked, and behold behind him a ram caught in a thicket by his horns: and Abraham went and took the ram, and offered him up for a burnt offering in the stead of his son."
   },
   {
    "n": 14,
-   "texto": "Y llamó Abraham el nombre de aquel lugar, Jehová proveerá. Por tanto se dice hoy: En el monte de Jehová será provisto."
+   "texto": "Y llamó Abraham el nombre de aquel lugar, Jehová proveerá. Por tanto se dice hoy: En el monte de Jehová será provisto.",
+   "texto_en": "And Abraham called the name of that place Jehovah-jireh: as it is said to this day, In the mount of the LORD it shall be seen."
   }
  ]
 }

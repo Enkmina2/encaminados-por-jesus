@@ -4,428 +4,995 @@
   "Cada día: fecha (AAAA-MM-DD), tema, versiculo {referencia, texto} de la Reina-Valera 1960, hoy_en_el_mundo (una o dos frases), estudio {resumen, parrafos}, para_hoy (texto o lista de frases) y concordancia (lista de {cita, frase}).",
   "La concordancia solo lleva la referencia y una frase: la web enlaza cada cita a BibleGateway (RVR1960) sin copiar el texto.",
   "Si a un día le falta el estudio, la web muestra el último estudio disponible. 'hoy_en_el_mundo' solo se muestra en su propia fecha.",
-  "Si hoy no tiene entrada, se muestra el último día disponible. Los textos los aprueba el autor; \"aprobado\": false oculta un día."
+  "Si hoy no tiene entrada, se muestra el último día disponible. Los textos los aprueba el autor; \"aprobado\": false oculta un día.",
+  "Para inglés: añadir campos _en (tema_en, versiculo.texto_en, hoy_en_el_mundo_en, estudio.resumen_en, estudio.parrafos_en, para_hoy_en, concordancia[].frase_en)"
  ],
  "dias": [
   {
    "fecha": "2026-10-29",
    "tema": "El Dios eterno en tiempos de luto",
+   "tema_en": "The Eternal God in Times of Mourning",
    "versiculo": {
     "referencia": "Génesis 21:33",
-    "texto": "Y plantó Abraham un árbol tamarisco en Beerseba, e invocó allí el nombre de Jehová Dios eterno."
+    "texto": "Y plantó Abraham un árbol tamarisco en Beerseba, e invocó allí el nombre de Jehová Dios eterno.",
+    "texto_en": "And Abraham planted a tamarisk tree in Beersheba, and called there on the name of the LORD, the everlasting God."
    },
    "hoy_en_el_mundo": "España vive el primer día de luto oficial por el accidente de tren de Urda (Toledo), y hoy se cumplen dos años de la dana de Valencia. Muchas familias lloran a sus seres queridos.",
+   "hoy_en_el_mundo_en": "Spain observes the first official day of mourning for the Urda (Toledo) train crash, and today marks two years since the Valencia floods. Many families mourn their loved ones.",
    "estudio": {
     "parrafos": [
      "Abraham había vivido conflictos, viajes y esperas. En Beerseba plantó un árbol, algo que crece despacio y dura años, y allí invocó a Dios con un nombre nuevo: el Dios eterno. En medio de lo pasajero, se agarró a lo que no pasa.",
      "Cuando una tragedia nos recuerda lo frágil que es la vida, ese nombre cobra fuerza. Todo puede cambiar en un instante, pero Dios sigue siendo el mismo. Y ese Dios eterno se acercó a nuestro dolor en Jesucristo, que lloró ante la tumba de un amigo."
-    ]
+    ],
+    "parrafos_en": [
+     "Abraham had lived through conflicts, journeys, and waits. In Beersheba he planted a tree—something that grows slowly and lasts for years—and there he called on God by a new name: the Everlasting God. In the midst of the transient, he held fast to what does not pass.",
+     "When tragedy reminds us how fragile life is, that name gains power. Everything can change in an instant, but God remains the same. And that Everlasting God drew near to our pain in Jesus Christ, who wept at the tomb of a friend."
+    ],
+    "resumen": "Abraham invoca al Dios eterno en Beerseba; en el duelo, ese nombre nos sostiene porque Dios no cambia y Cristo lloró con nosotros.",
+    "resumen_en": "Abraham invokes the Everlasting God at Beersheba; in grief, that name sustains us because God does not change and Christ wept with us."
    },
    "para_hoy": "Dedica un momento a orar por las familias de Urda y de Valencia, y por los equipos que siguen trabajando.",
+   "para_hoy_en": "Take a moment to pray for the families of Urda and Valencia, and for the teams still working.",
    "concordancia": [
     {
      "cita": "Deuteronomio 33:27",
-     "frase": "el eterno Dios es tu refugio"
+     "frase": "el eterno Dios es tu refugio",
+     "frase_en": "the eternal God is thy refuge"
     },
     {
      "cita": "Salmo 90:1-2",
-     "frase": "de siglo y hasta el siglo, tú eres Dios"
+     "frase": "de siglo y hasta el siglo, tú eres Dios",
+     "frase_en": "from everlasting to everlasting, thou art God"
     },
     {
      "cita": "Isaías 40:28",
-     "frase": "el Dios eterno no desfallece"
+     "frase": "el Dios eterno no desfallece",
+     "frase_en": "the everlasting God fainteth not"
     },
     {
      "cita": "Salmo 34:18",
-     "frase": "cercano está a los quebrantados de corazón"
+     "frase": "cercano está a los quebrantados de corazón",
+     "frase_en": "the LORD is nigh unto them that are of a broken heart"
     },
     {
      "cita": "Juan 11:35",
-     "frase": "Jesús lloró"
+     "frase": "Jesús lloró",
+     "frase_en": "Jesus wept"
     },
     {
      "cita": "2 Corintios 1:3-4",
-     "frase": "el Dios de toda consolación"
+     "frase": "el Dios de toda consolación",
+     "frase_en": "the God of all comfort"
     }
    ]
   },
   {
    "fecha": "2026-10-30",
    "tema": "Dios proveerá",
+   "tema_en": "God Will Provide",
    "versiculo": {
     "referencia": "Génesis 22:14",
-    "texto": "Y llamó Abraham el nombre de aquel lugar, Jehová proveerá. Por tanto se dice hoy: En el monte de Jehová será provisto."
+    "texto": "Y llamó Abraham el nombre de aquel lugar, Jehová proveerá. Por tanto se dice hoy: En el monte de Jehová será provisto.",
+    "texto_en": "And Abraham called the name of that place Jehovah-jireh: as it is said to this day, In the mount of the LORD it shall be seen."
    },
    "hoy_en_el_mundo": "En Urda siguen los trabajos de rescate y muchas familias esperan noticias. Por toda España se suceden minutos de silencio y muestras de solidaridad.",
+   "hoy_en_el_mundo_en": "Rescue work continues in Urda and many families await news. Across Spain, moments of silence and shows of solidarity follow one another.",
    "estudio": {
     "parrafos": [
      "Abraham subió al monte sin entender lo que Dios le pedía, con el corazón lleno de preguntas. Aun así confió, y allí arriba descubrió un nombre de Dios: Jehová proveerá, el Dios que ve y provee.",
      "Hay subidas que no elegimos: una espera en un hospital, una llamada que no llega, una pérdida. Este versículo no promete respuestas fáciles, pero sí que Dios ve y no nos deja solos en el monte. Y a veces su provisión llega a través de manos humanas: rescatistas, vecinos, desconocidos que ayudan."
-    ]
+    ],
+    "parrafos_en": [
+     "Abraham went up the mountain without understanding what God was asking of him, his heart full of questions. Yet he trusted, and there on the heights he discovered a name of God: Jehovah-jireh, the God who sees and provides.",
+     "There are climbs we did not choose: a wait in a hospital, a call that does not come, a loss. This verse does not promise easy answers, but it does promise that God sees and does not leave us alone on the mountain. And sometimes His provision comes through human hands: rescuers, neighbors, strangers who help."
+    ],
+    "resumen": "Abraham confía en el monte y Dios provee; Jehová-jireh ve y provee, a veces por medio de otros.",
+    "resumen_en": "Abraham trusts on the mountain and God provides; Jehovah-jireh sees and provides, sometimes through others."
    },
    "para_hoy": "Pide a Dios que te muestre a quién puedes ayudar tú, aunque sea con algo pequeño.",
+   "para_hoy_en": "Ask God to show you whom you can help today, even with something small.",
    "concordancia": [
     {
      "cita": "Filipenses 4:19",
-     "frase": "mi Dios suplirá todo lo que os falta"
+     "frase": "mi Dios suplirá todo lo que os falta",
+     "frase_en": "my God shall supply all your need"
     },
     {
      "cita": "Romanos 8:32",
-     "frase": "el que no escatimó ni a su propio Hijo"
+     "frase": "el que no escatimó ni a su propio Hijo",
+     "frase_en": "he that spared not his own Son"
     },
     {
      "cita": "Hebreos 11:17-19",
-     "frase": "la fe de Abraham en el monte"
+     "frase": "la fe de Abraham en el monte",
+     "frase_en": "Abraham's faith on the mount"
     },
     {
      "cita": "Salmo 121:1-2",
-     "frase": "mi socorro viene de Jehová"
+     "frase": "mi socorro viene de Jehová",
+     "frase_en": "my help cometh from the LORD"
     },
     {
      "cita": "Mateo 6:31-33",
-     "frase": "vuestro Padre sabe lo que necesitáis"
+     "frase": "vuestro Padre sabe lo que necesitáis",
+     "frase_en": "your Father knoweth what ye have need of"
     },
     {
      "cita": "Gálatas 6:2",
-     "frase": "sobrellevad los unos las cargas de los otros"
+     "frase": "sobrellevad los unos las cargas de los otros",
+     "frase_en": "bear ye one another's burdens"
     }
    ]
   },
   {
    "fecha": "2026-10-31",
    "tema": "El Cordero que Dios provee",
+   "tema_en": "The Lamb God Provides",
    "versiculo": {
     "referencia": "Génesis 22:8",
-    "texto": "Y respondió Abraham: Dios se proveerá de cordero para el holocausto, hijo mío. E iban juntos."
+    "texto": "Y respondió Abraham: Dios se proveerá de cordero para el holocausto, hijo mío. E iban juntos.",
+    "texto_en": "And Abraham said, My son, God will provide himself a lamb for a burnt offering: so they went both of them together."
    },
    "hoy_en_el_mundo": "Termina el luto oficial por el accidente de Urda. Las banderas vuelven a ondear arriba, pero para muchas familias el duelo apenas empieza.",
+   "hoy_en_el_mundo_en": "The official mourning for the Urda crash ends. Flags fly at full mast again, but for many families the grief is just beginning.",
    "estudio": {
     "parrafos": [
      "Isaac preguntó dónde estaba el cordero, y Abraham respondió con fe: Dios se proveerá. Siglos después, Juan el Bautista vio venir a Jesús y dijo: «He aquí el Cordero de Dios» (Juan 1:29). Dios mismo, manifestado en carne, se dio por nosotros.",
      "Por eso el dolor no tiene la última palabra. El que se dio como Cordero también venció a la muerte, y dijo: «Yo soy la resurrección y la vida». Cuando el luto oficial termina y llega el silencio, esa esperanza sigue en pie."
-    ]
+    ],
+    "parrafos_en": [
+     "Isaac asked where the lamb was, and Abraham answered in faith: God will provide. Centuries later, John the Baptist saw Jesus coming and said: 'Behold the Lamb of God' (John 1:29). God Himself, manifested in flesh, gave Himself for us.",
+     "That is why pain does not have the last word. The One who gave Himself as the Lamb also conquered death, and said: 'I am the resurrection and the life.' When official mourning ends and silence comes, that hope still stands."
+    ],
+    "resumen": "Abraham profetiza el Cordero; Dios provee a Cristo, que vence a la muerte y enjuga toda lágrima.",
+    "resumen_en": "Abraham prophesies the Lamb; God provides Christ, who conquers death and wipes every tear."
    },
    "para_hoy": "Escribe o llama a alguien que esté pasando un duelo, aunque haya pasado tiempo. Que sepa que no está olvidado.",
+   "para_hoy_en": "Write or call someone going through grief, even if time has passed. Let them know they are not forgotten.",
    "concordancia": [
     {
      "cita": "Juan 1:29",
-     "frase": "he aquí el Cordero de Dios"
+     "frase": "he aquí el Cordero de Dios",
+     "frase_en": "behold the Lamb of God"
     },
     {
      "cita": "Isaías 53:4-5",
-     "frase": "llevó él nuestros dolores"
+     "frase": "llevó él nuestros dolores",
+     "frase_en": "he hath borne our griefs"
     },
     {
      "cita": "Juan 11:25",
-     "frase": "yo soy la resurrección y la vida"
+     "frase": "yo soy la resurrección y la vida",
+     "frase_en": "I am the resurrection, and the life"
     },
     {
      "cita": "1 Pedro 1:18-19",
-     "frase": "rescatados con la sangre preciosa de Cristo"
+     "frase": "rescatados con la sangre preciosa de Cristo",
+     "frase_en": "redeemed with the precious blood of Christ"
     },
     {
      "cita": "Apocalipsis 21:4",
-     "frase": "enjugará Dios toda lágrima"
+     "frase": "enjugará Dios toda lágrima",
+     "frase_en": "God shall wipe away all tears"
     },
     {
      "cita": "Romanos 12:15",
-     "frase": "llorad con los que lloran"
+     "frase": "llorad con los que lloran",
+     "frase_en": "weep with them that weep"
     }
    ]
   },
   {
    "fecha": "2026-11-01",
-   "tema": "Peregrinos con esperanza",
+   "tema": "Extranjeros y peregrinos",
+   "tema_en": "Strangers and Pilgrims",
    "versiculo": {
     "referencia": "Génesis 23:4",
-    "texto": "Extranjero y forastero soy entre vosotros; dadme propiedad para sepultura entre vosotros, y sepultaré mi muerta de delante de mí."
+    "texto": "Extranjero y forastero soy entre vosotros; dadme propiedad para sepultura entre vosotros, y sepultaré mi muerta de delante de mí.",
+    "texto_en": "I am a stranger and a sojourner with you: give me a possession of a buryingplace with you, that I may bury my dead out of my sight."
    },
    "hoy_en_el_mundo": "",
+   "hoy_en_el_mundo_en": "",
    "estudio": {
     "parrafos": [
-     "Sara ha muerto y Abraham llora a su esposa. Luego se levanta y compra una cueva para sepultarla. Se llama a sí mismo extranjero, pero compra tierra en el país que Dios le prometió. Es un acto de fe: aunque aún no ve la promesa cumplida, cree que Dios la cumplirá.",
-     "Nosotros también somos peregrinos en esta tierra. El mismo Dios que habló a Abraham se manifestó en carne en Jesucristo y venció a la muerte. Por eso el creyente llora, pero no sin esperanza. Jesús es la resurrección y la vida, y nuestra morada final está con Él."
-    ]
+     "Sara ha muerto, y Abraham, después de tantos años en Canaán, tiene que pedir un lugar donde enterrarla. Se presenta tal como es: «Extranjero y forastero soy entre vosotros». Dios le había prometido toda aquella tierra, y la primera que tuvo en propiedad fue una cueva para despedir a los suyos.",
+     "La carta a los Hebreos dice que aquellos creyentes murieron confesando «que eran extranjeros y peregrinos sobre la tierra». No es tristeza, es dirección: «nuestra ciudadanía está en los cielos» (Filipenses 3:20). Cuando despedimos a alguien que amamos, esa esperanza nos sostiene: este mundo no es la última parada."
+    ],
+    "parrafos_en": [
+     "Sarah has died, and Abraham, after so many years in Canaan, must ask for a place to bury her. He presents himself as he is: 'I am a stranger and a sojourner with you.' God had promised him all that land, and the first piece he owned was a cave to bury his own.",
+     "The letter to the Hebrews says those believers died confessing 'that they were strangers and pilgrims on the earth.' It is not sadness, it is direction: 'our citizenship is in heaven' (Philippians 3:20). When we say goodbye to someone we love, that hope sustains us: this world is not the final stop."
+    ],
+    "resumen": "Abraham compra una cueva para enterrar a Sara; confesamos que somos peregrinos, nuestra ciudadanía es celestial.",
+    "resumen_en": "Abraham buys a cave to bury Sarah; we confess we are pilgrims, our citizenship is heavenly."
    },
-   "para_hoy": "Escribe el nombre de alguien que extrañas y da gracias a Dios por la esperanza de la resurrección en Cristo.",
+   "para_hoy": "Recuerda hoy con gratitud a alguien que ya partió, y da gracias a Dios por lo que sembró en tu vida.",
+   "para_hoy_en": "Remember with gratitude today someone who has departed, and thank God for what they sowed in your life.",
    "concordancia": [
     {
      "cita": "Hebreos 11:13",
-     "frase": "Murieron en fe, confesando que eran extranjeros y peregrinos."
+     "frase": "extranjeros y peregrinos sobre la tierra",
+     "frase_en": "strangers and pilgrims on the earth"
     },
     {
      "cita": "Filipenses 3:20",
-     "frase": "Nuestra ciudadanía está en los cielos."
+     "frase": "nuestra ciudadanía está en los cielos",
+     "frase_en": "our citizenship is in heaven"
     },
     {
-     "cita": "Juan 11:25",
-     "frase": "Jesús es la resurrección y la vida."
-    },
-    {
-     "cita": "Juan 14:2-3",
-     "frase": "Jesús prepara lugar para los suyos."
-    },
-    {
-     "cita": "1 Tesalonicenses 4:13-14",
-     "frase": "No nos entristecemos como los que no tienen esperanza."
+     "cita": "Hebreos 13:14",
+     "frase": "no tenemos aquí ciudad permanente",
+     "frase_en": "we have no continuing city"
     },
     {
      "cita": "1 Pedro 2:11",
-     "frase": "Como extranjeros y peregrinos, vivimos para Dios."
+     "frase": "os ruego como a extranjeros y peregrinos",
+     "frase_en": "I beseech you as strangers and pilgrims"
+    },
+    {
+     "cita": "Salmo 39:12",
+     "frase": "forastero soy para ti",
+     "frase_en": "I am a stranger with thee"
+    },
+    {
+     "cita": "Juan 14:2",
+     "frase": "voy, pues, a preparar lugar para vosotros",
+     "frase_en": "I go to prepare a place for you"
     }
    ]
   },
   {
    "fecha": "2026-11-02",
-   "tema": "Él va delante de ti",
+   "tema": "Bendecido en todo",
+   "tema_en": "Blessed in All Things",
    "versiculo": {
-    "referencia": "Génesis 24:7",
-    "texto": "Jehová, Dios de los cielos, que me tomó de la casa de mi padre y de la tierra de mi parentela, y me habló y me juró, diciendo: A tu descendencia daré esta tierra; él enviará su ángel delante de ti, y tú traerás de allá mujer para mi hijo."
+    "referencia": "Génesis 24:1",
+    "texto": "Era Abraham ya viejo, y bien avanzado en años; y Jehová había bendecido a Abraham en todo.",
+    "texto_en": "And Abraham was old, and well stricken in age: and the LORD had blessed Abraham in all things."
    },
    "hoy_en_el_mundo": "",
+   "hoy_en_el_mundo_en": "",
    "estudio": {
     "parrafos": [
-     "Abraham ya es anciano. Envía a su siervo a un viaje largo para buscar esposa a Isaac. El siervo tiene dudas, pero Abraham le responde con calma: Dios irá delante de ti. Abraham recuerda cómo Dios lo llamó y le habló, y por eso confía en lo que viene.",
-     "El Señor que guiaba a Abraham es el mismo que dijo en Jesucristo: \"Yo soy el buen pastor\". El pastor no empuja a sus ovejas desde atrás; va delante y ellas le siguen. No caminamos solos hacia lo desconocido. Jesús ya está en el mañana que aún no vemos."
-    ]
+     "El capítulo empieza resumiendo toda una vida: Abraham era ya viejo, «y Jehová había bendecido a Abraham en todo». No dice que todo le hubiera salido bien. Hubo esperas largas, errores y despedidas. Pero al mirar atrás, por encima de todo se veía la mano fiel de Dios.",
+     "La bendición de Dios no se mide solo en cosas. «La bendición de Jehová es la que enriquece, Y no añade tristeza con ella» (Proverbios 10:22). Hay bendiciones que solo se ven con los años, cuando uno puede decir: «el bien y la misericordia me seguirán todos los días de mi vida» (Salmo 23:6)."
+    ],
+    "parrafos_en": [
+     "The chapter begins by summing up a whole life: Abraham was old, 'and the LORD had blessed Abraham in all things.' It does not say everything went well for him. There were long waits, mistakes, and farewells. But looking back, above all else the faithful hand of God was seen.",
+     "God's blessing is not measured only in things. 'The blessing of the LORD, it maketh rich, and he addeth no sorrow with it' (Proverbs 10:22). There are blessings seen only with the years, when one can say: 'surely goodness and mercy shall follow me all the days of my life' (Psalm 23:6)."
+    ],
+    "resumen": "Abraham viejo, bendecido en todo; la bendición de Dios no añade tristeza y perdura hasta la vejez.",
+    "resumen_en": "Abraham old, blessed in all things; God's blessing adds no sorrow and endures into old age."
    },
-   "para_hoy": "Antes de empezar la tarea que más te preocupa, ora en voz baja: \"Señor Jesús, ve delante de mí\".",
+   "para_hoy": "Escribe tres bendiciones que hayas recibido este año y da gracias a Dios por cada una.",
+   "para_hoy_en": "Write down three blessings you have received this year and give thanks to God for each one.",
    "concordancia": [
     {
-     "cita": "Éxodo 23:20",
-     "frase": "Dios envía su ángel delante para guardarnos en el camino."
+     "cita": "Salmo 103:2",
+     "frase": "no olvides ninguno de sus beneficios",
+     "frase_en": "forget not all his benefits"
     },
     {
-     "cita": "Deuteronomio 31:8",
-     "frase": "Jehová va delante de ti; no te dejará."
+     "cita": "Proverbios 10:22",
+     "frase": "la bendición de Jehová es la que enriquece",
+     "frase_en": "the blessing of the LORD, it maketh rich"
     },
     {
-     "cita": "Isaías 45:2",
-     "frase": "\"Yo iré delante de ti\": Dios allana el camino."
+     "cita": "Salmo 92:14",
+     "frase": "aun en la vejez fructificarán",
+     "frase_en": "they shall still bring forth fruit in old age"
     },
     {
-     "cita": "Juan 10:4",
-     "frase": "El pastor va delante, y las ovejas le siguen."
+     "cita": "Isaías 46:4",
+     "frase": "hasta las canas os soportaré yo",
+     "frase_en": "even to hoar hairs will I carry you"
     },
     {
-     "cita": "Salmos 32:8",
-     "frase": "Dios enseña el camino en que debemos andar."
+     "cita": "Efesios 1:3",
+     "frase": "nos bendijo con toda bendición espiritual",
+     "frase_en": "hath blessed us with all spiritual blessings"
     },
     {
-     "cita": "Proverbios 3:5-6",
-     "frase": "Reconócelo en todos tus caminos, y él enderezará tus veredas."
+     "cita": "Salmo 23:6",
+     "frase": "el bien y la misericordia me seguirán",
+     "frase_en": "goodness and mercy shall follow me"
     }
    ]
   },
   {
    "fecha": "2026-11-03",
-   "tema": "Una oración sencilla",
+   "tema": "Una oración para hoy",
+   "tema_en": "A Prayer for Today",
    "versiculo": {
     "referencia": "Génesis 24:12",
-    "texto": "Y dijo: Oh Jehová, Dios de mi señor Abraham, dame, te ruego, el tener hoy buen encuentro, y haz misericordia con mi señor Abraham."
+    "texto": "Y dijo: Oh Jehová, Dios de mi señor Abraham, dame, te ruego, el tener hoy buen encuentro, y haz misericordia con mi señor Abraham.",
+    "texto_en": "And he said, O LORD God of my master Abraham, I pray thee, send me good speed this day, and shew kindness unto my master Abraham."
    },
    "hoy_en_el_mundo": "",
+   "hoy_en_el_mundo_en": "",
    "estudio": {
     "parrafos": [
-     "El siervo llega a un pozo al caer la tarde. Está cansado y lejos de casa. No da discursos largos: pide ayuda para \"hoy\". Y antes de terminar de orar, Rebeca aparece con su cántaro. Dios ya estaba respondiendo.",
-     "Así es la oración que agrada a Dios: humilde, concreta y confiada. Jesús nos invitó a pedir en su nombre, porque en Él habita toda la plenitud de Dios. No hace falta impresionar a nadie con palabras. Basta un corazón sincero que dice: \"Señor, ayúdame hoy\"."
-    ]
+     "El siervo de Abraham tenía una misión difícil: encontrar esposa para Isaac en una tierra lejana. Antes de dar un paso, oró: «dame, te ruego, el tener hoy buen encuentro». No pidió un plan para toda la vida, sino ayuda para ese día.",
+     "Jesús nos enseñó a orar igual: «El pan nuestro de cada día, dánoslo hoy» (Mateo 6:11). Dios no nos pide que lo resolvamos todo de golpe. Nos invita a presentarle el día de hoy, con sus encuentros y sus tareas, y a confiar en que él irá delante."
+    ],
+    "parrafos_en": [
+     "Abraham's servant had a difficult mission: find a wife for Isaac in a distant land. Before taking a step, he prayed: 'I pray thee, send me good speed this day.' He did not ask for a plan for his whole life, but help for that day.",
+     "Jesus taught us to pray the same way: 'Give us this day our daily bread' (Matthew 6:11). God does not ask us to solve everything at once. He invites us to present today to Him, with its encounters and tasks, and trust that He will go before us."
+    ],
+    "resumen": "El siervo ora por el encuentro de hoy; Jesús enseña a pedir el pan de cada día, confiando en que Dios va delante.",
+    "resumen_en": "The servant prays for today's encounter; Jesus teaches to ask for daily bread, trusting God goes before."
    },
-   "para_hoy": "Haz una oración corta y concreta por una necesidad de este día, en el nombre de Jesús, y anota cómo ves Su mano.",
+   "para_hoy": "Antes de empezar tus tareas, ora con tus propias palabras por el día de hoy y por las personas con las que te vas a encontrar.",
+   "para_hoy_en": "Before starting your tasks, pray in your own words for today and for the people you will meet.",
    "concordancia": [
     {
-     "cita": "Génesis 24:15",
-     "frase": "Antes que acabase de hablar, Rebeca salió."
+     "cita": "Mateo 6:11",
+     "frase": "el pan nuestro de cada día, dánoslo hoy",
+     "frase_en": "give us this day our daily bread"
     },
     {
-     "cita": "Isaías 65:24",
-     "frase": "Antes que clamen, responderé yo."
-    },
-    {
-     "cita": "Mateo 6:8",
-     "frase": "El Padre sabe lo que necesitamos antes de pedirlo."
-    },
-    {
-     "cita": "Juan 14:13-14",
-     "frase": "Lo que pidiéremos en el nombre de Jesús, Él lo hará."
+     "cita": "Salmo 5:3",
+     "frase": "de mañana oirás mi voz",
+     "frase_en": "in the morning thou shalt hear my voice"
     },
     {
      "cita": "Filipenses 4:6",
-     "frase": "Presentamos nuestras peticiones con acción de gracias."
+     "frase": "por nada estéis afanosos",
+     "frase_en": "be careful for nothing"
     },
     {
-     "cita": "Colosenses 2:9",
-     "frase": "En Cristo habita corporalmente toda la plenitud de la Deidad."
+     "cita": "Proverbios 3:5-6",
+     "frase": "reconócelo en todos tus caminos",
+     "frase_en": "in all thy ways acknowledge him"
+    },
+    {
+     "cita": "Salmo 37:5",
+     "frase": "encomienda a Jehová tu camino",
+     "frase_en": "commit thy way unto the LORD"
+    },
+    {
+     "cita": "Santiago 1:5",
+     "frase": "pídala a Dios, el cual da a todos abundantemente",
+     "frase_en": "let him ask of God, that giveth to all men liberally"
     }
    ]
   },
   {
    "fecha": "2026-11-04",
    "tema": "Guiados en el camino",
+   "tema_en": "Guided in the Way",
    "versiculo": {
     "referencia": "Génesis 24:27",
-    "texto": "Y dijo: Bendito sea Jehová, Dios de mi amo Abraham, que no apartó de mi amo su misericordia y su verdad, guiándome Jehová en el camino a casa de los hermanos de mi amo."
+    "texto": "y dijo: Bendito sea Jehová, Dios de mi amo Abraham, que no apartó de mi amo su misericordia y su verdad, guiándome Jehová en el camino a casa de los hermanos de mi amo.",
+    "texto_en": "And he said, Blessed be the LORD God of my master Abraham, who hath not left destitute my master of his mercy and his truth: I being in the way, the LORD led me to the house of my master's brethren."
    },
    "hoy_en_el_mundo": "",
+   "hoy_en_el_mundo_en": "",
    "estudio": {
     "parrafos": [
-     "El siervo descubre que Rebeca es de la familia de Abraham. Lo primero que hace es inclinarse y adorar. Reconoce que no llegó por suerte: el Señor lo guió paso a paso. Y alaba a Dios por dos cosas: su misericordia y su verdad.",
-     "Esa misericordia y esa verdad tomaron rostro en Jesucristo. Él es Dios con nosotros, lleno de gracia y de verdad. Y Él mismo dijo: \"Yo soy el camino\". Quien anda con Jesús no anda perdido. Cada paso dado con Él es un paso encaminado."
-    ]
+     "Cuando Rebeca apareció junto al pozo y respondió con bondad, el siervo se inclinó y adoró. Reconoció que no había sido casualidad: «guiándome Jehová en el camino». Dios lo había guiado mientras caminaba, no antes de salir.",
+     "Muchas veces queremos ver todo el recorrido antes de dar el primer paso. Pero la guía de Dios suele llegar en el camino, paso a paso, como una lámpara a nuestros pies. Jesús dijo: «Yo soy el camino, y la verdad, y la vida» (Juan 14:6). Quien camina con él no anda perdido."
+    ],
+    "parrafos_en": [
+     "When Rebekah appeared by the well and responded with kindness, the servant bowed down and worshipped. He recognized it was no accident: 'the LORD led me in the way.' God had guided him while he walked, not before he set out.",
+     "Often we want to see the whole journey before taking the first step. But God's guidance usually comes along the way, step by step, like a lamp to our feet. Jesus said: 'I am the way, the truth, and the life' (John 14:6). Whoever walks with Him is not lost."
+    ],
+    "resumen": "El siervo es guiado mientras camina; Dios guía paso a paso, como lámpara a los pies. Cristo es el camino.",
+    "resumen_en": "The servant is guided while walking; God guides step by step, like a lamp to the feet. Christ is the way."
    },
-   "para_hoy": "Recuerda un momento en que Dios te guió sin que lo notaras y cuéntaselo hoy a alguien para darle gloria.",
+   "para_hoy": "Piensa en una ocasión en que Dios te guió sin que te dieras cuenta en el momento, y dale gracias por ello.",
+   "para_hoy_en": "Think of a time when God guided you without you realizing it at the moment, and give thanks for it.",
    "concordancia": [
     {
-     "cita": "Juan 14:6",
-     "frase": "Jesús es el camino, la verdad y la vida."
-    },
-    {
-     "cita": "Juan 1:14",
-     "frase": "El Verbo se hizo carne, lleno de gracia y de verdad."
-    },
-    {
-     "cita": "Juan 1:17",
-     "frase": "La gracia y la verdad vinieron por medio de Jesucristo."
-    },
-    {
-     "cita": "Salmos 23:3",
-     "frase": "Me guiará por sendas de justicia por amor de su nombre."
-    },
-    {
-     "cita": "Salmos 25:10",
-     "frase": "Todas las sendas de Jehová son misericordia y verdad."
+     "cita": "Salmo 32:8",
+     "frase": "te enseñaré el camino en que debes andar",
+     "frase_en": "I will instruct thee in the way which thou shalt go"
     },
     {
      "cita": "Isaías 30:21",
-     "frase": "\"Este es el camino, andad por él\"."
+     "frase": "este es el camino, andad por él",
+     "frase_en": "this is the way, walk ye in it"
+    },
+    {
+     "cita": "Salmo 119:105",
+     "frase": "lámpara es a mis pies tu palabra",
+     "frase_en": "thy word is a lamp unto my feet"
+    },
+    {
+     "cita": "Proverbios 16:9",
+     "frase": "Jehová endereza sus pasos",
+     "frase_en": "the LORD directeth his steps"
+    },
+    {
+     "cita": "Juan 10:27",
+     "frase": "mis ovejas oyen mi voz",
+     "frase_en": "my sheep hear my voice"
+    },
+    {
+     "cita": "Juan 14:6",
+     "frase": "yo soy el camino, y la verdad, y la vida"
     }
    ]
   },
   {
    "fecha": "2026-11-05",
    "tema": "Sí, iré",
+   "tema_en": "Yes, I Will Go",
    "versiculo": {
     "referencia": "Génesis 24:58",
-    "texto": "Y llamaron a Rebeca, y le dijeron: ¿Irás tú con este varón? Y ella respondió: Sí, iré."
+    "texto": "Y llamaron a Rebeca, y le dijeron: ¿Irás tú con este varón? Y ella respondió: Sí, iré.",
+    "texto_en": "And they called Rebekah, and said unto her, Wilt thou go with this man? And she said, I will go."
    },
    "hoy_en_el_mundo": "",
+   "hoy_en_el_mundo_en": "",
    "estudio": {
     "parrafos": [
-     "Su familia quiere que Rebeca espere unos días. Pero ella decide sin demora: \"Sí, iré\". No conoce a Isaac ni el lugar adonde va. Solo ha oído cómo Dios guio todo, y eso le basta para emprender el viaje.",
-     "Jesús también llama hoy con una invitación sencilla: \"Sígueme\". La Escritura presenta a su iglesia como una novia que se prepara para su Esposo. No necesitamos tener todas las respuestas para decir sí. Basta confiar en Aquel que llama."
-    ]
+     "A Rebeca le preguntaron si quería irse con un desconocido a una tierra lejana, para casarse con alguien a quien nunca había visto. Su respuesta fue breve y valiente: «Sí, iré». Con esas dos palabras entró en la historia de la promesa de Dios.",
+     "Abraham había hecho lo mismo años antes: «salió sin saber a dónde iba» (Hebreos 11:8). Jesús sigue llamando hoy: «Venid en pos de mí» (Mateo 4:19). No hace falta tener todas las respuestas para decirle que sí; basta con confiar en quien llama."
+    ],
+    "parrafos_en": [
+     "Rebekah was asked if she would go with a stranger to a distant land, to marry someone she had never seen. Her answer was brief and brave: 'I will go.' With those two words she entered the history of God's promise.",
+     "Abraham had done the same years before: 'he went out, not knowing whither he went' (Hebrews 11:8). Jesus still calls today: 'Follow me' (Matthew 4:19). You don't need all the answers to say yes to Him; you only need to trust the One who calls."
+    ],
+    "resumen": "Rebeca dice sí sin ver el futuro; Abraham salió sin saber a dónde; Cristo llama: venid en pos de mí.",
+    "resumen_en": "Rebekah says yes without seeing the future; Abraham went out not knowing where; Christ calls: follow me."
    },
-   "para_hoy": "Piensa en algo que el Señor te ha puesto en el corazón y que has ido aplazando. Da hoy el primer paso.",
+   "para_hoy": "Si hay algo que sabes que Dios te está pidiendo y lo vas aplazando, dale hoy tu sí, aunque sea con un paso pequeño.",
+   "para_hoy_en": "If there is something you know God is asking of you and you keep putting it off, give Him your yes today, even with a small step.",
    "concordancia": [
     {
+     "cita": "Hebreos 11:8",
+     "frase": "salió sin saber a dónde iba",
+     "frase_en": "went out, not knowing whither he went"
+    },
+    {
      "cita": "Mateo 4:19-20",
-     "frase": "\"Venid en pos de mí\", y ellos le siguieron al instante."
+     "frase": "venid en pos de mí",
+     "frase_en": "follow me"
     },
     {
      "cita": "Isaías 6:8",
-     "frase": "\"Heme aquí, envíame a mí\"."
+     "frase": "heme aquí, envíame a mí",
+     "frase_en": "here am I, send me"
+    },
+    {
+     "cita": "Lucas 1:38",
+     "frase": "hágase conmigo conforme a tu palabra",
+     "frase_en": "be it unto me according to thy word"
+    },
+    {
+     "cita": "Rut 1:16",
+     "frase": "a dondequiera que tú fueres, iré yo",
+     "frase_en": "whither thou goest, I will go"
     },
     {
      "cita": "Lucas 9:23",
-     "frase": "Seguir a Jesús es una decisión de cada día."
-    },
-    {
-     "cita": "Hebreos 3:15",
-     "frase": "Si oímos hoy su voz, no endurezcamos el corazón."
-    },
-    {
-     "cita": "2 Corintios 11:2",
-     "frase": "Desposados con un solo esposo, Cristo."
-    },
-    {
-     "cita": "Apocalipsis 19:7",
-     "frase": "Han llegado las bodas del Cordero."
+     "frase": "tome su cruz cada día, y sígame",
+     "frase_en": "take up his cross daily, and follow me"
     }
    ]
   },
   {
    "fecha": "2026-11-06",
-   "tema": "El Dios que me ve",
+   "tema": "Un momento a solas con Dios",
+   "tema_en": "A Moment Alone with God",
    "versiculo": {
-    "referencia": "Génesis 25:11",
-    "texto": "Y sucedió, después de muerto Abraham, que Dios bendijo a Isaac su hijo; y habitó Isaac junto al pozo del Viviente-que-me-ve."
+    "referencia": "Génesis 24:63",
+    "texto": "Y había salido Isaac a meditar al campo, a la hora de la tarde; y alzando sus ojos miró, y he aquí los camellos que venían.",
+    "texto_en": "And Isaac went out to meditate in the field at the eventide: and he lifted up his eyes, and saw, and, behold, the camels were coming."
    },
    "hoy_en_el_mundo": "",
+   "hoy_en_el_mundo_en": "",
    "estudio": {
     "parrafos": [
-     "Abraham termina su carrera en buena vejez. La bendición no se acaba con él: Dios bendice a Isaac. E Isaac vive junto a un pozo con un nombre precioso: \"el Viviente que me ve\". Las promesas de Dios pasan de una generación a otra.",
-     "Ese Dios que ve es el que se acercó a nosotros en Jesucristo. Jesús vio a Natanael bajo la higuera antes de que nadie lo llamara. Y junto a otro pozo ofreció agua viva. Nadie pasa inadvertido para Él. Hoy también te ve, te conoce y te bendice."
-    ]
+     "Isaac todavía echaba de menos a su madre. Una tarde salió al campo «a meditar», lejos del ruido del campamento. Y fue precisamente allí, en ese momento de silencio, donde alzó los ojos y vio llegar a Rebeca, el consuelo que Dios le estaba preparando.",
+     "Jesús también buscaba esos momentos: «salió y se fue a un lugar desierto, y allí oraba» (Marcos 1:35). En medio de un día lleno, apartar unos minutos para estar con Dios no es perder el tiempo. Ahí el corazón se calma y aprende a ver lo que Dios está haciendo."
+    ],
+    "parrafos_en": [
+     "Isaac still missed his mother. One afternoon he went out to the field 'to meditate,' away from the noise of the camp. And it was precisely there, in that moment of silence, that he lifted his eyes and saw Rebekah arriving, the comfort God was preparing for him.",
+     "Jesus also sought those moments: 'he went out, and departed into a solitary place, and there prayed' (Mark 1:35). In the midst of a full day, setting aside a few minutes to be with God is not wasting time. There the heart calms down and learns to see what God is doing."
+    ],
+    "resumen": "Isaac medita en el campo y ve la provisión de Dios; Jesús ora en lo desierto; el silencio nos ayuda a ver a Dios obrando.",
+    "resumen_en": "Isaac meditates in the field and sees God's provision; Jesus prays in the wilderness; silence helps us see God working."
    },
-   "para_hoy": "Bendice en voz alta a un hijo, nieto o joven de tu entorno, o envíale un mensaje recordando que Dios lo ve y lo ama.",
+   "para_hoy": "Busca hoy diez minutos de silencio, sin el móvil, para leer un salmo y hablar con Dios.",
+   "para_hoy_en": "Seek ten minutes of silence today, without your phone, to read a psalm and talk with God.",
    "concordancia": [
     {
-     "cita": "Génesis 16:13",
-     "frase": "\"Tú eres Dios que ve\"."
+     "cita": "Salmo 1:2",
+     "frase": "en su ley medita de día y de noche",
+     "frase_en": "in his law doth he meditate day and night"
     },
     {
-     "cita": "Salmos 139:1-3",
-     "frase": "El Señor nos examina y conoce todos nuestros caminos."
+     "cita": "Salmo 46:10",
+     "frase": "estad quietos, y conoced que yo soy Dios",
+     "frase_en": "be still, and know that I am God"
     },
     {
-     "cita": "Juan 1:48",
-     "frase": "Jesús vio a Natanael debajo de la higuera."
-    },
-    {
-     "cita": "Juan 4:14",
-     "frase": "El agua que Jesús da es fuente para vida eterna."
+     "cita": "Marcos 1:35",
+     "frase": "se fue a un lugar desierto, y allí oraba",
+     "frase_en": "he went out... into a solitary place, and there prayed"
     },
     {
      "cita": "Mateo 6:6",
-     "frase": "El Padre que ve en lo secreto recompensa en público."
+     "frase": "entra en tu aposento, y cerrada la puerta",
+     "frase_en": "enter into thy closet, and when thou hast shut thy door"
     },
     {
-     "cita": "Hechos 2:39",
-     "frase": "La promesa es para vosotros y para vuestros hijos."
+     "cita": "Salmo 19:14",
+     "frase": "la meditación de mi corazón delante de ti",
+     "frase_en": "the meditation of my heart... in thy sight"
+    },
+    {
+     "cita": "Mateo 5:4",
+     "frase": "bienaventurados los que lloran",
+     "frase_en": "blessed are they that mourn"
     }
    ]
   },
   {
    "fecha": "2026-11-07",
-   "tema": "Dios cumple lo que promete",
+   "tema": "Lleno de años",
+   "tema_en": "Full of Years",
    "versiculo": {
-    "referencia": "Génesis 25:16",
-    "texto": "Estos son los hijos de Ismael, y estos sus nombres, por sus villas y por sus campamentos; doce príncipes por sus familias."
+    "referencia": "Génesis 25:8",
+    "texto": "Y exhaló el espíritu, y murió Abraham en buena vejez, anciano y lleno de años, y fue unido a su pueblo.",
+    "texto_en": "Then Abraham gave up the ghost, and died in a good old age, an old man, and full of years; and was gathered to his people."
    },
    "hoy_en_el_mundo": "",
+   "hoy_en_el_mundo_en": "",
    "estudio": {
     "parrafos": [
-     "Parece solo una lista de nombres. Pero años antes Dios había dicho que de Ismael saldrían doce príncipes. Aquí están, uno por uno. Dios no olvida ni un detalle de lo que dice.",
-     "Si Dios cumplió esa promesa, cumplirá también las que te ha dado. Todas sus promesas encuentran su \"sí\" en Jesucristo. Él es el Dios fiel hecho carne, la Palabra que no pasa. Podemos descansar este día en su fidelidad."
-    ]
+     "Abraham murió «en buena vejez, anciano y lleno de años». Su vida no fue fácil ni perfecta, pero estuvo llena: llena de pasos de fe, de promesas cumplidas y de la presencia de Dios. Y junto a su tumba ocurrió algo hermoso: Isaac e Ismael, los dos hijos que la vida había separado, lo sepultaron juntos.",
+     "La fe no nos ahorra la despedida, pero le cambia el sentido. Pablo pudo decir al final de su vida: «He peleado la buena batalla, he acabado la carrera, he guardado la fe» (2 Timoteo 4:7). Y nos recuerda que no lloramos «como los otros que no tienen esperanza», porque Jesús murió y resucitó."
+    ],
+    "parrafos_en": [
+     "Abraham died 'in a good old age, an old man, and full of years.' His life was not easy or perfect, but it was full: full of steps of faith, of promises fulfilled, and of God's presence. And by his tomb something beautiful happened: Isaac and Ishmael, the two sons life had separated, buried him together.",
+     "Faith does not spare us the farewell, but it changes its meaning. Paul could say at the end of his life: 'I have fought a good fight, I have finished my course, I have kept the faith' (2 Timothy 4:7). And he reminds us that we do not sorrow 'as others which have no hope,' because Jesus died and rose again."
+    ],
+    "resumen": "Abraham muere lleno de años; Isaac e Ismael lo entierran juntos; la fe transforma la despedida en esperanza.",
+    "resumen_en": "Abraham dies full of years; Isaac and Ishmael bury him together; faith transforms farewell into hope."
    },
-   "para_hoy": "Busca una promesa de la Biblia, escríbela en un papel y ponla donde la veas durante la semana.",
+   "para_hoy": "Si hay alguien de tu familia de quien te has distanciado, da hoy un primer paso para acercarte.",
+   "para_hoy_en": "If there is someone in your family you have grown apart from, take a first step to draw near today.",
    "concordancia": [
     {
-     "cita": "Génesis 17:20",
-     "frase": "Dios prometió doce príncipes de la descendencia de Ismael."
+     "cita": "2 Timoteo 4:7",
+     "frase": "he acabado la carrera, he guardado la fe",
+     "frase_en": "I have finished my course, I have kept the faith"
     },
     {
-     "cita": "Números 23:19",
-     "frase": "Dios no es hombre para que mienta."
+     "cita": "Salmo 90:12",
+     "frase": "enséñanos de tal modo a contar nuestros días",
+     "frase_en": "so teach us to number our days"
     },
     {
-     "cita": "Josué 21:45",
-     "frase": "No faltó ninguna de las buenas promesas de Jehová."
+     "cita": "Salmo 116:15",
+     "frase": "estimada es a los ojos de Jehová la muerte de sus santos",
+     "frase_en": "precious in the sight of the LORD is the death of his saints"
     },
     {
-     "cita": "Mateo 24:35",
-     "frase": "Las palabras de Jesús no pasarán."
+     "cita": "1 Tesalonicenses 4:13-14",
+     "frase": "si creemos que Jesús murió y resucitó",
+     "frase_en": "if we believe that Jesus died and rose again"
     },
     {
-     "cita": "2 Corintios 1:20",
-     "frase": "Todas las promesas de Dios son en Él Sí y Amén."
+     "cita": "Salmo 133:1",
+     "frase": "habitar los hermanos juntos en armonía",
+     "frase_en": "brethren dwell together in unity"
     },
     {
-     "cita": "Hebreos 10:23",
-     "frase": "Fiel es el que prometió."
+     "cita": "Filipenses 1:21",
+     "frase": "para mí el vivir es Cristo",
+     "frase_en": "for to me to live is Christ"
+    }
+   ]
+  },
+  {
+   "fecha": "2026-11-08",
+   "tema": "Orar por los que amamos",
+   "tema_en": "Praying for Those We Love",
+   "versiculo": {
+    "referencia": "Génesis 25:21",
+    "texto": "Y oró Isaac a Jehová por su mujer, que era estéril; y lo aceptó Jehová, y concibió Rebeca su mujer.",
+    "texto_en": "And Isaac intreated the LORD for his wife, because she was barren: and the LORD was intreated of him, and Rebekah his wife conceived."
+   },
+   "hoy_en_el_mundo": "",
+   "hoy_en_el_mundo_en": "",
+   "estudio": {
+    "parrafos": [
+     "Isaac y Rebeca esperaron veinte años un hijo que no llegaba. La Biblia no cuenta discusiones ni reproches, sino algo más sencillo: Isaac oró a Jehová por su mujer. Llevó delante de Dios el dolor de la persona que amaba, «y lo aceptó Jehová».",
+     "Orar por alguien es una de las formas más profundas de amarlo. Santiago lo dice así: «orad unos por otros», porque «La oración eficaz del justo puede mucho» (Santiago 5:16). Puede que la respuesta tarde, como tardó para Isaac, pero ninguna oración hecha con amor se pierde delante de Dios."
+    ],
+    "parrafos_en": [
+     "Isaac and Rebekah waited twenty years for a child that did not come. The Bible does not recount arguments or reproaches, but something simpler: Isaac prayed to the LORD for his wife. He brought before God the pain of the person he loved, 'and the LORD was intreated of him.'",
+     "Praying for someone is one of the deepest ways to love them. James puts it this way: 'pray one for another,' for 'The effectual fervent prayer of a righteous man availeth much' (James 5:16). The answer may take time, as it did for Isaac, but no prayer made in love is lost before God."
+    ],
+    "resumen": "Isaac ora 20 años por Rebeca; Dios escucha; orar por quien amamos es amar en profundidad, ninguna oración se pierde.",
+    "resumen_en": "Isaac prays 20 years for Rebekah; God hears; praying for those we love is loving deeply, no prayer is lost."
+   },
+   "para_hoy": "Ora hoy por tu esposo o esposa, o por la persona que más quieres, por algo concreto que le preocupe.",
+   "para_hoy_en": "Pray today for your husband or wife, or for the person you love most, for something specific that concerns them.",
+   "concordancia": [
+    {
+     "cita": "Santiago 5:16",
+     "frase": "orad unos por otros",
+     "frase_en": "pray one for another"
+    },
+    {
+     "cita": "1 Samuel 1:27",
+     "frase": "por este niño oraba",
+     "frase_en": "for this child I prayed"
+    },
+    {
+     "cita": "Salmo 113:9",
+     "frase": "él hace habitar en familia a la estéril",
+     "frase_en": "he maketh the barren woman to keep house"
+    },
+    {
+     "cita": "Lucas 1:13",
+     "frase": "tu oración ha sido oída",
+     "frase_en": "thy prayer is heard"
+    },
+    {
+     "cita": "Efesios 6:18",
+     "frase": "orando en todo tiempo con toda oración y súplica",
+     "frase_en": "praying always with all prayer and supplication"
+    },
+    {
+     "cita": "1 Timoteo 2:1",
+     "frase": "oraciones, peticiones y acciones de gracias",
+     "frase_en": "supplications, prayers, intercessions, and giving of thanks"
+    }
+   ]
+  },
+  {
+   "fecha": "2026-11-09",
+   "tema": "Llevarle a Dios nuestras preguntas",
+   "tema_en": "Bringing Our Questions to God",
+   "versiculo": {
+    "referencia": "Génesis 25:22",
+    "texto": "Y los hijos luchaban dentro de ella; y dijo: Si es así, ¿para qué vivo yo? Y fue a consultar a Jehová;",
+    "texto_en": "And the children struggled together within her; and she said, If it be so, why am I thus? And she went to enquire of the LORD;"
+   },
+   "hoy_en_el_mundo": "",
+   "hoy_en_el_mundo_en": "",
+   "estudio": {
+    "parrafos": [
+     "El embarazo de Rebeca, tan esperado, se volvió difícil. Los niños luchaban dentro de ella, y su angustia salió en una pregunta: «¿para qué vivo yo?». No se guardó lo que sentía ni fingió que todo iba bien. Hizo lo mejor que podía hacer: «fue a consultar a Jehová».",
+     "Dios no se ofende con nuestras preguntas. Los salmos están llenos de ellas, y él mismo nos invita: «Clama a mí, y yo te responderé» (Jeremías 33:3). A veces la respuesta no quita la dificultad de golpe, pero nos da algo mejor: saber que Dios está en medio de lo que vivimos."
+    ],
+    "parrafos_en": [
+     "Rebekah's long-awaited pregnancy became difficult. The children struggled within her, and her anguish came out in a question: 'why am I thus?' She did not hide what she felt or pretend everything was fine. She did the best she could: 'she went to enquire of the LORD.'",
+     "God is not offended by our questions. The psalms are full of them, and He Himself invites us: 'Call unto me, and I will answer thee' (Jeremiah 33:3). Sometimes the answer does not remove the difficulty at once, but it gives us something better: knowing God is in the midst of what we live through."
+    ],
+    "resumen": "Rebeca pregunta a Dios en su angustia; Dios no se ofende, invita a clamar; la respuesta nos da su presencia en medio de la dificultad.",
+    "resumen_en": "Rebekah asks God in her anguish; God is not offended, invites us to call; the answer gives His presence in the midst of difficulty."
+   },
+   "para_hoy": "Si hay una pregunta que te quita la paz, escríbela y preséntasela a Dios en oración, con sinceridad.",
+   "para_hoy_en": "If there is a question that takes your peace, write it down and present it to God in prayer, with sincerity.",
+   "concordancia": [
+    {
+     "cita": "Jeremías 33:3",
+     "frase": "clama a mí, y yo te responderé",
+     "frase_en": "call unto me, and I will answer thee"
+    },
+    {
+     "cita": "Salmo 62:8",
+     "frase": "derramad delante de él vuestro corazón",
+     "frase_en": "pour out your heart before him"
+    },
+    {
+     "cita": "Salmo 42:11",
+     "frase": "¿por qué te abates, oh alma mía",
+     "frase_en": "why art thou cast down, O my soul"
+    },
+    {
+     "cita": "Salmo 34:4",
+     "frase": "busqué a Jehová, y él me oyó",
+     "frase_en": "I sought the LORD, and he heard me"
+    },
+    {
+     "cita": "Mateo 7:7",
+     "frase": "pedid, y se os dará",
+     "frase_en": "ask, and it shall be given you"
+    },
+    {
+     "cita": "Isaías 26:3",
+     "frase": "tú guardarás en completa paz",
+     "frase_en": "thou wilt keep him in perfect peace"
+    }
+   ]
+  },
+  {
+   "fecha": "2026-11-10",
+   "tema": "Lo que de verdad vale",
+   "tema_en": "What Truly Matters",
+   "versiculo": {
+    "referencia": "Génesis 25:34",
+    "texto": "Entonces Jacob dio a Esaú pan y del guisado de las lentejas; y él comió y bebió, y se levantó y se fue. Así menospreció Esaú la primogenitura.",
+    "texto_en": "Then Jacob gave Esau bread and pottage of lentiles; and he did eat and drink, and rose up, and went his way: thus Esau despised his birthright."
+   },
+   "hoy_en_el_mundo": "",
+   "hoy_en_el_mundo_en": "",
+   "estudio": {
+    "parrafos": [
+     "Esaú volvió del campo cansado y con hambre, y cambió su primogenitura por un plato de lentejas. Comió, bebió, se levantó y se fue, como si no hubiera pasado nada. Pero el texto lo resume con una frase seria: «Así menospreció Esaú la primogenitura».",
+     "Todos tenemos días en que lo urgente tapa lo importante. La carta a los Hebreos recuerda a Esaú, «que por una sola comida vendió su primogenitura» (Hebreos 12:16), y Jesús pregunta: «¿qué aprovechará al hombre, si ganare todo el mundo, y perdiere su alma?» (Mateo 16:26). Lo que Dios nos ha dado vale más que cualquier deseo del momento."
+    ],
+    "parrafos_en": [
+     "Esau returned from the field tired and hungry, and sold his birthright for a plate of lentils. He ate, drank, rose up, and went his way, as if nothing had happened. But the text sums it up with a serious phrase: 'thus Esau despised his birthright.'",
+     "We all have days when the urgent covers the important. The letter to the Hebrews recalls Esau, 'who for one morsel of meat sold his birthright' (Hebrews 12:16), and Jesus asks: 'what shall it profit a man, if he gain the whole world, and lose his own soul?' (Matthew 16:26). What God has given us is worth more than any momentary desire."
+    ],
+    "resumen": "Esaú vende su primogenitura por lentejas; lo urgente tapa lo importante; lo que Dios da vale más que el mundo entero.",
+    "resumen_en": "Esau sells his birthright for lentils; the urgent covers the important; what God gives is worth more than the whole world."
+   },
+   "para_hoy": "Piensa en algo valioso que estés descuidando por las prisas, tu familia, tu fe o tu salud, y dedícale hoy un tiempo.",
+   "para_hoy_en": "Think of something valuable you are neglecting due to haste—your family, your faith, or your health—and give it time today.",
+   "concordancia": [
+    {
+     "cita": "Hebreos 12:16",
+     "frase": "por una sola comida vendió su primogenitura",
+     "frase_en": "for one morsel of meat sold his birthright"
+    },
+    {
+     "cita": "Mateo 16:26",
+     "frase": "¿qué aprovechará al hombre, si ganare todo el mundo",
+     "frase_en": "what shall it profit a man, if he gain the whole world"
+    },
+    {
+     "cita": "Mateo 6:19-20",
+     "frase": "haceos tesoros en el cielo",
+     "frase_en": "lay up for yourselves treasures in heaven"
+    },
+    {
+     "cita": "Colosenses 3:2",
+     "frase": "poned la mira en las cosas de arriba",
+     "frase_en": "set your affection on things above"
+    },
+    {
+     "cita": "Filipenses 3:8",
+     "frase": "la excelencia del conocimiento de Cristo Jesús",
+     "frase_en": "the excellency of the knowledge of Christ Jesus"
+    },
+    {
+     "cita": "Mateo 4:4",
+     "frase": "no solo de pan vivirá el hombre",
+     "frase_en": "man shall not live by bread alone"
+    }
+   ]
+  },
+  {
+   "fecha": "2026-11-11",
+   "tema": "Quédate: yo estoy contigo",
+   "tema_en": "Stay: I Am with You",
+   "versiculo": {
+    "referencia": "Génesis 26:3",
+    "texto": "Habita como forastero en esta tierra, y estaré contigo, y te bendeciré; porque a ti y a tu descendencia daré todas estas tierras, y confirmaré el juramento que hice a Abraham tu padre.",
+    "texto_en": "Sojourn in this land, and I will be with thee, and will bless thee; for unto thee, and unto thy seed, I will give all these countries, and I will perform the oath which I sware unto Abraham thy father."
+   },
+   "hoy_en_el_mundo": "",
+   "hoy_en_el_mundo_en": "",
+   "estudio": {
+    "parrafos": [
+     "Llegó el hambre a la tierra, y lo lógico habría sido bajar a Egipto, donde había comida. Pero Dios le dijo a Isaac que se quedara: «Habita como forastero en esta tierra, y estaré conmigo». No le prometió que todo sería fácil, le prometió su compañía.",
+     "A veces queremos huir de los lugares difíciles, y otras veces Dios nos pide permanecer en ellos con él. La promesa que recibió Isaac es la misma que dejó Jesús a los suyos: «yo estoy con vosotros todos los días» (Mateo 28:20). Con él, incluso un tiempo de escasez puede ser tiempo de bendición."
+    ],
+    "parrafos_en": [
+     "Famine came to the land, and the logical thing would have been to go down to Egypt, where there was food. But God told Isaac to stay: 'Sojourn in this land, and I will be with thee.' He did not promise everything would be easy; He promised His presence.",
+     "Sometimes we want to flee difficult places, and other times God asks us to remain in them with Him. The promise Isaac received is the same Jesus left to His own: 'lo, I am with you alway' (Matthew 28:20). With Him, even a time of scarcity can be a time of blessing."
+    ],
+    "resumen": "Hambre en la tierra; Dios dice a Isaac: quédate, yo estoy contigo; la promesa de Cristo: yo estoy con vosotros todos los días.",
+    "resumen_en": "Famine in the land; God tells Isaac: stay, I am with you; Christ's promise: lo, I am with you alway."
+   },
+   "para_hoy": "Si estás pasando una etapa difícil, en el trabajo, en casa o en la salud, pídele a Dios fuerzas para afrontar el día de hoy con él.",
+   "para_hoy_en": "If you are going through a difficult season, at work, at home, or in health, ask God for strength to face today with Him.",
+   "concordancia": [
+    {
+     "cita": "Mateo 28:20",
+     "frase": "yo estoy con vosotros todos los días",
+     "frase_en": "lo, I am with you alway"
+    },
+    {
+     "cita": "Hebreos 13:5",
+     "frase": "no te desampararé, ni te dejaré",
+     "frase_en": "I will never leave thee, nor forsake thee"
+    },
+    {
+     "cita": "Josué 1:9",
+     "frase": "Jehová tu Dios estará contigo en dondequiera que vayas",
+     "frase_en": "the LORD thy God is with thee whithersoever thou goest"
+    },
+    {
+     "cita": "Isaías 43:2",
+     "frase": "cuando pases por las aguas, yo estaré contigo",
+     "frase_en": "when thou passest through the waters, I will be with thee"
+    },
+    {
+     "cita": "Salmo 37:3",
+     "frase": "confía en Jehová, y haz el bien",
+     "frase_en": "trust in the LORD, and do good"
+    },
+    {
+     "cita": "Salmo 46:1",
+     "frase": "nuestro pronto auxilio en las tribulaciones",
+     "frase_en": "a very present help in trouble"
+    }
+   ]
+  },
+  {
+   "fecha": "2026-11-12",
+   "tema": "Dios abre espacio",
+   "tema_en": "God Makes Room",
+   "versiculo": {
+    "referencia": "Génesis 26:22",
+    "texto": "Y se apartó de allí, y abrió otro pozo, y no riñeron sobre él; y llamó su nombre Rehobot, y dijo: Porque ahora Jehová nos ha prosperado, y fructificaremos en la tierra.",
+    "texto_en": "And he removed from thence, and digged another well; and for that they strove not: and he called the name of it Rehoboth; and he said, For now the LORD hath made room for us, and we shall be fruitful in the land."
+   },
+   "hoy_en_el_mundo": "",
+   "hoy_en_el_mundo_en": "",
+   "estudio": {
+    "parrafos": [
+     "Isaac cavaba pozos y los pastores de la zona se los disputaban. Una vez, y otra. En lugar de pelear, Isaac se apartaba y cavaba de nuevo, hasta que encontró uno por el que nadie riñó. Lo llamó Rehobot, que significa lugares amplios, y dijo: «Porque ahora Jehová nos ha prosperado».",
+     "Ceder no siempre es perder. A veces la paz vale más que tener razón, y Dios honra al que no se aferra a la pelea. Pablo lo pide así: «en cuanto dependa de vosotros, estad en paz con todos los hombres» (Romanos 12:18). Cuando dejamos el conflicto en manos de Dios, él sabe abrirnos espacio."
+    ],
+    "parrafos_en": [
+     "Isaac dug wells and the herdsmen of the place strove for them. Once, and again. Instead of fighting, Isaac moved on and dug another, until he found one for which no one strove. He called it Rehoboth, which means broad places, and said: 'For now the LORD hath made room for us, and we shall be fruitful in the land.'",
+     "Yielding is not always losing. Sometimes peace is worth more than being right, and God honours the one who does not cling to the fight. Paul asks: 'if it be possible, as much as lieth in you, live peaceably with all men' (Romans 12:18). When we leave the conflict in God's hands, He knows how to make room for us."
+    ],
+    "resumen": "Isaac cede pozos y Dios le da Rehobot (espacio); ceder no es perder, Dios honra al pacificador y abre lugar.",
+    "resumen_en": "Isaac yields wells and God gives Rehoboth (room); yielding is not losing, God honours the peacemaker and makes room."
+   },
+   "para_hoy": "Si tienes una discusión pendiente, busca hoy una forma de calmarla, aunque tengas que ceder en algo.",
+   "para_hoy_en": "If you have a pending disagreement, seek a way to calm it today, even if you must yield on something.",
+   "concordancia": [
+    {
+     "cita": "Romanos 12:18",
+     "frase": "estad en paz con todos los hombres",
+     "frase_en": "live peaceably with all men"
+    },
+    {
+     "cita": "Mateo 5:9",
+     "frase": "bienaventurados los pacificadores",
+     "frase_en": "blessed are the peacemakers"
+    },
+    {
+     "cita": "Proverbios 15:1",
+     "frase": "la blanda respuesta quita la ira",
+     "frase_en": "a soft answer turneth away wrath"
+    },
+    {
+     "cita": "Salmo 18:19",
+     "frase": "me sacó a lugar espacioso",
+     "frase_en": "he brought me forth into a large place"
+    },
+    {
+     "cita": "Santiago 3:18",
+     "frase": "el fruto de justicia se siembra en paz",
+     "frase_en": "the fruit of righteousness is sown in peace"
+    },
+    {
+     "cita": "Hebreos 12:14",
+     "frase": "seguid la paz con todos",
+     "frase_en": "follow peace with all men"
+    }
+   ]
+  },
+  {
+   "fecha": "2026-11-13",
+   "tema": "No temas, porque yo estoy contigo",
+   "tema_en": "Fear Not, for I Am with You",
+   "versiculo": {
+    "referencia": "Génesis 26:24",
+    "texto": "Y se le apareció Jehová aquella noche, y le dijo: Yo soy el Dios de Abraham tu padre; no temas, porque yo estoy contigo, y te bendeciré, y multiplicaré tu descendencia por amor de Abraham mi siervo.",
+    "texto_en": "And the LORD appeared unto him the same night, and said, I am the God of Abraham thy father: fear not, for I am with thee, and will bless thee, and multiply thy seed for my servant Abraham's sake."
+   },
+   "hoy_en_el_mundo": "",
+   "hoy_en_el_mundo_en": "",
+   "estudio": {
+    "parrafos": [
+     "Después de tantas disputas, Isaac llegó a Beerseba. Esa misma noche, cuando quizá le pesaban el cansancio y la incertidumbre, Dios se le apareció con unas palabras sencillas: «no temas, porque yo estoy contigo».",
+     "Muchos miedos se hacen más grandes de noche, cuando todo calla. Por eso esta promesa es tan valiosa: Dios no espera a que amanezca para acercarse. Con esa seguridad podemos decir: «En paz me acostaré, y asimismo dormiré» (Salmo 4:8). Y en medio de la tormenta, Jesús sigue diciendo: «¡Tened ánimo; yo soy, no temáis!» (Mateo 14:27)."
+    ],
+    "parrafos_en": [
+     "After so many disputes, Isaac came to Beersheba. That same night, when perhaps weariness and uncertainty weighed on him, God appeared to him with simple words: 'fear not, for I am with thee.'",
+     "Many fears grow larger at night, when all is quiet. That is why this promise is so precious: God does not wait for dawn to draw near. With that assurance we can say: 'I will both lay me down in peace, and sleep' (Psalm 4:8). And in the midst of the storm, Jesus still says: 'Be of good cheer; it is I; be not afraid' (Matthew 14:27)."
+    ],
+    "resumen": "Dios aparece a Isaac de noche: no temas, yo estoy contigo; el miedo crece en la noche, pero Dios no espera al amanecer; Cristo dice: tened ánimo, yo soy.",
+    "resumen_en": "God appears to Isaac at night: fear not, I am with thee; fear grows at night, but God does not wait for dawn; Christ says: be of good cheer, it is I."
+   },
+   "para_hoy": "Esta noche, antes de dormir, entrégale a Dios en oración aquello que más te preocupa.",
+   "para_hoy_en": "Tonight, before sleeping, commit to God in prayer what worries you most.",
+   "concordancia": [
+    {
+     "cita": "Isaías 41:10",
+     "frase": "no temas, porque yo estoy contigo",
+     "frase_en": "fear not, for I am with thee"
+    },
+    {
+     "cita": "Salmo 4:8",
+     "frase": "en paz me acostaré, y asimismo dormiré",
+     "frase_en": "I will both lay me down in peace, and sleep"
+    },
+    {
+     "cita": "Juan 14:27",
+     "frase": "no se turbe vuestro corazón, ni tenga miedo",
+     "frase_en": "let not your heart be troubled, neither let it be afraid"
+    },
+    {
+     "cita": "Salmo 27:1",
+     "frase": "Jehová es mi luz y mi salvación",
+     "frase_en": "the LORD is my light and my salvation"
+    },
+    {
+     "cita": "2 Timoteo 1:7",
+     "frase": "no nos ha dado Dios espíritu de cobardía",
+     "frase_en": "God hath not given us the spirit of fear"
+    },
+    {
+     "cita": "Mateo 14:27",
+     "frase": "tened ánimo; yo soy, no temáis",
+     "frase_en": "be of good cheer; it is I; be not afraid"
+    }
+   ]
+  },
+  {
+   "fecha": "2026-11-14",
+   "tema": "Una bendición más grande que nuestros errores",
+   "tema_en": "A Blessing Greater Than Our Mistakes",
+   "versiculo": {
+    "referencia": "Génesis 28:3",
+    "texto": "Y el Dios omnipotente te bendiga, y te haga fructificar y te multiplique, hasta llegar a ser multitud de pueblos;",
+    "texto_en": "And God Almighty bless thee, and make thee fruitful, and multiply thee, that thou mayest be a multitude of people;"
+   },
+   "hoy_en_el_mundo": "",
+   "hoy_en_el_mundo_en": "",
+   "estudio": {
+    "parrafos": [
+     "La familia de Isaac pasó por un momento muy triste: Jacob engañó a su padre para quedarse con la bendición, y Esaú lloró: «¿No tienes más que una sola bendición, padre mío?». El engaño trajo dolor y separación. Sin embargo, antes de despedir a Jacob, Isaac lo bendijo de nuevo, esta vez sabiendo a quién bendecía.",
+     "Dios no aprueba la mentira; su Palabra nos pide: «hablad verdad cada uno con su prójimo» (Efesios 4:25). Pero su propósito es más fuerte que nuestros errores, porque «cuando el pecado abundó, sobreabundó la gracia» (Romanos 5:20). Esa misma bendición de Abraham nos alcanza hoy en Cristo Jesús."
+    ],
+    "parrafos_en": [
+     "Isaac's family went through a very sad moment: Jacob deceived his father to obtain the blessing, and Esau wept: 'Hast thou but one blessing, my father?' Deceit brought pain and separation. Yet before sending Jacob away, Isaac blessed him again, this time knowing whom he was blessing.",
+     "God does not approve of lying; His Word asks us: 'speak every man truth with his neighbour' (Ephesians 4:25). But His purpose is stronger than our mistakes, because 'where sin abounded, grace did much more abound' (Romans 5:20). That same blessing of Abraham reaches us today in Christ Jesus."
+    ],
+    "resumen": "Jacob engaña y recibe bendición; el propósito de Dios es más fuerte que el error; donde abundó el pecado, sobreabundó la gracia en Cristo.",
+    "resumen_en": "Jacob deceives and receives blessing; God's purpose is stronger than error; where sin abounded, grace much more abounded in Christ."
+   },
+   "para_hoy": "Si hay algo que no has contado con verdad a alguien cercano, pide a Dios valor para aclararlo.",
+   "para_hoy_en": "If there is something you have not told truthfully to someone close, ask God for courage to make it right.",
+   "concordancia": [
+    {
+     "cita": "Números 6:24-26",
+     "frase": "Jehová te bendiga, y te guarde",
+     "frase_en": "the LORD bless thee, and keep thee"
+    },
+    {
+     "cita": "Gálatas 3:14",
+     "frase": "la bendición de Abraham alcanzase a los gentiles",
+     "frase_en": "the blessing of Abraham might come on the Gentiles"
+    },
+    {
+     "cita": "Romanos 5:20",
+     "frase": "cuando el pecado abundó, sobreabundó la gracia",
+     "frase_en": "where sin abounded, grace did much more abound"
+    },
+    {
+     "cita": "Efesios 4:25",
+     "frase": "hablad verdad cada uno con su prójimo",
+     "frase_en": "speak every man truth with his neighbour"
+    },
+    {
+     "cita": "Proverbios 20:7",
+     "frase": "camina en su integridad el justo",
+     "frase_en": "the just man walketh in his integrity"
+    },
+    {
+     "cita": "Salmo 103:17",
+     "frase": "su justicia sobre los hijos de los hijos",
+     "frase_en": "his righteousness unto children's children"
     }
    ]
   }
+}
  ]
 }
