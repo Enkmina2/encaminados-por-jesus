@@ -2,36 +2,9 @@
  "canal": "UCba5HqD3ftT7QIRCyMqfXyA",
  "videos": [
   {
-   "id": "YySeEFyNHAs",
-   "titulo": "La hormiga y la montaña",
-   "fecha": "2026-11-01",
-   "corto": true,
-   "enlace": "https://www.youtube.com/shorts/YySeEFyNHAs"
-  },
-  {
-   "id": "bSCxi9kr_Ww",
-   "titulo": "Él sigue llamando",
-   "fecha": "2026-10-31",
-   "corto": true,
-   "enlace": "https://www.youtube.com/shorts/bSCxi9kr_Ww"
-  },
-  {
-   "id": "3BlwciDhTpI",
-   "titulo": "Incredulidad",
-   "fecha": "2026-10-31",
-   "corto": true,
-   "enlace": "https://www.youtube.com/shorts/3BlwciDhTpI"
-  },
-  {
-   "id": "S93g16OvtOw",
-   "titulo": "Creciendo",
-   "fecha": "2026-10-30",
-   "corto": true,
-   "enlace": "https://www.youtube.com/shorts/S93g16OvtOw"
-  },
-  {
    "id": "fTAyGP-fc_c",
    "titulo": "La respuesta llega. #esperanzaendios #familia # #palabradios #fe #reflexionesdeldia #reflexion",
+   "titulo_en": "The Answer Arrives. #hopeingod #family # #wordradio #faith #dailyreflections #reflection",
    "fecha": "2026-10-29",
    "corto": false,
    "enlace": "https://www.youtube.com/watch?v=fTAyGP-fc_c"
@@ -39,9 +12,42 @@
   {
    "id": "ke7TgXCKytc",
    "titulo": "Un lugar en la mesa #palabradios #fe #cristianosconfe #reflexionesdeldia",
+   "titulo_en": "A Place at the Table #wordradio #faith #christianswithfaith #dailyreflections",
    "fecha": "2026-10-29",
    "corto": false,
    "enlace": "https://www.youtube.com/watch?v=ke7TgXCKytc"
+  },
+  {
+   "id": "Dugf9F519FI",
+   "titulo": "La miel",
+   "titulo_en": "Honey",
+   "fecha": "2026-10-28",
+   "corto": true,
+   "enlace": "https://www.youtube.com/shorts/Dugf9F519FI"
+  },
+  {
+   "id": "qkmSPS-3z8I",
+   "titulo": "Mateo y Stickman",
+   "titulo_en": "Matthew and Stickman",
+   "fecha": "2026-10-27",
+   "corto": true,
+   "enlace": "https://www.youtube.com/shorts/qkmSPS-3z8I"
+  },
+  {
+   "id": "HbWlQm3g35w",
+   "titulo": "Pablo y el Rey Agripa",
+   "titulo_en": "Paul and King Agrippa",
+   "fecha": "2026-10-27",
+   "corto": true,
+   "enlace": "https://www.youtube.com/shorts/HbWlQm3g35w"
+  },
+  {
+   "id": "T6VMaVdf3-Y",
+   "titulo": "La puerta abierta",
+   "titulo_en": "The Open Door",
+   "fecha": "2026-10-26",
+   "corto": true,
+   "enlace": "https://www.youtube.com/shorts/T6VMaVdf3-Y"
   }
  ]
 }

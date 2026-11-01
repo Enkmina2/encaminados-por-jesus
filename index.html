@@ -472,6 +472,17 @@ textarea{min-height:130px;resize:vertical}
 .anim .rejilla>.bloque:nth-child(3){animation-delay:.16s}
 .anim .rejilla>.bloque:nth-child(4){animation-delay:.24s}
 @keyframes entrar{from{opacity:0;transform:translateY(18px)}}
+
+      /* ---------- Selector de idioma (aditivo) ---------- */
+      .idioma{position:relative;display:inline-flex}
+      .b-idioma{width:42px;height:42px;border-radius:50%;border:1px solid var(--idioma-border, var(--linea));background:var(--idioma-bg, var(--blanco));color:var(--idioma-text, var(--carbon));font:800 14px/1 var(--f-ui);cursor:pointer;display:grid;place-items:center;transition:background .15s ease,border-color .15s ease,color .15s ease}
+      .b-idioma:hover{border-color:var(--idioma-hover-border, var(--bosque));color:var(--idioma-hover-text, var(--bosque))}
+      .b-idioma[aria-expanded="true"]{background:var(--idioma-active-bg, var(--bosque));color:var(--idioma-active-text, var(--crema));border-color:var(--idioma-active-border, var(--bosque))}
+      .panel-idioma{position:absolute;right:0;top:calc(100% + 10px);display:flex;flex-direction:column;gap:8px;background:var(--idioma-panel-bg, var(--blanco));border:1px solid var(--idioma-panel-border, var(--linea));border-radius:18px;padding:10px;box-shadow:0 16px 32px -16px rgba(30,36,33,.4);white-space:nowrap;z-index:30;max-width:calc(100vw - 32px)}
+      .panel-idioma [role="radio"]{width:100%;text-align:left;padding:8px 14px;border-radius:999px;border:1px solid var(--idioma-opt-border, var(--linea));background:var(--idioma-opt-bg, var(--lino));color:var(--idioma-opt-text, var(--carbon));font:700 14px/1 var(--f-ui);cursor:pointer;transition:background .15s ease,border-color .15s ease,color .15s ease}
+      .panel-idioma [role="radio"]:hover{border-color:var(--idioma-opt-hover-border, var(--bosque))}
+      .panel-idioma [role="radio"][aria-checked="true"]{background:var(--idioma-opt-active-bg, var(--bosque));color:var(--idioma-opt-active-text, var(--crema));border-color:var(--idioma-opt-active-border, var(--bosque))}
+      .banda-bosque{--idioma-border:rgba(242,244,239,.4);--idioma-bg:transparent;--idioma-text:var(--crema);--idioma-hover-border:var(--crema);--idioma-hover-text:var(--crema);--idioma-active-bg:var(--crema);--idioma-active-text:var(--bosque);--idioma-active-border:var(--crema);--idioma-panel-bg:var(--blanco);--idioma-panel-border:var(--linea);--idioma-opt-border:rgba(242,244,239,.3);--idioma-opt-bg:transparent;--idioma-opt-text:var(--crema);--idioma-opt-hover-border:var(--bosque);--idioma-opt-active-bg:var(--crema);--idioma-opt-active-text:var(--bosque);--idioma-opt-active-border:var(--crema)}
 </style>
 </head>
 <body>
@@ -504,7 +515,7 @@ textarea{min-height:130px;resize:vertical}
 <symbol id="i-arrow-up" viewBox="0 0 24 24"><path d="m5 12 7-7 7 7" /> <path d="M12 19V5" /></symbol>
 <symbol id="i-lock" viewBox="0 0 24 24"><rect width="18" height="11" x="3" y="11" rx="2" ry="2" /> <path d="M7 11V7a5 5 0 0 1 10 0v4" /></symbol>
 </svg>
-<a class="saltar" href="#contenido">Saltar al contenido</a>
+<a class="saltar" href="#contenido" data-i18n="saltar-contenido">Saltar al contenido</a>
 <div class="progreso" id="progreso" aria-hidden="true"></div>
 
 <header class="cabecera" id="cabecera">
@@ -512,16 +523,23 @@ textarea{min-height:130px;resize:vertical}
     <div class="barra">
       <a class="marca" href="./"><img src="img/logo-96.png" alt="" width="36" height="36"><span>Encaminados por Jesús</span></a>
       <nav class="menu" id="menu" aria-label="Secciones">
-        <a href="#estudios">Estudios</a><a href="#biblia">Biblia</a><a href="#musica">Música</a><a href="#directo">Directo</a><a href="#noticias">Noticias</a><a href="#oracion">Oración</a>
+        <a href="#estudios" data-i18n="estudios-etiqueta">Estudios</a><a href="#biblia" data-i18n="biblia-etiqueta">Biblia</a><a href="#musica" data-i18n="musica-etiqueta">Música</a><a href="#directo" data-i18n="directo-etiqueta">Directo</a><a href="#noticias" data-i18n="noticias-etiqueta">Noticias</a><a href="#oracion" data-i18n="oracion-etiqueta">Oración</a>
       </nav>
-      <a class="boton boton-bosque wa" href="https://whatsapp.com/channel/0029VbDXQJGFSAtAMI6SkH3v" target="_blank" rel="noopener"><svg class="icono"><use href="#i-whatsapp"/></svg>Canal de WhatsApp</a>
+      <a class="boton boton-bosque wa" href="https://whatsapp.com/channel/0029VbDXQJGFSAtAMI6SkH3v" target="_blank" rel="noopener"><svg class="icono"><use href="#i-whatsapp"/></svg><span data-i18n="whatsapp-canal">Canal de WhatsApp</span></a>
       <div class="letra">
         <button class="b-letra" id="b-letra" aria-expanded="false" aria-controls="panel-letra" aria-label="Tamaño de la letra y voz" title="Tamaño de la letra y voz">Aa</button>
         <div class="panel-letra" id="panel-letra" hidden>
-          <div class="fila"><span class="nombre-fila">Letra</span>
+          <div class="fila"><span class="nombre-fila" data-i18n="letra-panel">Letra</span>
             <button data-letra="-1" aria-label="Letra más pequeña">A−</button><span id="letra-valor" aria-live="polite">100 %</span><button data-letra="1" aria-label="Letra más grande">A+</button></div>
-          <div class="fila" id="fila-voz" hidden><span class="nombre-fila">Voz</span>
-            <button class="voz-genero" data-genero="mujer" aria-pressed="false">Mujer</button><button class="voz-genero" data-genero="hombre" aria-pressed="false">Hombre</button></div>
+          <div class="fila" id="fila-voz" hidden><span class="nombre-fila" data-i18n="voz-titulo">Voz</span>
+            <button class="voz-genero" data-genero="mujer" aria-pressed="false" data-i18n="voz-mujer">Mujer</button><button class="voz-genero" data-genero="hombre" aria-pressed="false" data-i18n="voz-hombre">Hombre</button></div>
+        </div>
+      </div>
+      <div class="idioma" role="group" aria-label="Selector de idioma">
+        <button class="b-idioma" id="b-idioma" aria-expanded="false" aria-controls="panel-idioma" aria-label="Idioma" title="Idioma">ES</button>
+        <div class="panel-idioma" id="panel-idioma" hidden role="radiogroup" aria-label="Idiomas disponibles">
+          <button role="radio" data-lang="es" aria-checked="true" tabindex="0" data-i18n="idioma-es">Español</button>
+          <button role="radio" data-lang="en" aria-checked="false" tabindex="-1" data-i18n="idioma-en">English</button>
         </div>
       </div>
       <button class="abrir-menu" id="abrir-menu" aria-expanded="false" aria-controls="menu" aria-label="Abrir el menú"><svg class="icono-t"><use href="#i-menu"/></svg></button>
@@ -534,37 +552,37 @@ textarea{min-height:130px;resize:vertical}
   <section class="portada">
     <div class="contenedor rejilla">
       <div class="bloque b-mensaje">
-        <span class="etiqueta">Caminando en su luz y verdad</span>
+        <span class="etiqueta" data-i18n="portada-etiqueta">Caminando en su luz y verdad</span>
         <div style="display:flex;flex-direction:column;gap:18px">
-          <h1>Guiados por su gracia, unidos en su nombre</h1>
-          <p>Portal cristiano enfocado en la doctrina de la Unicidad, el estudio de las Escrituras y música cristiana original.</p>
+          <h1 data-i18n="portada-h1">Guiados por su gracia, unidos en su nombre</h1>
+          <p data-i18n="portada-p">Portal cristiano enfocado en la doctrina de la Unicidad, el estudio de las Escrituras y música cristiana original.</p>
           <div class="botones">
-            <a class="boton boton-claro" href="#musica"><svg class="icono icono-t"><use href="#i-music"/></svg>Escuchar música</a>
-            <a class="boton boton-borde" href="#biblia"><svg class="icono icono-t"><use href="#i-book-open"/></svg>Leer la Biblia</a>
+            <a class="boton boton-claro" href="#musica"><svg class="icono icono-t"><use href="#i-music"/></svg><span data-i18n="btn-escuchar">Escuchar música</span></a>
+            <a class="boton boton-borde" href="#biblia"><svg class="icono icono-t"><use href="#i-book-open"/></svg><span data-i18n="btn-leer-biblia">Leer la Biblia</span></a>
           </div>
         </div>
       </div>
       <div class="bloque b-verso" id="versiculo-dia">
-        <span class="etiqueta" style="color:var(--bosque)">Tema del día</span>
+        <span class="etiqueta" style="color:var(--bosque)" data-i18n="tema-dia">Tema del día</span>
         <span class="tema-dia" id="vd-tema">Muy pronto</span>
         <blockquote id="vd-texto">El tema del día, con su versículo y su estudio, aparecerá aquí cada mañana.</blockquote>
         <cite id="vd-ref" hidden></cite>
         <div class="lector" data-leer="#versiculo-dia" hidden></div>
         <div class="acciones">
-          <a class="boton boton-bosque" id="vd-estudio" href="#estudios" style="align-self:flex-start;padding:10px 16px;font-size:14px" hidden><svg class="icono icono-t"><use href="#i-book-open"/></svg>Leer el estudio</a>
+          <a class="boton boton-bosque" id="vd-estudio" href="#estudios" style="align-self:flex-start;padding:10px 16px;font-size:14px" hidden><svg class="icono icono-t"><use href="#i-book-open"/></svg><span data-i18n="btn-estudio">Leer el estudio</span></a>
           <!-- compartir el versículo: se rellena al cargar el tema del día -->
           <div class="compartir" data-compartir="versiculo" hidden></div>
         </div>
       </div>
       <a class="bloque b-directo" href="#directo">
         <span class="pantallita"><span class="circulo-play"><svg><use href="#i-play"/></svg></span></span>
-        <span><span class="en-vivo">En directo</span><span class="tit" style="display:block;margin-top:8px">Refugio 24/7: música instrumental y promesas bíblicas</span><span class="sub" style="display:block">Para orar y descansar, a cualquier hora</span></span>
+        <span><span class="en-vivo" data-i18n="en-vivo">En directo</span><span class="tit" style="display:block;margin-top:8px" data-i18n="directo-tit">Refugio 24/7: música instrumental y promesas bíblicas</span><span class="sub" style="display:block" data-i18n="directo-sub">Para orar y descansar, a cualquier hora</span></span>
       </a>
       <a class="bloque b-musica" href="#musica">
-        <span class="etiqueta" style="color:var(--bosque)">Álbum</span>
-        <span class="tit">Entre la multitud</span>
-        <span class="pista"><span>Construyendo</span><svg class="icono"><use href="#i-play"/></svg></span>
-        <span class="pista"><span>Palabras elegidas</span><svg class="icono"><use href="#i-play"/></svg></span>
+        <span class="etiqueta" style="color:var(--bosque)" data-i18n="album-etiqueta">Álbum</span>
+        <span class="tit" data-i18n="album-tit">Entre la multitud</span>
+        <span class="pista"><span data-i18n="pista1">Construyendo</span><svg class="icono"><use href="#i-play"/></svg></span>
+        <span class="pista"><span data-i18n="pista2">Palabras elegidas</span><svg class="icono"><use href="#i-play"/></svg></span>
       </a>
     </div>
   </section>
@@ -572,29 +590,29 @@ textarea{min-height:130px;resize:vertical}
   <!-- Estudios bíblicos y reflexiones -->
   <section class="seccion banda" id="estudios" aria-labelledby="t-estudios">
     <div class="contenedor">
-      <div class="cabeza"><span class="etiqueta">Estudio bíblico del día</span><h2 id="t-estudios">Para meditar en la Palabra</h2>
-        <p id="es-cabeza">Cada día, un tema, un versículo y un estudio.</p></div>
+      <div class="cabeza"><span class="etiqueta" data-i18n="estudios-etiqueta">Estudio bíblico del día</span><h2 id="t-estudios" data-i18n="estudios-h2">Para meditar en la Palabra</h2>
+        <p id="es-cabeza" data-i18n="estudios-p">Cada día, un tema, un versículo y un estudio.</p></div>
       <!-- Se rellena desde datos/dias.json -->
       <div class="dia" id="dia">
-        <div class="hoy-mundo" id="hoy-mundo" hidden><span class="etiqueta">Hoy en el mundo</span><p id="hm-texto"></p></div>
+        <div class="hoy-mundo" id="hoy-mundo" hidden><span class="etiqueta" data-i18n="hoy-mundo">Hoy en el mundo</span><p id="hm-texto"></p></div>
         <div id="lista-estudios"><div class="vacio">El estudio del día aparecerá aquí.</div></div>
         <div class="compartir" data-compartir="estudio" hidden></div>
-        <div class="para-hoy" id="para-hoy" hidden><span class="etiqueta">Para hoy</span><div id="ph-texto"></div></div>
+        <div class="para-hoy" id="para-hoy" hidden><span class="etiqueta" data-i18n="para-hoy">Para hoy</span><div id="ph-texto"></div></div>
       </div>
-      <h3 class="subtitulo" id="reflexiones">Reflexiones</h3>
+      <h3 class="subtitulo" id="reflexiones" data-i18n="reflexiones">Reflexiones</h3>
       <div class="reflexiones">
         <article class="reflexion" id="reflexion-caminar-en-su-luz">
-          <span class="etiqueta tipo">Reflexión</span>
+          <span class="etiqueta tipo" data-i18n="tipo-reflexion">Reflexión</span>
           <p class="cita">“Lámpara es a mis pies tu palabra, Y lumbrera a mi camino.”<span>Salmo 119:105</span></p>
           <p class="resumen">Cuando el camino se vuelve oscuro, la Palabra de Dios sigue alumbrando el paso siguiente.</p>
           <div class="lector" data-leer="#reflexion-caminar-en-su-luz" hidden></div>
           <details>
-            <summary>Leer la reflexión: Caminar en su luz</summary>
+            <summary data-i18n="leer-reflexion">Leer la reflexión: Caminar en su luz</summary>
             <div class="texto">
               <p>Jesús no prometió que no habría noches en nuestra vida, pero sí que no tendríamos que atravesarlas a oscuras: “Yo soy la luz del mundo; el que me sigue, no andará en tinieblas, sino que tendrá la luz de la vida” (Juan 8:12).</p>
               <p>Su luz no siempre ilumina todo el camino de una vez. Muchas veces alumbra solo el paso siguiente, y es suficiente. Por eso el salmista oraba: “Lámpara es a mis pies tu palabra, Y lumbrera a mi camino”. Cada día que abrimos las Escrituras recibimos la luz que necesitamos para ese día.</p>
               <p>Caminar en su luz también nos une a los demás: “si andamos en luz, como él está en luz, tenemos comunión unos con otros, y la sangre de Jesucristo su Hijo nos limpia de todo pecado” (1 Juan 1:7). No caminamos solos: su presencia nos guía y su pueblo nos acompaña.</p>
-              <p class="oracion">Señor Jesús, alumbra hoy mis pasos. Cuando no vea el camino entero, ayúdame a confiar en la luz que me das para el paso de hoy. Amén.</p>
+              <p class="oracion" data-i18n="oracion">Señor Jesús, alumbra hoy mis pasos. Cuando no vea el camino entero, ayúdame a confiar en la luz que me das para el paso de hoy. Amén.</p>
             </div>
           </details>
         </article>
@@ -605,29 +623,29 @@ textarea{min-height:130px;resize:vertical}
   <!-- Biblia -->
   <section class="seccion banda-bosque" id="biblia" aria-labelledby="t-biblia">
     <div class="contenedor">
-      <div class="cabeza"><span class="etiqueta">Las Sagradas Escrituras</span><h2 id="t-biblia">Lectura bíblica</h2>
-        <p>La concordancia del tema de hoy y el pasaje de la semana, para meditar en la verdad de su Palabra.</p></div>
+      <div class="cabeza"><span class="etiqueta" data-i18n="biblia-etiqueta">Las Sagradas Escrituras</span><h2 id="t-biblia" data-i18n="biblia-h2">Lectura bíblica</h2>
+        <p data-i18n="biblia-p">La concordancia del tema de hoy y el pasaje de la semana, para meditar en la verdad de su Palabra.</p></div>
       <div class="lectura-dia" id="concordancia" hidden>
-        <div><span class="etiqueta">Concordancia bíblica</span><h3 id="cc-tema"></h3><p>Pasajes relacionados con el tema de hoy. Léelos completos en la Reina-Valera 1960.</p>
+        <div><span class="etiqueta" data-i18n="concordancia">Concordancia bíblica</span><h3 id="cc-tema"></h3><p data-i18n="cc-p">Pasajes relacionados con el tema de hoy. Léelos completos en la Reina-Valera 1960.</p>
           <!-- las citas, siempre a la vista: se copian de la lista de abajo al cargar el tema del día -->
           <ul class="cc-refs" id="cc-refs" aria-label="Citas"></ul></div>
         <details>
-          <summary>Leer la concordancia completa</summary>
+          <summary data-i18n="leer-concordancia">Leer la concordancia completa</summary>
           <ul id="cc-citas"></ul>
         </details>
       </div>
       <!-- Pasaje de la semana: cambia cada domingo; se rellena desde datos/pasaje.json -->
       <article class="pasaje pasaje-semana" id="pasaje-semana">
-        <span class="etiqueta" id="ps-semana">Pasaje de la semana</span>
+        <span class="etiqueta" id="ps-semana" data-i18n="ps-semana">Pasaje de la semana</span>
         <h3 id="ps-ref">Pasaje de la semana</h3>
         <div class="lector" data-leer="#pasaje-semana" hidden></div>
         <details>
-          <summary>Leer el pasaje completo</summary>
+          <summary data-i18n="leer-pasaje">Leer el pasaje completo</summary>
           <div id="ps-texto"><p>El pasaje de esta semana aparecerá aquí.</p></div>
         </details>
-        <a class="boton boton-claro" id="ps-bg" href="https://www.biblegateway.com/versions/Reina-Valera-1960-RVR1960-Biblia/" target="_blank" rel="noopener" hidden>Leer en BibleGateway<svg class="icono icono-t"><use href="#i-arrow-up-right"/></svg></a>
+        <a class="boton boton-claro" id="ps-bg" href="https://www.biblegateway.com/versions/Reina-Valera-1960-RVR1960-Biblia/" target="_blank" rel="noopener" hidden><span data-i18n="btn-biblegateway">Leer en BibleGateway</span><svg class="icono icono-t"><use href="#i-arrow-up-right"/></svg></a>
         <div class="compartir" data-compartir="pasaje" hidden></div>
-        <p class="derechos">Texto bíblico: Reina-Valera 1960.</p>
+        <p class="derechos" data-i18n="derechos">Texto bíblico: Reina-Valera 1960.</p>
       </article>
     </div>
   </section>
@@ -635,40 +653,40 @@ textarea{min-height:130px;resize:vertical}
   <!-- Música -->
   <section class="seccion" id="musica" aria-labelledby="t-musica">
     <div class="contenedor">
-      <div class="cabeza"><span class="etiqueta">Música</span><h2 id="t-musica">Álbum “Entre la multitud”</h2>
-        <p>Música cristiana original, compuesta para alabar a Dios.</p></div>
+      <div class="cabeza"><span class="etiqueta" data-i18n="musica-etiqueta">Música</span><h2 id="t-musica" data-i18n="musica-h2">Álbum “Entre la multitud”</h2>
+        <p data-i18n="musica-p">Música cristiana original, compuesta para alabar a Dios.</p></div>
       <div class="musica">
         <div class="columna">
           <div class="album">
             <img src="img/logo-96.png" alt="" width="96" height="96" loading="lazy">
-            <h3>Entre la multitud</h3>
-            <p>Canciones cristocéntricas con arreglos acústicos y reflexiones profundas.</p>
+            <h3 data-i18n="album-tit">Entre la multitud</h3>
+            <p data-i18n="album-desc">Canciones cristocéntricas con arreglos acústicos y reflexiones profundas.</p>
             <div class="enlaces">
               <a class="boton boton-linea" href="https://www.youtube.com/@enkmina2" target="_blank" rel="noopener"><svg class="icono"><use href="#i-youtube"/></svg>YouTube</a>
               <a class="boton boton-linea" href="https://soundcloud.com/enkmina2" target="_blank" rel="noopener"><svg class="icono"><use href="#i-soundcloud"/></svg>SoundCloud</a>
             </div>
           </div>
           <div class="radio-tarjeta">
-            <span class="etiqueta" style="color:var(--bosque-2)">Radio · las 24 horas</span>
-            <h3>Nuestra radio</h3>
-            <p>Música cristiana sin pausa, también desde el móvil.</p>
-            <div class="radio-hueco"><button class="boton boton-bosque" data-zeno="enkmina2"><svg class="icono icono-t"><use href="#i-radio"/></svg>Escuchar la radio</button></div>
-            <a class="enlace-pequeno" href="https://zeno.fm/radio/enkmina2/" target="_blank" rel="noopener">Abrir en Zeno Radio</a>
+            <span class="etiqueta" style="color:var(--bosque-2)" data-i18n="radio-etiqueta">Radio · las 24 horas</span>
+            <h3 data-i18n="radio-tit">Nuestra radio</h3>
+            <p data-i18n="radio-p">Música cristiana sin pausa, también desde el móvil.</p>
+            <div class="radio-hueco"><button class="boton boton-bosque" data-zeno="enkmina2"><svg class="icono icono-t"><use href="#i-radio"/></svg><span data-i18n="btn-radio">Escuchar la radio</span></button></div>
+            <a class="enlace-pequeno" href="https://zeno.fm/radio/enkmina2/" target="_blank" rel="noopener" data-i18n="radio-zeno">Abrir en Zeno Radio</a>
           </div>
         </div>
         <div class="columna">
           <div class="pista-tarjeta">
-            <div class="video"><button class="fachada poster poster-lista" data-lista="PLhSZTTzxs5oYZ2UM4Lp-dU2gAGIbIWQZN" aria-label="Reproducir todas las canciones"><span class="circulo-play"><svg><use href="#i-play"/></svg></span><span class="etiqueta" style="color:#fff">Lista de reproducción</span><strong>Todas las canciones</strong></button></div>
-            <div class="datos"><h3>Todas las canciones</h3><span>Lista de reproducción · suenan una tras otra</span></div>
+            <div class="video"><button class="fachada poster poster-lista" data-lista="PLhSZTTzxs5oYZ2UM4Lp-dU2gAGIbIWQZN" aria-label="Reproducir todas las canciones"><span class="circulo-play"><svg><use href="#i-play"/></svg></span><span class="etiqueta" style="color:#fff" data-i18n="playlist-tit">Lista de reproducción</span><strong data-i18n="playlist-sub">Todas las canciones</strong></button></div>
+            <div class="datos"><h3 data-i18n="playlist-tit">Todas las canciones</h3><span data-i18n="playlist-sub">Lista de reproducción · suenan una tras otra</span></div>
           </div>
           <div class="pistas-dos">
             <div class="pista-tarjeta">
               <div class="video"><button class="fachada" data-video="chMVl3vwjc8" aria-label="Reproducir Construyendo"><img src="https://i.ytimg.com/vi/chMVl3vwjc8/hqdefault.jpg" alt="" loading="lazy" width="480" height="360"><span class="circulo-play"><svg><use href="#i-play"/></svg></span></button></div>
-              <div class="datos"><h3>Construyendo</h3><span>3:49</span></div>
+              <div class="datos"><h3 data-i18n="pista-corto">Construyendo</h3><span>3:49</span></div>
             </div>
             <div class="pista-tarjeta">
               <div class="video"><button class="fachada" data-video="nxWMxPSgsq4" aria-label="Reproducir Palabras elegidas"><img src="https://i.ytimg.com/vi/nxWMxPSgsq4/hqdefault.jpg" alt="" loading="lazy" width="480" height="360"><span class="circulo-play"><svg><use href="#i-play"/></svg></span></button></div>
-              <div class="datos"><h3>Palabras elegidas</h3><span>3:00</span></div>
+              <div class="datos"><h3 data-i18n="pista-corto2">Palabras elegidas</h3><span>3:00</span></div>
             </div>
           </div>
         </div>
@@ -679,12 +697,12 @@ textarea{min-height:130px;resize:vertical}
   <!-- Directo -->
   <section class="seccion banda" id="directo" aria-labelledby="t-directo">
     <div class="contenedor directo">
-      <div class="video"><button class="fachada poster" data-directo="UCba5HqD3ftT7QIRCyMqfXyA" aria-label="Ver el directo Refugio 24/7"><span class="circulo-play"><svg><use href="#i-play"/></svg></span><span class="en-vivo" style="color:#fff">En directo</span><strong>Refugio 24/7</strong></button></div>
+      <div class="video"><button class="fachada poster" data-directo="UCba5HqD3ftT7QIRCyMqfXyA" aria-label="Ver el directo Refugio 24/7"><span class="circulo-play"><svg><use href="#i-play"/></svg></span><span class="en-vivo" style="color:#fff" data-i18n="en-vivo">En directo</span><strong data-i18n="directo-h2">Refugio 24/7</strong></button></div>
       <div class="lado">
-        <span class="etiqueta" style="color:var(--bosque-2)">Directo 24/7</span>
-        <h2 id="t-directo">Refugio 24/7</h2>
-        <p style="color:var(--gris);font-size:18px">Música instrumental cristiana de paz y promesas bíblicas, sin interrupción, para orar y descansar.</p>
-        <a class="boton boton-linea" style="align-self:flex-start" href="https://www.youtube.com/channel/UCba5HqD3ftT7QIRCyMqfXyA/live" target="_blank" rel="noopener"><svg class="icono"><use href="#i-youtube"/></svg>Verlo en YouTube</a>
+        <span class="etiqueta" style="color:var(--bosque-2)" data-i18n="directo-etiqueta">Directo 24/7</span>
+        <h2 id="t-directo" data-i18n="directo-h2">Refugio 24/7</h2>
+        <p style="color:var(--gris);font-size:18px" data-i18n="directo-p">Música instrumental cristiana de paz y promesas bíblicas, sin interrupción, para orar y descansar.</p>
+        <a class="boton boton-linea" style="align-self:flex-start" href="https://www.youtube.com/channel/UCba5HqD3ftT7QIRCyMqfXyA/live" target="_blank" rel="noopener"><svg class="icono"><use href="#i-youtube"/></svg><span data-i18n="btn-youtube">Verlo en YouTube</span></a>
       </div>
     </div>
   </section>
@@ -692,8 +710,8 @@ textarea{min-height:130px;resize:vertical}
   <!-- Últimos vídeos -->
   <section class="seccion" id="videos" aria-labelledby="t-videos">
     <div class="contenedor">
-      <div class="cabeza"><span class="etiqueta">YouTube</span><h2 id="t-videos">Últimos vídeos</h2>
-        <p>Lo más reciente del canal, actualizado cada día.</p></div>
+      <div class="cabeza"><span class="etiqueta" data-i18n="videos-etiqueta">YouTube</span><h2 id="t-videos" data-i18n="videos-h2">Últimos vídeos</h2>
+        <p data-i18n="videos-p">Lo más reciente del canal, actualizado cada día.</p></div>
       <div class="videos" id="lista-videos">
         <a class="corto" href="https://www.youtube.com/shorts/Dugf9F519FI" target="_blank" rel="noopener"><span class="miniatura"><img src="https://i.ytimg.com/vi/Dugf9F519FI/hqdefault.jpg" alt="" loading="lazy" width="480" height="360"></span><b>La miel</b><span>28 oct</span></a>
         <a class="corto" href="https://www.youtube.com/shorts/qkmSPS-3z8I" target="_blank" rel="noopener"><span class="miniatura"><img src="https://i.ytimg.com/vi/qkmSPS-3z8I/hqdefault.jpg" alt="" loading="lazy" width="480" height="360"></span><b>Mateo y Stickman</b><span>27 oct</span></a>
@@ -702,27 +720,27 @@ textarea{min-height:130px;resize:vertical}
         <a class="corto" href="https://www.youtube.com/shorts/7H_LJ4QYyEQ" target="_blank" rel="noopener"><span class="miniatura"><img src="https://i.ytimg.com/vi/7H_LJ4QYyEQ/hqdefault.jpg" alt="" loading="lazy" width="480" height="360"></span><b>Esta carta lleva años esperándote</b><span>25 oct</span></a>
         <a class="corto" href="https://www.youtube.com/shorts/iK8vUIaIp_A" target="_blank" rel="noopener"><span class="miniatura"><img src="https://i.ytimg.com/vi/iK8vUIaIp_A/hqdefault.jpg" alt="" loading="lazy" width="480" height="360"></span><b>Entrega tu carga a Dios</b><span>25 oct</span></a>
       </div>
-      <a class="boton boton-linea mas-videos" href="https://www.youtube.com/@enkmina2" target="_blank" rel="noopener"><svg class="icono"><use href="#i-youtube"/></svg>Ver todo el canal</a>
+      <a class="boton boton-linea mas-videos" href="https://www.youtube.com/@enkmina2" target="_blank" rel="noopener"><svg class="icono"><use href="#i-youtube"/></svg><span data-i18n="mas-videos">Ver todo el canal</span></a>
     </div>
   </section>
 
   <!-- Noticias -->
   <section class="seccion" id="noticias" aria-labelledby="t-noticias">
     <div class="contenedor">
-      <div class="cabeza"><span class="etiqueta">Noticias</span><h2 id="t-noticias">Noticias</h2>
-        <p>Lo que pasa en nuestra comunidad y titulares del mundo cristiano, con enlace a la noticia original.</p></div>
+      <div class="cabeza"><span class="etiqueta" data-i18n="noticias-etiqueta">Noticias</span><h2 id="t-noticias" data-i18n="noticias-h2">Noticias</h2>
+        <p data-i18n="noticias-p">Lo que pasa en nuestra comunidad y titulares del mundo cristiano, con enlace a la noticia original.</p></div>
       <div class="noticias">
         <div class="noticias-col comunidad" id="col-comunidad" hidden>
-          <h3>De la comunidad</h3>
+          <h3 data-i18n="comunidad-tit">De la comunidad</h3>
           <div id="lista-comunidad"></div>
         </div>
         <div class="noticias-col">
-          <h3>Titulares cristianos</h3>
-          <div id="lista-titulares" class="vacio">Pronto: titulares de webs de noticias cristianas, actualizados cada día.</div>
-          <small class="nota-fuente">Titulares de Actualidad Evangélica. Cada uno enlaza a la noticia original en su web.</small>
+          <h3 data-i18n="titulares-tit">Titulares cristianos</h3>
+          <div id="lista-titulares" class="vacio" data-i18n="titulares-vacio">Pronto: titulares de webs de noticias cristianas, actualizados cada día.</div>
+          <small class="nota-fuente" data-i18n="nota-fuente">Titulares de Actualidad Evangélica. Cada uno enlaza a la noticia original en su web.</small>
         </div>
         <div class="noticias-col">
-          <h3>Webs cristianas recomendadas</h3>
+          <h3 data-i18n="webs-tit">Webs cristianas recomendadas</h3>
           <a class="titular" href="https://protestantedigital.com/" target="_blank" rel="noopener"><b>Protestante Digital</b><span>Actualidad y opinión evangélica · España</span></a>
           <a class="titular" href="https://www.evangelicodigital.com/" target="_blank" rel="noopener"><b>Evangélico Digital</b><span>Actualidad evangélica · Latinoamérica</span></a>
         </div>
@@ -734,17 +752,17 @@ textarea{min-height:130px;resize:vertical}
   <section class="seccion banda" id="oracion" aria-labelledby="t-oracion">
     <div class="contenedor oracion-caja">
       <div class="cabeza" style="margin:0">
-        <span class="etiqueta">Muro de Oración</span><h2 id="t-oracion">Oramos contigo</h2>
-        <p>Comparte tu petición de oración. Nos unimos en oración unos por otros.</p>
-        <div class="privado"><svg class="icono-t"><use href="#i-lock"/></svg><span>Tu petición es privada: llega por correo al equipo de oración y no se publica en la web.</span></div>
+        <span class="etiqueta" data-i18n="oracion-etiqueta">Muro de Oración</span><h2 id="t-oracion" data-i18n="oracion-h2">Oramos contigo</h2>
+        <p data-i18n="oracion-p">Comparte tu petición de oración. Nos unimos en oración unos por otros.</p>
+        <div class="privado"><svg class="icono-t"><use href="#i-lock"/></svg><span data-i18n="privado">Tu petición es privada: llega por correo al equipo de oración y no se publica en la web.</span></div>
       </div>
       <form id="form-oracion" novalidate>
-        <div><label for="o-nombre">Tu nombre <small>(opcional)</small></label><input type="text" id="o-nombre" name="nombre" autocomplete="given-name" placeholder="Si lo dejas vacío, será anónima"></div>
-        <div><label for="o-correo">Tu correo <small>(opcional, si quieres que te respondamos)</small></label><input type="email" id="o-correo" name="correo" autocomplete="email" placeholder="nombre@ejemplo.com">
-          <label class="casilla" for="o-permiso"><input type="checkbox" id="o-permiso" name="permiso"> Acepto que uséis mi correo solo para responder a mi petición.</label></div>
-        <div><label for="o-peticion">Tu petición</label><textarea id="o-peticion" name="peticion" required placeholder="Escribe aquí tu motivo de oración"></textarea></div>
+        <div><label for="o-nombre">Tu nombre <small data-i18n="nombre-opcional">(opcional)</small></label><input type="text" id="o-nombre" name="nombre" autocomplete="given-name" placeholder="Si lo dejas vacío, será anónima" data-i18n="nombre-placeholder"></div>
+        <div><label for="o-correo">Tu correo <small data-i18n="correo-opcional">(opcional, si quieres que te respondamos)</small></label><input type="email" id="o-correo" name="correo" autocomplete="email" placeholder="nombre@ejemplo.com" data-i18n="correo-placeholder">
+          <label class="casilla" for="o-permiso"><input type="checkbox" id="o-permiso" name="permiso"> <span data-i18n="permiso-label">Acepto que uséis mi correo solo para responder a mi petición.</span></label></div>
+        <div><label for="o-peticion">Tu petición</label><textarea id="o-peticion" name="peticion" required placeholder="Escribe aquí tu motivo de oración" data-i18n="peticion-placeholder"></textarea></div>
         <input type="checkbox" name="botcheck" class="trampa" tabindex="-1" autocomplete="off" aria-hidden="true">
-        <button class="boton boton-bosque" type="submit" style="align-self:flex-start"><svg class="icono icono-t"><use href="#i-send"/></svg>Enviar petición</button>
+        <button class="boton boton-bosque" type="submit" style="align-self:flex-start"><svg class="icono icono-t"><use href="#i-send"/></svg><span data-i18n="btn-enviar">Enviar petición</span></button>
         <div class="estado" id="o-estado" role="status" tabindex="-1" hidden></div>
       </form>
     </div>
@@ -753,8 +771,8 @@ textarea{min-height:130px;resize:vertical}
   <!-- Síguenos: redes de Enkmina2 -->
   <section class="seccion" id="siguenos" aria-labelledby="t-siguenos">
     <div class="contenedor">
-      <div class="cabeza"><span class="etiqueta">Redes</span><h2 id="t-siguenos">Síguenos</h2>
-        <p>Encuéntranos como Enkmina2 y acompáñanos también en tus redes.</p></div>
+      <div class="cabeza"><span class="etiqueta" data-i18n="redes-etiqueta">Redes</span><h2 id="t-siguenos" data-i18n="redes-h2">Síguenos</h2>
+        <p data-i18n="redes-p">Encuéntranos como Enkmina2 y acompáñanos también en tus redes.</p></div>
       <div class="redes-rejilla">
         <a class="red-tarjeta r-yt" href="https://www.youtube.com/@enkmina2" target="_blank" rel="noopener"><span class="red-icono"><svg aria-hidden="true"><use href="#i-youtube"/></svg></span><span class="red-texto"><b>YouTube</b><span>@enkmina2</span></span><svg class="flecha icono-t" aria-hidden="true"><use href="#i-arrow-up-right"/></svg></a>
         <a class="red-tarjeta r-tt" href="https://www.tiktok.com/@enkmina2" target="_blank" rel="noopener"><span class="red-icono"><svg aria-hidden="true"><use href="#i-tiktok"/></svg></span><span class="red-texto"><b>TikTok</b><span>@enkmina2</span></span><svg class="flecha icono-t" aria-hidden="true"><use href="#i-arrow-up-right"/></svg></a>
@@ -779,7 +797,7 @@ textarea{min-height:130px;resize:vertical}
 <footer class="pie">
   <div class="contenedor">
     <div class="arriba">
-      <a class="marca" href="./"><img src="img/logo-96.png" alt="" width="36" height="36" loading="lazy">Encaminados por Jesús</a>
+      <a class="marca" href="./"><img src="img/logo-96.png" alt="" width="36" height="36" loading="lazy"><span data-i18n="footer-marco">Encaminados por Jesús</span></a>
       <div class="redes">
         <a href="https://www.youtube.com/@enkmina2" target="_blank" rel="noopener" aria-label="YouTube: @enkmina2" title="YouTube: @enkmina2"><svg><use href="#i-youtube"/></svg></a>
         <a href="https://www.tiktok.com/@enkmina2" target="_blank" rel="noopener" aria-label="TikTok: @enkmina2" title="TikTok: @enkmina2"><svg><use href="#i-tiktok"/></svg></a>
@@ -790,26 +808,26 @@ textarea{min-height:130px;resize:vertical}
         <a href="https://whatsapp.com/channel/0029VbDXQJGFSAtAMI6SkH3v" target="_blank" rel="noopener" aria-label="Canal de WhatsApp" title="Canal de WhatsApp"><svg><use href="#i-whatsapp"/></svg></a>
       </div>
     </div>
-    <nav aria-label="Secciones"><a href="#estudios">Estudios</a><a href="#biblia">Biblia</a><a href="#musica">Música</a><a href="#directo">Directo</a><a href="#noticias">Noticias</a><a href="#oracion">Oración</a></nav>
-    <small>Texto bíblico tomado de la Santa Biblia, versión Reina-Valera 1960 © Sociedades Bíblicas en América Latina, 1960. Renovado © Sociedades Bíblicas Unidas, 1988. Utilizado con permiso.</small>
-    <small>© 2026 Encaminados por Jesús. Caminando en la verdad y compartiendo el amor de Dios por medio de la fe y la música.</small>
+    <nav aria-label="Secciones"><a href="#estudios" data-i18n="estudios-etiqueta">Estudios</a><a href="#biblia" data-i18n="biblia-etiqueta">Biblia</a><a href="#musica" data-i18n="musica-etiqueta">Música</a><a href="#directo" data-i18n="directo-etiqueta">Directo</a><a href="#noticias" data-i18n="noticias-etiqueta">Noticias</a><a href="#oracion" data-i18n="oracion-etiqueta">Oración</a></nav>
+    <small data-i18n="footer-derechos">Texto bíblico tomado de la Santa Biblia, versión Reina-Valera 1960 © Sociedades Bíblicas en América Latina, 1960. Renovado © Sociedades Bíblicas Unidas, 1988. Utilizado con permiso.</small>
+    <small data-i18n="footer-copy">© 2026 Encaminados por Jesús. Caminando en la verdad y compartiendo el amor de Dios por medio de la fe y la música.</small>
   </div>
 </footer>
 
-<a class="wa-flotante" href="https://whatsapp.com/channel/0029VbDXQJGFSAtAMI6SkH3v" target="_blank" rel="noopener" aria-label="Canal de WhatsApp"><svg><use href="#i-whatsapp"/></svg></a>
-<button class="subir icono-t" id="subir" type="button" aria-label="Volver arriba" title="Volver arriba"><svg><use href="#i-arrow-up"/></svg></button>
+<a class="wa-flotante" href="https://whatsapp.com/channel/0029VbDXQJGFSAtAMI6SkH3v" target="_blank" rel="noopener" aria-label="Canal de WhatsApp" data-i18n="wa-flotante"><svg><use href="#i-whatsapp"/></svg></a>
+<button class="subir icono-t" id="subir" type="button" aria-label="Volver arriba" title="Volver arriba" data-i18n="btn-subir"><svg><use href="#i-arrow-up"/></svg></button>
 <div class="aviso" id="aviso" role="status" aria-live="polite"></div>
 
 <!-- imagen del versículo (9:16) para estados de WhatsApp e historias de Instagram -->
 <dialog class="ventana" id="ventana-imagen" aria-labelledby="vi-titulo">
   <div class="dentro">
-    <div class="arriba-v"><b id="vi-titulo">Imagen para estados e historias</b><button class="cerrar icono-t" type="button" data-cerrar aria-label="Cerrar"><svg><use href="#i-x"/></svg></button></div>
+    <div class="arriba-v"><b id="vi-titulo" data-i18n="vi-titulo">Imagen para estados e historias</b><button class="cerrar icono-t" type="button" data-cerrar aria-label="Cerrar" data-i18n="vi-cerrar">Cerrar</button></div>
     <img id="vi-img" alt="" width="1080" height="1920">
     <div class="botones-v">
-      <a class="boton boton-bosque" id="vi-descargar" download="versiculo-del-dia.jpg"><svg class="icono icono-t"><use href="#i-download"/></svg>Descargar</a>
-      <button class="boton boton-linea" id="vi-compartir" type="button" hidden><svg class="icono icono-t"><use href="#i-share"/></svg>Compartir imagen</button>
+      <a class="boton boton-bosque" id="vi-descargar" download="versiculo-del-dia.jpg"><svg class="icono icono-t"><use href="#i-download"/></svg><span data-i18n="vi-descargar">Descargar</span></a>
+      <button class="boton boton-linea" id="vi-compartir" type="button" hidden><svg class="icono icono-t"><use href="#i-share"/></svg><span data-i18n="vi-compartir">Compartir imagen</span></button>
     </div>
-    <small>Formato vertical 9:16, listo para estados de WhatsApp e historias de Instagram.</small>
+    <small data-i18n="vi-pie">Formato vertical 9:16, listo para estados de WhatsApp e historias de Instagram.</small>
   </div>
 </dialog>
 
@@ -1253,6 +1271,671 @@ if (document.documentElement.classList.contains("anim")) {
   }); }, { rootMargin: "0px 0px -6% 0px" });
   document.querySelectorAll(".seccion .cabeza,.reflexiones .reflexion,.subtitulo,#dia,.lectura-dia,.pasaje,.album,.radio-tarjeta,.pista-tarjeta,.directo>*,.videos,.noticias-col,.oracion-caja>form,.redes-rejilla").forEach(el => revelar.observe(el));
 }
+
+  /* ---------- Selector de idioma (aditivo) ---------- */
+  (function () {
+    const btn = document.getElementById("b-idioma");
+    const panel = document.getElementById("panel-idioma");
+    if (!btn || !panel) return;
+
+    // Configuración centralizada
+    const LANGS = { es: "Español", en: "English" };
+    const LANG_CODES = Object.keys(LANGS);
+    const STORAGE_KEY = "epj-idioma";
+
+    // Single source of truth: localStorage only
+    function getIdioma() {
+      const stored = localStorage.getItem(STORAGE_KEY);
+      return (stored && LANG_CODES.includes(stored)) ? stored : "es";
+    }
+    function setIdioma(lang) {
+      if (!LANG_CODES.includes(lang)) return false;
+      localStorage.setItem(STORAGE_KEY, lang);
+      return true;
+    }
+
+    // Getter público (no contamina window con estado mutable)
+    Object.defineProperty(window, "idiomaActual", { get: getIdioma, configurable: true });
+
+    // Elementos cacheados
+    const options = panel.querySelectorAll("[role='radio'][data-lang]");
+
+    // Actualizar etiqueta del botón principal
+    function updateButtonLabel(lang) {
+      btn.textContent = lang === "es" ? "ES" : "EN";
+    }
+
+    // Actualizar selección en el panel
+    function updatePanelSelection(lang) {
+      options.forEach(opt => {
+        const isActive = opt.dataset.lang === lang;
+        opt.setAttribute("aria-checked", isActive);
+        opt.tabIndex = isActive ? 0 : -1;
+      });
+    }
+
+    // Aplicar UI completa
+    function applyUI(lang) {
+      updateButtonLabel(lang);
+      updatePanelSelection(lang);
+      btn.setAttribute("aria-expanded", "false");
+    }
+
+    // Inicializar
+    let currentLang = getIdioma();
+    applyUI(currentLang);
+
+    // Abrir/cerrar panel
+    function openPanel() {
+      btn.setAttribute("aria-expanded", "true");
+      panel.hidden = false;
+      // Listeners solo mientras está abierto
+      document.addEventListener("click", onDocClick);
+      document.addEventListener("keydown", onKeyDown);
+    }
+    function closePanel() {
+      btn.setAttribute("aria-expanded", "false");
+      panel.hidden = true;
+      document.removeEventListener("click", onDocClick);
+      document.removeEventListener("keydown", onKeyDown);
+      btn.focus();
+    }
+
+    // Toggle en click del botón
+    btn.addEventListener("click", e => {
+      e.stopPropagation();
+      const isOpen = btn.getAttribute("aria-expanded") === "true";
+      isOpen ? closePanel() : openPanel();
+    });
+
+    // Selección en el panel (click + teclado)
+    panel.addEventListener("click", e => {
+      const opt = e.target.closest("[role='radio'][data-lang]");
+      if (!opt) return;
+      const lang = opt.dataset.lang;
+      if (lang === currentLang) return;
+      if (setIdioma(lang)) {
+        currentLang = lang;
+        applyUI(lang);
+        closePanel();
+        // Disparar evento para capas de traducción futuras
+        document.dispatchEvent(new CustomEvent("idioma-cambiado", { detail: { lang } }));
+      }
+    });
+
+    // Navegación con teclado (ArrowUp/Down, Home, End)
+    panel.addEventListener("keydown", e => {
+      const idx = Array.from(options).findIndex(o => o === document.activeElement);
+      if (idx === -1) return;
+      let newIdx = idx;
+      if (e.key === "ArrowDown") newIdx = (idx + 1) % options.length;
+      else if (e.key === "ArrowUp") newIdx = (idx - 1 + options.length) % options.length;
+      else if (e.key === "Home") newIdx = 0;
+      else if (e.key === "End") newIdx = options.length - 1;
+      else return;
+      e.preventDefault();
+      options[newIdx].focus();
+    });
+
+    // Click fuera cierra
+    function onDocClick(e) {
+      if (!btn.contains(e.target) && !panel.contains(e.target)) closePanel();
+    }
+
+    // Escape cierra (solo cuando panel abierto)
+    function onKeyDown(e) {
+      if (e.key === "Escape") closePanel();
+    }
+  })();
+
+  /* ---------- Sistema de traducción (aditivo) ---------- */
+  (function () {
+    // Mapa de traducciones para textos estáticos de la UI
+    const I18N = {
+      es: {
+        // Header / Navegación
+        "saltar-contenido": "Saltar al contenido",
+        "menu-abrir": "Abrir el menú",
+        "menu-cerrar": "Cerrar el menú",
+        "whatsapp-canal": "Canal de WhatsApp",
+        "letra-titulo": "Tamaño de la letra y voz",
+        "letra-panel": "Letra",
+        "letra-menor": "Letra más pequeña",
+        "letra-mayor": "Letra más grande",
+        "voz-titulo": "Voz",
+        "voz-mujer": "Mujer",
+        "voz-hombre": "Hombre",
+        "idioma-label": "Idioma",
+        "idioma-es": "Español",
+        "idioma-en": "English",
+
+        // Portada
+        "portada-etiqueta": "Caminando en su luz y verdad",
+        "portada-h1": "Guiados por su gracia, unidos en su nombre",
+        "portada-p": "Portal cristiano enfocado en la doctrina de la Unicidad, el estudio de las Escrituras y música cristiana original.",
+        "btn-escuchar": "Escuchar música",
+        "btn-leer-biblia": "Leer la Biblia",
+        "tema-dia": "Tema del día",
+        "btn-estudio": "Leer el estudio",
+        "en-vivo": "En directo",
+        "directo-tit": "Refugio 24/7: música instrumental y promesas bíblicas",
+        "directo-sub": "Para orar y descansar, a cualquier hora",
+        "album-etiqueta": "Álbum",
+        "album-tit": "Entre la multitud",
+        "pista1": "Construyendo",
+        "pista2": "Palabras elegidas",
+
+        // Estudios
+        "estudios-etiqueta": "Estudio bíblico del día",
+        "estudios-h2": "Para meditar en la Palabra",
+        "estudios-p": "Cada día, un tema, un versículo y un estudio.",
+        "hoy-mundo": "Hoy en el mundo",
+        "para-hoy": "Para hoy",
+        "reflexiones": "Reflexiones",
+        "tipo-reflexion": "Reflexión",
+        "leer-reflexion": "Leer la reflexión: ",
+        "oracion": "Señor Jesús, alumbra hoy mis pasos. Cuando no vea el camino entero, ayúdame a confiar en la luz que me das para el paso de hoy. Amén.",
+
+        // Biblia
+        "biblia-etiqueta": "Las Sagradas Escrituras",
+        "biblia-h2": "Lectura bíblica",
+        "biblia-p": "La concordancia del tema de hoy y el pasaje de la semana, para meditar en la verdad de su Palabra.",
+        "concordancia": "Concordancia bíblica",
+        "cc-p": "Pasajes relacionados con el tema de hoy. Léelos completos en la Reina-Valera 1960.",
+        "leer-concordancia": "Leer la concordancia completa",
+        "ps-semana": "Pasaje de la semana",
+        "leer-pasaje": "Leer el pasaje completo",
+        "btn-biblegateway": "Leer en BibleGateway",
+        "derechos": "Texto bíblico: Reina-Valera 1960.",
+
+        // Música
+        "musica-etiqueta": "Música",
+        "musica-h2": "Álbum “Entre la multitud”",
+        "musica-p": "Música cristiana original, compuesta para alabar a Dios.",
+        "album-desc": "Canciones cristocéntricas con arreglos acústicos y reflexiones profundas.",
+        "radio-etiqueta": "Radio · las 24 horas",
+        "radio-tit": "Nuestra radio",
+        "radio-p": "Música cristiana sin pausa, también desde el móvil.",
+        "btn-radio": "Escuchar la radio",
+        "radio-zeno": "Abrir en Zeno Radio",
+        "playlist-tit": "Todas las canciones",
+        "playlist-sub": "Lista de reproducción · suenan una tras otra",
+        "pista-corto": "Construyendo",
+        "pista-corto2": "Palabras elegidas",
+
+        // Directo
+        "directo-etiqueta": "Directo 24/7",
+        "directo-h2": "Refugio 24/7",
+        "directo-p": "Música instrumental cristiana de paz y promesas bíblicas, sin interrupción, para orar y descansar.",
+        "btn-youtube": "Verlo en YouTube",
+
+        // Videos
+        "videos-etiqueta": "YouTube",
+        "videos-h2": "Últimos vídeos",
+        "videos-p": "Lo más reciente del canal, actualizado cada día.",
+        "mas-videos": "Ver todo el canal",
+
+        // Noticias
+        "noticias-etiqueta": "Noticias",
+        "noticias-h2": "Noticias",
+        "noticias-p": "Lo que pasa en nuestra comunidad y titulares del mundo cristiano, con enlace a la noticia original.",
+        "comunidad-tit": "De la comunidad",
+        "titulares-tit": "Titulares cristianos",
+        "titulares-vacio": "Pronto: titulares de webs de noticias cristianas, actualizados cada día.",
+        "nota-fuente": "Titulares de Actualidad Evangélica. Cada uno enlaza a la noticia original en su web.",
+        "webs-tit": "Webs cristianas recomendadas",
+
+        // Oración
+        "oracion-etiqueta": "Muro de Oración",
+        "oracion-h2": "Oramos contigo",
+        "oracion-p": "Comparte tu petición de oración. Nos unimos en oración unos por otros.",
+        "privado": "Tu petición es privada: llega por correo al equipo de oración y no se publica en la web.",
+        "nombre-label": "Tu nombre",
+        "nombre-opcional": "(opcional)",
+        "nombre-placeholder": "Si lo dejas vacío, será anónima",
+        "correo-label": "Tu correo",
+        "correo-opcional": "(opcional, si quieres que te respondamos)",
+        "correo-placeholder": "nombre@ejemplo.com",
+        "permiso-label": "Acepto que uséis mi correo solo para responder a mi petición.",
+        "peticion-label": "Tu petición",
+        "peticion-placeholder": "Escribe aquí tu motivo de oración",
+        "btn-enviar": "Enviar petición",
+        "msg-recibida": "Hemos recibido tu petición. Nuestra comunidad orará por ti.",
+
+        // Redes
+        "redes-etiqueta": "Redes",
+        "redes-h2": "Síguenos",
+        "redes-p": "Encuéntranos como Enkmina2 y acompáñanos también en tus redes.",
+
+        // Footer
+        "footer-marco": "Encaminados por Jesús",
+        "footer-derechos": "Texto bíblico tomado de la Santa Biblia, versión Reina-Valera 1960 © Sociedades Bíblicas en América Latina, 1960. Renovado © Sociedades Bíblicas Unidas, 1988. Utilizado con permiso.",
+        "footer-copy": "© 2026 Encaminados por Jesús. Caminando en la verdad y compartiendo el amor de Dios por medio de la fe y la música.",
+        "wa-flotante": "Canal de WhatsApp",
+        "btn-subir": "Volver arriba",
+
+        // Modal imagen
+        "vi-titulo": "Imagen para estados e historias",
+        "vi-cerrar": "Cerrar",
+        "vi-descargar": "Descargar",
+        "vi-compartir": "Compartir imagen",
+        "vi-pie": "Formato vertical 9:16, listo para estados de WhatsApp e historias de Instagram.",
+
+        // Compartir
+        "compartir-estudio": "Compartir el estudio",
+        "compartir-pasaje": "Compartir el pasaje",
+        "compartir-whatsapp": "Compartir en WhatsApp",
+        "compartir-facebook": "Compartir en Facebook",
+        "compartir-x": "Compartir en X",
+        "compartir-telegram": "Compartir en Telegram",
+        "compartir-copiar": "Copiar el texto y el enlace",
+        "compartir-mas": "Más opciones para compartir",
+        "compartir-imagen": "Imagen para estados",
+        "copiado": "Copiado. Ya puedes pegarlo donde quieras.",
+
+        // Lectura en voz
+        "lector-escuchar": "Escuchar",
+        "lector-pausar": "Pausar",
+        "lector-seguir": "Seguir",
+        "lector-parar": "Parar",
+
+        // Miscelánea
+        "cargando": "Cargando...",
+        "error": "Error al cargar",
+        "sin-resultados": "No hay resultados",
+        "en": "en",
+        "de": "de"
+      },
+      en: {
+        // Header / Navigation
+        "saltar-contenido": "Skip to content",
+        "menu-abrir": "Open menu",
+        "menu-cerrar": "Close menu",
+        "whatsapp-canal": "WhatsApp Channel",
+        "letra-titulo": "Font size and voice",
+        "letra-panel": "Font",
+        "letra-menor": "Smaller font",
+        "letra-mayor": "Larger font",
+        "voz-titulo": "Voice",
+        "voz-mujer": "Female",
+        "voz-hombre": "Male",
+        "idioma-label": "Language",
+        "idioma-es": "Español",
+        "idioma-en": "English",
+
+        // Hero / Cover
+        "portada-etiqueta": "Walking in His light and truth",
+        "portada-h1": "Guided by His grace, united in His name",
+        "portada-p": "Christian portal focused on Oneness doctrine, Scripture study, and original Christian music.",
+        "btn-escuchar": "Listen to music",
+        "btn-leer-biblia": "Read the Bible",
+        "tema-dia": "Theme of the day",
+        "btn-estudio": "Read the study",
+        "en-vivo": "Live",
+        "directo-tit": "Refuge 24/7: instrumental music and Bible promises",
+        "directo-sub": "To pray and rest, at any hour",
+        "album-etiqueta": "Album",
+        "album-tit": "Among the Crowd",
+        "pista1": "Building",
+        "pista2": "Chosen Words",
+
+        // Studies
+        "estudios-etiqueta": "Daily Bible Study",
+        "estudios-h2": "To meditate on the Word",
+        "estudios-p": "Every day, a theme, a verse, and a study.",
+        "hoy-mundo": "Today in the World",
+        "para-hoy": "For Today",
+        "reflexiones": "Reflections",
+        "tipo-reflexion": "Reflection",
+        "leer-reflexion": "Read the reflection: ",
+        "oracion": "Lord Jesus, light my steps today. When I cannot see the whole path, help me trust the light You give for today's step. Amen.",
+
+        // Bible
+        "biblia-etiqueta": "The Holy Scriptures",
+        "biblia-h2": "Bible Reading",
+        "biblia-p": "Today's concordance and the weekly passage, to meditate on the truth of His Word.",
+        "concordancia": "Biblical Concordance",
+        "cc-p": "Passages related to today's theme. Read them in full in the Reina-Valera 1960.",
+        "leer-concordancia": "Read full concordance",
+        "ps-semana": "Passage of the Week",
+        "leer-pasaje": "Read full passage",
+        "btn-biblegateway": "Read on BibleGateway",
+        "derechos": "Bible text: Reina-Valera 1960.",
+
+        // Music
+        "musica-etiqueta": "Music",
+        "musica-h2": "Album “Among the Crowd”",
+        "musica-p": "Original Christian music, composed to praise God.",
+        "album-desc": "Christ-centered songs with acoustic arrangements and deep reflections.",
+        "radio-etiqueta": "Radio · 24 hours",
+        "radio-tit": "Our Radio",
+        "radio-p": "Non-stop Christian music, also on mobile.",
+        "btn-radio": "Listen to Radio",
+        "radio-zeno": "Open in Zeno Radio",
+        "playlist-tit": "All Songs",
+        "playlist-sub": "Playlist · plays continuously",
+        "pista-corto": "Building",
+        "pista-corto2": "Chosen Words",
+
+        // Live
+        "directo-etiqueta": "Live 24/7",
+        "directo-h2": "Refuge 24/7",
+        "directo-p": "Instrumental Christian music of peace and Bible promises, uninterrupted, to pray and rest.",
+        "btn-youtube": "Watch on YouTube",
+
+        // Videos
+        "videos-etiqueta": "YouTube",
+        "videos-h2": "Latest Videos",
+        "videos-p": "The latest from the channel, updated daily.",
+        "mas-videos": "View full channel",
+
+        // News
+        "noticias-etiqueta": "News",
+        "noticias-h2": "News",
+        "noticias-p": "What's happening in our community and Christian world headlines, with links to original sources.",
+        "comunidad-tit": "From the Community",
+        "titulares-tit": "Christian Headlines",
+        "titulares-vacio": "Coming soon: headlines from Christian news sites, updated daily.",
+        "nota-fuente": "Headlines from Actualidad Evangélica. Each links to the original article on their site.",
+        "webs-tit": "Recommended Christian Sites",
+
+        // Prayer
+        "oracion-etiqueta": "Prayer Wall",
+        "oracion-h2": "We Pray with You",
+        "oracion-p": "Share your prayer request. We join together in prayer for one another.",
+        "privado": "Your request is private: it reaches the prayer team by email and is not published on the web.",
+        "nombre-label": "Your Name",
+        "nombre-opcional": "(optional)",
+        "nombre-placeholder": "If left blank, it will be anonymous",
+        "correo-label": "Your Email",
+        "correo-opcional": "(optional, if you want a reply)",
+        "correo-placeholder": "name@example.com",
+        "permiso-label": "I accept that you use my email only to respond to my request.",
+        "peticion-label": "Your Request",
+        "peticion-placeholder": "Write your prayer request here",
+        "btn-enviar": "Send Request",
+        "msg-recibida": "We have received your request. Our community will pray for you.",
+
+        // Social
+        "redes-etiqueta": "Social",
+        "redes-h2": "Follow Us",
+        "redes-p": "Find us as Enkmina2 and join us on your networks too.",
+
+        // Footer
+        "footer-marco": "Encaminados por Jesús",
+        "footer-derechos": "Bible text taken from the Holy Bible, Reina-Valera 1960 version © Bible Societies in Latin America, 1960. Renewed © United Bible Societies, 1988. Used with permission.",
+        "footer-copy": "© 2026 Encaminados por Jesús. Walking in truth and sharing God's love through faith and music.",
+        "wa-flotante": "WhatsApp Channel",
+        "btn-subir": "Back to top",
+
+        // Image modal
+        "vi-titulo": "Image for Status & Stories",
+        "vi-cerrar": "Close",
+        "vi-descargar": "Download",
+        "vi-compartir": "Share Image",
+        "vi-pie": "Vertical 9:16 format, ready for WhatsApp Status and Instagram Stories.",
+
+        // Share
+        "compartir-estudio": "Share the Study",
+        "compartir-pasaje": "Share the Passage",
+        "compartir-whatsapp": "Share on WhatsApp",
+        "compartir-facebook": "Share on Facebook",
+        "compartir-x": "Share on X",
+        "compartir-telegram": "Share on Telegram",
+        "compartir-copiar": "Copy text and link",
+        "compartir-mas": "More sharing options",
+        "compartir-imagen": "Image for Status",
+        "copiado": "Copied. You can now paste it wherever you want.",
+
+        // TTS
+        "lector-escuchar": "Listen",
+        "lector-pausar": "Pause",
+        "lector-seguir": "Continue",
+        "lector-parar": "Stop",
+
+        // Misc
+        "cargando": "Loading...",
+        "error": "Error loading",
+        "sin-resultados": "No results",
+        "en": "on",
+        "de": "of"
+      }
+    };
+
+    // Helper para obtener traducción
+    window.t = function (key) {
+      const lang = window.idiomaActual;
+      return (I18N[lang] && I18N[lang][key]) || I18N.es[key] || key;
+    };
+
+    // Formato de fecha según idioma
+    window.fechaLargaI18n = function (f) {
+      const lang = window.idiomaActual;
+      const locale = lang === "en" ? "en-US" : "es-ES";
+      return new Date(f + "T12:00:00").toLocaleDateString(locale, { weekday: "long", day: "numeric", month: "long" });
+    };
+
+    // Función para volver a traducir toda la página al cambiar idioma
+    window.retraducirTodo = async function () {
+      // 1. Textos estáticos del HTML (data-i18n attributes)
+      document.querySelectorAll("[data-i18n]").forEach(el => {
+        const key = el.dataset.i18n;
+        const translation = window.t(key);
+        if (el.tagName === "INPUT" || el.tagName === "TEXTAREA") {
+          if (el.placeholder !== undefined) el.placeholder = translation;
+          else el.value = translation;
+        } else if (el.hasAttribute("aria-label")) {
+          el.setAttribute("aria-label", translation);
+        } else if (el.hasAttribute("title")) {
+          el.title = translation;
+        } else {
+          el.textContent = translation;
+        }
+      });
+
+      // 2. Re-renderizar contenido dinámico desde JSON
+      try {
+        // Estudios del día
+        const diasResp = await fetch("datos/dias.json", { cache: "no-cache" });
+        if (diasResp.ok) {
+          const diasData = await diasResp.json();
+          if (typeof pintarDiaI18n === "function") pintarDiaI18n(diasData);
+        }
+
+        // Pasaje de la semana
+        const pasajeResp = await fetch("datos/pasaje.json", { cache: "no-cache" });
+        if (pasajeResp.ok) {
+          const pasajeData = await pasajeResp.json();
+          if (pasajeData && pasajeData.versiculos) {
+            renderPasaje(pasajeData);
+          }
+        }
+
+        // Noticias comunidad
+        const comunidadResp = await fetch("datos/comunidad.json", { cache: "no-cache" });
+        if (comunidadResp.ok) {
+          const comunidadData = await comunidadResp.json();
+          if (comunidadData && typeof pintarNoticiasI18n === "function") {
+            pintarNoticiasI18n("lista-comunidad", comunidadData.noticias);
+          }
+        }
+
+        // Titulares cristianos
+        const noticiasResp = await fetch("datos/noticias.json", { cache: "no-cache" });
+        if (noticiasResp.ok) {
+          const noticiasData = await noticiasResp.json();
+          if (noticiasData && typeof pintarNoticiasI18n === "function") {
+            pintarNoticiasI18n("lista-titulares", noticiasData.titulares);
+          }
+        }
+
+        // Videos
+        const videosResp = await fetch("datos/videos.json", { cache: "no-cache" });
+        if (videosResp.ok) {
+          const videosData = await videosResp.json();
+          if (videosData && typeof renderVideos === "function") {
+            renderVideos(videosData);
+          }
+        }
+
+        // Actualizar fecha larga y textos de UI que dependen del idioma
+        actualizarTextosUI();
+      } catch (e) {
+        console.warn("Error re-traduyendo:", e);
+      }
+    };
+
+    // Función auxiliar para renderizar pasaje (extraída del código original)
+    window.renderPasaje = function (p) {
+      const lang = window.idiomaActual;
+      const refKey = lang === "en" ? "referencia_en" : "referencia";
+      const textoKey = lang === "en" ? "texto_en" : "texto";
+      const locale = lang === "en" ? "en-US" : "es-ES";
+
+      document.getElementById("ps-semana").textContent = window.t("ps-semana") + " · " +
+        new Date(p.desde + "T12:00:00").toLocaleDateString(locale, { weekday: "long", day: "numeric", month: "long" });
+      document.getElementById("ps-ref").textContent = p[refKey] || p.referencia;
+      document.getElementById("ps-texto").replaceChildren(...p.versiculos.map(v => {
+        const par = document.createElement("p"), n = document.createElement("sup");
+        n.textContent = v.n; par.append(n, v[textoKey] || v.texto); return par; }));
+      const bg = document.getElementById("ps-bg"); bg.href = enlaceBG(p.referencia); bg.hidden = false;
+      prepararLectores(); pintarCompartir(document.querySelector('[data-compartir="pasaje"]'));
+    };
+
+    // Función auxiliar para renderizar videos
+    window.renderVideos = function (d) {
+      const lang = window.idiomaActual;
+      const lista = document.getElementById("lista-videos");
+      if (!lista) return;
+      lista.replaceChildren(...d.videos.map(v => {
+        const a = document.createElement("a"); a.className = "corto"; a.href = v.enlace; a.target = "_blank"; a.rel = "noopener";
+        const m = document.createElement("span"); m.className = "miniatura";
+        const img = document.createElement("img"); img.src = `https://i.ytimg.com/vi/${v.id}/hqdefault.jpg`; img.alt = ""; img.loading = "lazy"; img.width = 480; img.height = 360; m.append(img);
+        const b = document.createElement("b"); b.textContent = lang === "en" && v.titulo_en ? v.titulo_en : v.titulo;
+        const s = document.createElement("span"); s.textContent = fecha(v.fecha);
+        a.append(m, b, s); return a; }));
+    };
+
+    // Versión con i18n de pintarDia (usa campos _en del JSON)
+    window.pintarDiaI18n = function (d) {
+      const lang = window.idiomaActual;
+      const isEn = lang === "en";
+      const hoy = hoyISO();
+      const dias = (d && d.dias || []).filter(x => x.aprobado !== false && x.fecha <= hoy).sort((a, b) => a.fecha < b.fecha ? -1 : 1);
+      if (!dias.length) return;
+      const exacto = dias[dias.length - 1].fecha === hoy ? dias[dias.length - 1] : null;
+      const dia = dias[dias.length - 1];
+      const conEstudio = [...dias].reverse().find(x => x.estudio && x.estudio.parrafos && x.estudio.parrafos.length);
+      const v = dia.versiculo || {};
+      /* portada */
+      document.getElementById("vd-tema").textContent = isEn && dia.tema_en ? dia.tema_en : (dia.tema || "");
+      document.getElementById("vd-texto").textContent = "“" + (isEn && v.texto_en ? v.texto_en : (v.texto || "")) + "”";
+      const ref = document.getElementById("vd-ref"); ref.textContent = v.referencia || ""; ref.hidden = !v.referencia;
+      document.getElementById("vd-estudio").hidden = !conEstudio;
+      /* estudio */
+      const temaKey = isEn ? "tema_en" : "tema";
+      document.getElementById("es-cabeza").innerHTML = (isEn ? "Today's theme: " : "Tema de hoy: ") + "<strong>" + esc(dia[temaKey] || dia.tema || "") + "</strong>.";
+      const hm = exacto && (isEn ? exacto.hoy_en_el_mundo_en : exacto.hoy_en_el_mundo);
+      document.getElementById("hoy-mundo").hidden = !hm; document.getElementById("hm-texto").textContent = hm || "";
+      if (conEstudio) {
+        const e = conEstudio, ve = e.versiculo || {}, otro = e.fecha !== dia.fecha;
+        const estudio = isEn && e.estudio ? {
+          parrafos: e.estudio.parrafos_en || e.estudio.parrafos,
+          resumen: e.estudio.resumen_en || e.estudio.resumen
+        } : e.estudio;
+        const tipoTexto = otro
+          ? (isEn ? "Last available study" : "Último estudio disponible") + " · " + esc(fechaLargaI18n(e.fecha))
+          : (isEn ? "Bible study" : "Estudio bíblico");
+        const leerTexto = isEn ? "Read full study" : "Leer el estudio completo";
+        document.getElementById("lista-estudios").innerHTML = `
+          <article class="reflexion" id="estudio-${esc(e.fecha)}">
+            <span class="etiqueta tipo">${tipoTexto} · ${esc(e[temaKey] || e.tema || "")}</span>
+            <p class="cita">“${esc(isEn && ve.texto_en ? ve.texto_en : (ve.texto || ""))}”<span>${esc(ve.referencia || "")}</span></p>
+            ${estudio.resumen ? `<p class="resumen">${esc(estudio.resumen)}</p>` : ""}
+            <div class="lector" data-leer="#estudio-${esc(e.fecha)}" hidden></div>
+            <details open><summary>${leerTexto}</summary><div class="texto">${estudio.parrafos.map(p => "<p>" + p + "</p>").join("")}</div></details>
+          </article>`;
+        document.getElementById("vd-estudio").href = "#estudio-" + e.fecha;
+      }
+      const ph = isEn ? dia.para_hoy_en : dia.para_hoy, phCaja = document.getElementById("ph-texto");
+      document.getElementById("para-hoy").hidden = !(ph && ph.length);
+      phCaja.replaceChildren(...[].concat(ph || []).map(t => { const p = document.createElement("p"); p.textContent = t; return p; }));
+      /* concordancia */
+      const cc = dia.concordancia || [];
+      document.getElementById("concordancia").hidden = !cc.length;
+      document.getElementById("cc-tema").textContent = isEn && dia.tema_en ? dia.tema_en : (dia.tema || "");
+      document.getElementById("cc-citas").replaceChildren(...cc.map(x => {
+        const li = document.createElement("li"), txt = document.createElement("div"), b = document.createElement("b"), f = document.createElement("span"), a = document.createElement("a");
+        b.textContent = x.cita; f.textContent = isEn ? (x.frase_en || x.frase || "") : (x.frase || ""); txt.append(b, f);
+        a.className = "boton boton-claro"; a.href = enlaceBG(x.cita); a.target = "_blank"; a.rel = "noopener";
+        a.innerHTML = window.t("btn-biblegateway") + '<svg class="icono icono-t"><use href="#i-arrow-up-right"/></svg>';
+        li.append(txt, a); return li; }));
+      abrirEstudio(); prepararLectores(); mostrarCompartir(); pintarRefsConcordancia();
+    };
+
+    // Versión con i18n de pintarNoticias (usa campos _en del JSON)
+    window.pintarNoticiasI18n = function (id, items) {
+      const lang = window.idiomaActual;
+      const isEn = lang === "en";
+      if (!items || !items.length) return;
+      const caja = document.getElementById(id); caja.classList.remove("vacio");
+      if (id === "lista-comunidad") document.getElementById("col-comunidad").hidden = false;
+      caja.replaceChildren(...items.slice(0, 8).map(n => {
+        const a = document.createElement(n.enlace ? "a" : "div"); a.className = "titular";
+        if (n.enlace) { a.href = n.enlace; a.target = "_blank"; a.rel = "noopener"; }
+        const b = document.createElement("b"); b.textContent = isEn && n.titulo_en ? n.titulo_en : n.titulo;
+        const s = document.createElement("span"); s.textContent = [n.fuente, n.fecha && fecha(n.fecha)].filter(Boolean).join(" · ");
+        a.append(b, s); if (n.texto) { const p = document.createElement("span"); p.textContent = isEn ? (n.texto_en || n.texto) : n.texto; a.append(p); } return a; }));
+    };
+
+    // Actualiza textos de UI que cambian con el idioma (fechas, botones, etc.)
+    function actualizarTextosUI() {
+      const lang = window.idiomaActual;
+      const locale = lang === "en" ? "en-US" : "es-ES";
+
+      // Actualizar botón de menú
+      const abrir = document.getElementById("abrir-menu");
+      if (abrir) {
+        const isOpen = abrir.getAttribute("aria-expanded") === "true";
+        abrir.setAttribute("aria-label", isOpen ? window.t("menu-cerrar") : window.t("menu-abrir"));
+      }
+
+      // Actualizar botón de letra
+      const bLetra = document.getElementById("b-letra");
+      if (bLetra) bLetra.setAttribute("aria-label", window.t("letra-titulo"));
+
+      // Actualizar botón de idioma
+      const bIdioma = document.getElementById("b-idioma");
+      if (bIdioma) bIdioma.setAttribute("aria-label", window.t("idioma-label"));
+
+      // Actualizar panel de letra
+      const filaVoz = document.getElementById("fila-voz");
+      if (filaVoz) filaVoz.querySelector(".nombre-fila").textContent = window.t("voz-titulo");
+      document.querySelectorAll(".voz-genero[data-genero='mujer']").forEach(b => b.textContent = window.t("voz-mujer"));
+      document.querySelectorAll(".voz-genero[data-genero='hombre']").forEach(b => b.textContent = window.t("voz-hombre"));
+
+      // Actualizar panel de idioma
+      document.querySelectorAll(".panel-idioma [role='radio'][data-lang='es']").forEach(b => b.textContent = window.t("idioma-es"));
+      document.querySelectorAll(".panel-idioma [role='radio'][data-lang='en']").forEach(b => b.textContent = window.t("idioma-en"));
+
+      // Re-renderizar botones de compartir si están visibles
+      if (typeof mostrarCompartir === "function") mostrarCompartir();
+
+      // Actualizar botones de lectura en voz
+      if (typeof prepararLectores === "function") prepararLectores();
+    }
+
+    // Listener para cambio de idioma
+    document.addEventListener("idioma-cambiado", (e) => {
+      const lang = e.detail.lang;
+      document.documentElement.lang = lang;
+      // Actualizar meta og:locale
+      const ogLocale = document.querySelector('meta[property="og:locale"]');
+      if (ogLocale) ogLocale.content = lang === "en" ? "en_US" : "es_ES";
+      // Re-traducir todo
+      window.retraducirTodo();
+    });
+  })();
 </script>
 </body>
 </html>
