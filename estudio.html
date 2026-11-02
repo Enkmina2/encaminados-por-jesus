@@ -351,6 +351,41 @@ function renderMd(cont, texto) {
     const p = document.createElement("p"); inline(p, l.replace(/^#+\s*/, "")); cont.append(p);
   });
 }
+function renderMdStreaming(msgElement, texto) {
+  const quien = msgElement.querySelector(".quien");
+  const fragment = document.createDocumentFragment();
+  renderMd(fragment, texto);
+  msgElement.replaceChildren(quien, fragment);
+  bajar();
+}
+async function leerSSE(response, onChunk) {
+  const reader = response.body.getReader();
+  const decoder = new TextDecoder("utf-8");
+  let buffer = "";
+  try {
+    while (true) {
+      const { value, done } = await reader.read();
+      if (done) break;
+      buffer += decoder.decode(value, { stream: true });
+      const lines = buffer.split("\n");
+      buffer = lines.pop();
+      for (const line of lines) {
+        const trimmed = line.trim();
+        if (trimmed.startsWith("data:")) {
+          const jsonStr = trimmed.slice(5).trim();
+          if (!jsonStr || jsonStr === "[DONE]") continue;
+          try {
+            const parsed = JSON.parse(jsonStr);
+            const textChunk = parsed?.candidates?.[0]?.content?.parts?.[0]?.text;
+            if (textChunk) onChunk(textChunk);
+          } catch (e) {}
+        }
+      }
+    }
+  } finally {
+    reader.releaseLock();
+  }
+}
 function tarjetaCita(p, cruz) {
   const c = document.createElement("div"); c.className = "cita";
   const r = document.createElement("div"); r.className = "cita-ref"; r.textContent = etiqueta(p);
@@ -411,7 +446,14 @@ async function preguntar(texto) {
   }
 
   // 2) respuesta de la IA
-  const espera = pensando();
+  const espera = burbuja("maestro", t("maestro"));
+  const puntos = document.createElement("span");
+  puntos.className = "pensando";
+  puntos.setAttribute("aria-label", "…");
+  puntos.innerHTML = "<i></i><i></i><i></i>";
+  espera.append(puntos);
+  bajar();
+
   try {
     const key = getKey();
     if (!API_URL && !key) throw new Error("sin-api");
@@ -425,8 +467,10 @@ async function preguntar(texto) {
       const j = await r.json().catch(() => ({}));
       if (!r.ok || !j.respuesta) throw new Error(j.error || "http");
       respuestaTexto = j.respuesta;
+      puntos.remove();
+      renderMd(espera, respuestaTexto);
     } else {
-      // Llamada directa al API de Gemini usando la clave local con alta velocidad y relevo invisible
+      // Llamada directa en streaming con relevo invisible
       const modelos = obtenerModelosCandidatos();
       let ctxPrompt = "";
       if (contexto.length) {
@@ -442,9 +486,9 @@ async function preguntar(texto) {
 
       let ultimoError = null;
       for (const modelo of modelos) {
-        const ctl = new AbortController(), to = setTimeout(() => ctl.abort(), 12000);
+        const ctl = new AbortController(), to = setTimeout(() => ctl.abort(), 40000);
         try {
-          const url = `https://generativelanguage.googleapis.com/v1beta/models/${encodeURIComponent(modelo)}:generateContent?key=${encodeURIComponent(key)}`;
+          const url = `https://generativelanguage.googleapis.com/v1beta/models/${encodeURIComponent(modelo)}:streamGenerateContent?alt=sse&key=${encodeURIComponent(key)}`;
           const r = await fetch(url, {
             method: "POST",
             headers: { "Content-Type": "application/json" },
@@ -455,26 +499,38 @@ async function preguntar(texto) {
               generationConfig: { temperature: 0.5, maxOutputTokens: 1024 }
             })
           });
-          clearTimeout(to);
-          const j = await r.json().catch(() => ({}));
-          if (r.ok) {
-            respuestaTexto = (j.candidates?.[0]?.content?.parts || []).map(p => p.text || "").join("").trim();
-            if (respuestaTexto) {
-              try { localStorage.setItem("epj-last-model", modelo); } catch (e) {}
-              ultimoError = null;
-              break;
-            }
+          if (!r.ok) {
+            clearTimeout(to);
+            const j = await r.json().catch(() => ({}));
+            console.warn(`Modelo ${modelo} falló (${r.status}):`, j.error?.message);
+            ultimoError = j.error?.message || `HTTP ${r.status}`;
+            if (r.status === 400 && j.error?.message?.includes("API_KEY_INVALID")) throw new Error("clave-invalida");
+            if (r.status === 403) throw new Error("clave-invalida");
+            continue;
           }
-          console.warn(`Modelo ${modelo} falló (${r.status}):`, j.error?.message);
-          ultimoError = j.error?.message || `HTTP ${r.status}`;
-          if (r.status === 400 && j.error?.message?.includes("API_KEY_INVALID")) throw new Error("clave-invalida");
-          if (r.status === 403) throw new Error("clave-invalida");
+          let iniciado = false;
+          await leerSSE(r, chunk => {
+            if (!iniciado) {
+              iniciado = true;
+              puntos.remove();
+            }
+            respuestaTexto += chunk;
+            renderMdStreaming(espera, respuestaTexto);
+          });
+          clearTimeout(to);
+          if (respuestaTexto) {
+            try { localStorage.setItem("epj-last-model", modelo); } catch (e) {}
+            ultimoError = null;
+            break;
+          }
         } catch (err) {
           clearTimeout(to);
           if (err.message === "clave-invalida") throw err;
+          if (respuestaTexto) break;
           ultimoError = err.name === "AbortError" ? "Tiempo de espera agotado" : err.message;
         }
       }
+      puntos.remove();
       if (!respuestaTexto) {
         if (ultimoError && (ultimoError.includes("high demand") || ultimoError.includes("503"))) {
           throw new Error("Los servidores de Gemini tienen alta demanda en este momento. Por favor espera unos segundos y reintenta.");
@@ -483,8 +539,6 @@ async function preguntar(texto) {
       }
     }
 
-    espera.remove();
-    const m = burbuja("maestro", t("maestro")); renderMd(m, respuestaTexto);
     historial.push({ rol: "user", texto }, { rol: "model", texto: respuestaTexto });
   } catch (e) {
     espera.remove();
