@@ -380,19 +380,19 @@ async function obtenerModelo(key) {
       const j = await r.json();
       const list = (j.models || []).filter(m => Array.isArray(m.supportedGenerationMethods) && m.supportedGenerationMethods.includes("generateContent"));
       console.log("Modelos disponibles:", list.map(m => m.name));
-      const preferidos = ["gemini-2.0-flash", "gemini-2.5-flash", "gemini-1.5-flash-latest", "gemini-1.5-flash", "gemini-1.5-flash-8b", "gemini-2.0-flash-exp", "gemini-1.5-pro"];
+      const preferidos = ["gemini-3.8-flash", "gemini-3-flash", "gemini-2.0-flash", "gemini-1.5-flash"];
       for (const p of preferidos) {
         const h = list.find(m => m.name === `models/${p}` || m.name === p);
         if (h) { modeloCache = h.name.replace(/^models\//, ""); return modeloCache; }
       }
-      const flash = list.find(m => m.name.includes("flash"));
+      const flash = list.find(m => m.name.includes("flash") && !m.name.includes("2.5"));
       if (flash) { modeloCache = flash.name.replace(/^models\//, ""); return modeloCache; }
       if (list.length) { modeloCache = list[0].name.replace(/^models\//, ""); return modeloCache; }
     }
   } catch (e) {
     console.warn("No se pudo detectar el modelo dinámicamente:", e);
   }
-  return "gemini-2.0-flash";
+  return "gemini-3.8-flash";
 }
 
 async function preguntar(texto) {

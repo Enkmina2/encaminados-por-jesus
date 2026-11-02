@@ -5,6 +5,6 @@ compatibility_date = "2025-01-01"
 [vars]
 # Orígenes que pueden usar el proxy (separados por comas). Ajusta al dominio real del sitio.
 ALLOWED_ORIGINS = "https://enkmina2.github.io,http://localhost:8000"
-GEMINI_MODEL = "gemini-2.0-flash"
+GEMINI_MODEL = "gemini-3.8-flash"
 
 # La clave NO va aquí. Se guarda como secreto:  npx wrangler secret put GEMINI_API_KEY
