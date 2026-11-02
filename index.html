@@ -111,25 +111,44 @@ body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset
 .cabecera.compacta .barra{background:rgba(255,255,255,.94);box-shadow:0 12px 30px -18px rgba(30,36,33,.45);padding-block:4px}
 .marca{display:flex;align-items:center;gap:10px;text-decoration:none;color:var(--carbon);font-weight:800;font-size:17px;letter-spacing:-.015em;white-space:nowrap}
 .marca img{width:36px;height:36px;border-radius:50%;flex:none}
-.barra .marca{min-width:0}
-.barra .marca span{overflow:hidden;text-overflow:ellipsis}
-@media (max-width:400px){.barra .marca{font-size:15px;gap:8px}.barra .marca img{width:32px;height:32px}}
+.barra .marca{min-width:0;flex-shrink:0}
+.barra .marca span{white-space:nowrap}
 .menu{display:flex;align-items:center;gap:4px}
 .menu a{text-decoration:none;color:var(--gris);font-weight:600;font-size:15px;padding:8px 12px;border-radius:999px}
 .menu a:hover{color:var(--carbon);background:var(--lino)}
 .menu a.actual{color:var(--bosque);background:var(--salvia)}
 .menu a{transition:color .2s ease,background .2s ease}
 .barra .wa{padding:10px 16px;font-size:14px}
+.barra .boton-maestro{padding:8px 16px;font-size:14px;font-weight:700;gap:7px;flex-shrink:0;background:var(--crema);border:1.5px solid var(--salvia);color:var(--bosque);border-radius:999px;white-space:nowrap}
+.barra .boton-maestro:hover{background:var(--salvia);color:var(--bosque-2)}
+.barra .boton-maestro .texto-corto{display:none}
+.menu-maestro{display:none}
 .abrir-menu{display:none;background:none;border:0;color:var(--carbon);padding:8px;cursor:pointer;border-radius:999px}
 .abrir-menu svg{width:24px;height:24px}
 @media (max-width:960px){
+  .barra{gap:8px}
   .barra .wa{display:none}
+  .barra .boton-maestro{padding:7px 13px;font-size:13.5px}
+  .menu-maestro{display:flex;align-items:center;gap:10px;font-weight:700;color:var(--bosque);background:var(--crema);margin-bottom:6px;border:1px solid var(--salvia);border-radius:var(--radio-s)}
   .abrir-menu{display:inline-flex}
   /* menú del móvil: se despliega con una transición suave */
   .menu{position:absolute;left:var(--lado);right:var(--lado-d);top:calc(100% - 4px);flex-direction:column;align-items:stretch;gap:2px;background:var(--blanco);border:1px solid var(--linea);border-radius:var(--radio);padding:10px;box-shadow:0 20px 40px -20px rgba(30,36,33,.35);
     opacity:0;visibility:hidden;transform:translateY(-10px) scale(.98);transform-origin:top center;transition:opacity .22s ease,transform .22s ease,visibility 0s linear .22s}
   .cabecera.abierta .menu{opacity:1;visibility:visible;transform:none;transition:opacity .22s ease,transform .22s ease}
   .menu a{font-size:17px;padding:13px 16px}
+}
+@media (max-width:640px){
+  .barra{gap:6px;padding:5px 6px 5px 8px}
+  .barra .marca{gap:7px;flex:1 1 auto;min-width:0}
+  .barra .marca span{font-size:14.5px;letter-spacing:-.02em;overflow:hidden;text-overflow:ellipsis}
+  .barra .marca img{width:30px;height:30px}
+  .barra .boton-maestro{padding:6px 10px;font-size:12.5px;gap:5px}
+}
+@media (max-width:440px){
+  .barra .boton-maestro{padding:6px 9px;gap:4px}
+  .barra .boton-maestro .texto-largo{display:none}
+  .barra .boton-maestro .texto-corto{display:inline;font-weight:800;font-size:12.5px}
+  .barra .marca span{font-size:13.5px}
 }
 
 /* ---------- portada en bloques ---------- */
@@ -524,9 +543,10 @@ textarea{min-height:130px;resize:vertical}
     <div class="barra">
       <a class="marca" href="./"><img src="img/logo-96.png" alt="" width="36" height="36"><span>Encaminados por Jesús</span></a>
       <nav class="menu" id="menu" aria-label="Secciones">
+        <a href="estudio.html" class="menu-maestro"><svg class="icono icono-t"><use href="#i-bot"/></svg><span data-i18n="maestro-ia-menu">Maestro IA (Preguntas y estudio)</span></a>
         <a href="#estudios" data-i18n="estudios-etiqueta">Estudios</a><a href="#biblia" data-i18n="biblia-etiqueta">Biblia</a><a href="#musica" data-i18n="musica-etiqueta">Música</a><a href="#directo" data-i18n="directo-etiqueta">Directo</a><a href="#noticias" data-i18n="noticias-etiqueta">Noticias</a><a href="#oracion" data-i18n="oracion-etiqueta">Oración</a>
       </nav>
-      <a class="boton boton-linea" href="estudio.html"><svg class="icono icono-t"><use href="#i-bot"/></svg><span data-i18n="maestro-ia-btn">Consultar al Maestro IA</span></a>
+      <a class="boton boton-maestro" href="estudio.html" title="Consultar al Maestro IA"><svg class="icono icono-t"><use href="#i-bot"/></svg><span class="texto-largo" data-i18n="maestro-ia-btn">Maestro IA</span><span class="texto-corto" data-i18n="maestro-ia-corto">IA</span></a>
       <a class="boton boton-bosque wa" href="https://whatsapp.com/channel/0029VbDXQJGFSAtAMI6SkH3v" target="_blank" rel="noopener"><svg class="icono"><use href="#i-whatsapp"/></svg><span data-i18n="whatsapp-canal">Canal de WhatsApp</span></a>
       <div class="letra">
         <button class="b-letra" id="b-letra" aria-expanded="false" aria-controls="panel-letra" aria-label="Tamaño de la letra y voz" title="Tamaño de la letra y voz">Aa</button>
@@ -1410,7 +1430,9 @@ if (document.documentElement.classList.contains("anim")) {
         "idioma-label": "Idioma",
         "idioma-es": "Español",
         "idioma-en": "English",
-        "maestro-ia-btn": "Consultar al Maestro IA",
+        "maestro-ia-btn": "Maestro IA",
+        "maestro-ia-corto": "IA",
+        "maestro-ia-menu": "Maestro IA (Preguntas y estudio)",
 
         // Portada
         "portada-etiqueta": "Caminando en su luz y verdad",
@@ -1565,7 +1587,9 @@ if (document.documentElement.classList.contains("anim")) {
         "idioma-label": "Language",
         "idioma-es": "Español",
         "idioma-en": "English",
-        "maestro-ia-btn": "Ask the AI Teacher",
+        "maestro-ia-btn": "AI Teacher",
+        "maestro-ia-corto": "AI",
+        "maestro-ia-menu": "AI Teacher (Questions & study)",
 
         // Hero / Cover
         "portada-etiqueta": "Walking in His light and truth",
