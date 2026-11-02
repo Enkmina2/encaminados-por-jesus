@@ -1,0 +1,35 @@
+{
+  "pistis": {
+    "strong": "G4102",
+    "griego": "πίστις",
+    "transliteracion": "pistis",
+    "definicion": "Persuasión, credibilidad, convicción moral, confianza, fidelidad, fe. En NT: fe en Cristo como base de la salvación.",
+    "etimologia": "De peithō (persuadir). Lo que produce convicción.",
+    "uso_teologico": "Fe salvífica = confianza personal en Cristo crucificado y resucitado. No obra humana, don de Dios (Ef 2:8).",
+    "referencias": ["HEB.11.1", "ROM.3.22", "ROM.4.16", "GAL.2.16", "EPH.2.8", "1TI.1.5"]
+  },
+  "pisteuo": {
+    "strong": "G4100",
+    "griego": "πιστεύω",
+    "transliteracion": "pisteuō",
+    "definicion": "Creer, tener fe, confiar, encomendar. Transitivo: creer en alguien/algo. Intransitivo: ser creyente.",
+    "morfologia": "Presente activo. Construcción típica: pisteuō eis (creer en) + acusativo.",
+    "referencias": ["JHN.3.16", "JHN.11.25", "ACT.16.31", "ROM.10.9", "1JN.3.23"]
+  },
+  "agape": {
+    "strong": "G26",
+    "griego": "ἀγάπη",
+    "transliteracion": "agapē",
+    "definicion": "Amor, benevolencia, caridad. Amor de Dios por el hombre y del hombre a Dios/prójimo. Supremo valor ético NT.",
+    "contraste": "Superior a phileo (Jn 21:15-17). Ágape = elección volitiva del bien ajeno.",
+    "referencias": ["JHN.3.16", "1CO.13", "ROM.5.5", "1JN.4.8", "GAL.5.22"]
+  },
+  "logos": {
+    "strong": "G3056",
+    "griego": "λόγος",
+    "transliteracion": "logos",
+    "definicion": "Palabra, discurso, razón, cuenta, doctrina. En Jn 1:1: el Verbo divino, Cristo como revelación plena de Dios.",
+    "trasfondo_helenistico": "Estoicos: razón cósmica. Filón: intermediario. Juan: Logos encarnado = Jesús.",
+    "referencias": ["JHN.1.1", "JHN.1.14", "HEB.4.12", "1JN.1.1", "REV.19.13"]
+  }
+}

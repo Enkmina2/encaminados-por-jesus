@@ -1,0 +1,27 @@
+{
+  "version": "2.0",
+  "fecha_actualizacion": "2026-11-01",
+  "fuentes": [
+    {
+      "id": "rvr1909",
+      "nombre": "Reina Valera 1909",
+      "idioma": "es",
+      "dominioPublico": true,
+      "carpeta": "textos/rvr1909"
+    },
+    {
+      "id": "kjv",
+      "nombre": "King James Version",
+      "idioma": "en",
+      "dominioPublico": true,
+      "carpeta": "textos/kjv"
+    },
+    {
+      "id": "tsk",
+      "nombre": "Referencias cruzadas (OpenBible.info, CC-BY)",
+      "tipo": "referencias",
+      "carpeta": "referencias"
+    }
+  ],
+  "formato": "un archivo por libro: {carpeta}/{ID}.json"
+}

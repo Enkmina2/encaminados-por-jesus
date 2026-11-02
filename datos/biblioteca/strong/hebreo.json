@@ -1,0 +1,62 @@
+{
+  "H1254": {
+    "strong": "H1254",
+    "hebreo": "בָּרָא",
+    "transliteracion": "bara'",
+    "pronuncia": "baw-raw'",
+    "definicion": "Crear, formar, hacer (exclusivamente de Dios); crear de la nada",
+    "raiz": "Verbo primitivo",
+    "uso": "Usado 49x en AT. Solo Dios es sujeto. Contraste con 'asah' (hacer/forma de material existente).",
+    "referencias": ["GEN.1.1", "GEN.1.21", "GEN.1.27", "GEN.2.3", "GEN.2.4", "ISA.45.7", "ISA.65.17"]
+  },
+  "H1961": {
+    "strong": "H1961",
+    "hebreo": "הָיָה",
+    "transliteracion": "hayah",
+    "pronuncia": "haw-yaw",
+    "definicion": "Ser, llegar a ser, acontecer, existir, suceder",
+    "raiz": "Verbo primitivo",
+    "uso": "Usado 3566x. Muy común. En GEN 1:3 'haya' (imperativo) = 'sea/hágase'.",
+    "referencias": ["GEN.1.3", "GEN.1.5", "GEN.1.7", "EXO.3.14", "JHN.8.58"]
+  },
+  "H216": {
+    "strong": "H216",
+    "hebreo": "אוֹר",
+    "transliteracion": "'or",
+    "pronuncia": "ore",
+    "definicion": "Luz, luminaria, resplandor, iluminación (literal y figurado)",
+    "raiz": "De H215 (ser luminoso)",
+    "uso": "Usado 122x. Primera cosa creada (GEN 1:3). Símbolo de vida, verdad, gozo, salvación.",
+    "referencias": ["GEN.1.3", "GEN.1.4", "GEN.1.16", "PSA.27.1", "ISA.9.2", "JHN.1.5", "JHN.8.12"]
+  },
+  "H539": {
+    "strong": "H539",
+    "hebreo": "אָמַן",
+    "transliteracion": "'aman",
+    "pronuncia": "aw-man'",
+    "definicion": "Construir, sostener, ser fiel, creer, confiar, ser permanente",
+    "raiz": "Verbo primitivo",
+    "uso": "Usado 108x. Raíz de 'amén' (verdaderamente). Hifil: creer/confiar (GEN 15:6).",
+    "referencias": ["GEN.15.6", "EXO.14.31", "NUM.14.11", "DEU.1.32", "ISA.7.9", "HAB.2.4"]
+  },
+  "H3068": {
+    "strong": "H3068",
+    "hebreo": "יְהוָה",
+    "transliteracion": "YHWH",
+    "pronuncia": "yeh-ho-vaw'",
+    "definicion": "Jehová, el Nombre propio de Dios; el Existente, el Eterno",
+    "raiz": "De H1961 (hayah, ser)",
+    "uso": "Usado 6519x. Nombre personal de Dios en pacto. 'YO SOY EL QUE SOY' (EX 3:14).",
+    "referencias": ["GEN.2.4", "EXO.3.14", "EXO.6.3", "PSA.83.18", "ISA.42.8"]
+  },
+  "H430": {
+    "strong": "H430",
+    "hebreo": "אֱלֹהִים",
+    "transliteracion": "'elohim",
+    "pronuncia": "el-o-heem'",
+    "definicion": "Dios, dioses, jueces, ángeles; plural de majestad para el Dios único",
+    "raiz": "Plural de H433 (eloah)",
+    "uso": "Usado 2606x. GEN 1:1 'En el principio creó Elohim'. Plural de excelencia.",
+    "referencias": ["GEN.1.1", "GEN.1.26", "DEU.6.4", "PSA.82.1", "JHN.10.34"]
+  }
+}

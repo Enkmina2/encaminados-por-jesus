@@ -1,0 +1,35 @@
+{
+  "aman": {
+    "strong": "H539",
+    "hebreo": "אָמַן",
+    "transliteracion": "'aman",
+    "definicion": "I. (Qal) Sostener, nutrir (como ama de cría). II. (Niphal) Ser firme, fiel, creíble. III. (Hifil) Creer, confiar, tener fe. IV. (Hofal) Ser creído.",
+    "raiz": "Verbo primitivo. Sentido básico: firmeza, estabilidad, apoyo.",
+    "teologia": "Fe OT = confianza en la fidelidad de Dios (GEN 15:6). 'Amén' = 'así sea / es cierto' (derivado).",
+    "referencias": ["GEN.15.6", "EXO.14.31", "NUM.14.11", "DEU.1.32", "2CR.20.20", "ISA.7.9", "HAB.2.4"]
+  },
+  "bara": {
+    "strong": "H1254",
+    "hebreo": "בָּרָא",
+    "transliteracion": "bara'",
+    "definicion": "Crear, formar, hacer nuevo. Exclusivo de Dios como sujeto. Implica creación ex nihilo o acto soberano sin material previo.",
+    "contraste": "vs. 'asah' (hacer, formar de material existente), 'yatsar' (modelar como alfarero).",
+    "referencias": ["GEN.1.1", "GEN.1.21", "GEN.1.27", "GEN.2.3", "ISA.40.26", "ISA.45.7", "ISA.65.17"]
+  },
+  "or": {
+    "strong": "H216",
+    "hebreo": "אוֹר",
+    "transliteracion": "'or",
+    "definicion": "Luz, luminaria, resplandor, iluminación. Luz física y metafórica (vida, salvación, verdad, gozo, instrucción).",
+    "simbolismo": "Primera creación (GEN 1:3). Dios = luz (1JN 1:5). Cristo = luz del mundo (JN 8:12). Ley = luz (PR 6:23).",
+    "referencias": ["GEN.1.3", "GEN.1.4", "EXO.10.23", "PSA.27.1", "ISA.9.2", "ISA.60.1", "JHN.1.5"]
+  },
+  "yhwh": {
+    "strong": "H3068",
+    "hebreo": "יְהוָה",
+    "transliteracion": "YHWH",
+    "definicion": "Jehová, Yahvé. Nombre propio del Dios de Israel. 'El que es', 'El que hace ser', 'El Eterno'. Relacionado con hayah (ser).",
+    "revelacion": "EXO 3:14 'EHYEH ASHER EHYEH' (Yo soy el que soy / Seré el que seré). Nombre de pacto.",
+    "referencias": ["GEN.2.4", "EXO.3.14", "EXO.6.3", "EXO.34.6-7", "DEU.6.4", "PSA.83.18", "ISA.42.8"]
+  }
+}

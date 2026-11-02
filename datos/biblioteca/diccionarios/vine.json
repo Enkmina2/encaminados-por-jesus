@@ -1,0 +1,32 @@
+{
+  "fe": {
+    "termino": "Fe / Creer",
+    "griego": "πίστις (pistis), πιστεύω (pisteuō)",
+    "hebreo": "אָמַן ('aman), אֱמוּנָה ('emunah)",
+    "definicion": "Convicción firme, confianza personal, fidelidad. No es mero asentimiento intelectual, sino entrega confiada a Dios y su Palabra.",
+    "uso_nt": "pistis 244x, pisteuō 248x. Fe salvífica = confianza en la persona y obra de Cristo.",
+    "contraste": "Fe ≠ credulidad. Fe = confianza basada en evidencia (creación, profecías, resurrección).",
+    "referencias_clave": ["HEB.11.1", "ROM.10.17", "EPH.2.8-9", "JAS.2.17", "GAL.2.16"]
+  },
+  "amor_agape": {
+    "termino": "Amor (ágape)",
+    "griego": "ἀγάπη (agapē)",
+    "definicion": "Amor sacrificial, incondicional, que busca el bien del amado. El amor de Dios derramado en nuestros corazones (ROM 5:5).",
+    "contraste": "Diferente de phileo (afecto fraterno), eros (amor romántico), storge (amor familiar).",
+    "referencias_clave": ["JHN.3.16", "1CO.13.1-13", "ROM.5.8", "1JN.4.8-10"]
+  },
+  "verbo_logos": {
+    "termino": "Verbo / Palabra (Logos)",
+    "griego": "λόγος (logos)",
+    "definicion": "Palabra expresada, razón, sabiduría divina. En Jn 1:1, el Logos eterno = Cristo preexistente, agente de creación y revelación.",
+    "trasfondo": "Filón: Logos como intermediario. Juan: Logos = Dios encarnado (Jn 1:14).",
+    "referencias_clave": ["JHN.1.1", "JHN.1.14", "COL.1.15-17", "HEB.1.2", "REV.19.13"]
+  },
+  "justificacion": {
+    "termino": "Justificación",
+    "griego": "δικαιοσύνη (dikaiosynē), δικαιόω (dikaioō)",
+    "definicion": "Acto forense de Dios declarando justo al pecador por la fe en Cristo, imputando la justicia de Cristo. No es 'hacer justo' sino 'declarar justo'.",
+    "base": "Gracia (gratis), por fe (instrumento), en Cristo (mérito), para gloria de Dios (fin).",
+    "referencias_clave": ["ROM.3.24", "ROM.4.5", "ROM.5.1", "GAL.2.16", "2CO.5.21"]
+  }
+}

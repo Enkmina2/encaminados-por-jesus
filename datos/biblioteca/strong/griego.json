@@ -1,0 +1,52 @@
+{
+  "G4100": {
+    "strong": "G4100",
+    "griego": "πιστεύω",
+    "transliteracion": "pisteuō",
+    "pronuncia": "pist-yoo'-o",
+    "definicion": "Creer, tener fe, confiar, ser persuadido, encomendar",
+    "raiz": "De G4102 (pistis, fe)",
+    "uso": "Usado 248x en NT. Fe salvífica = confianza personal en Cristo, no mero asentimiento.",
+    "referencias": ["JHN.3.16", "JHN.11.25", "ACT.16.31", "ROM.10.9", "GAL.2.16", "EPH.2.8"]
+  },
+  "G4102": {
+    "strong": "G4102",
+    "griego": "πίστις",
+    "transliteracion": "pistis",
+    "pronuncia": "pis'-tis",
+    "definicion": "Fe, fidelidad, confianza, convicción, seguridad, creencia",
+    "raiz": "De G3982 (peithō, persuadir)",
+    "uso": "Usado 244x. Heb 11:1 'sustancia de cosas que se esperan'. Regalo de Dios (EF 2:8).",
+    "referencias": ["HEB.11.1", "ROM.10.17", "1CO.13.13", "GAL.5.22", "EPH.2.8", "1PE.1.7"]
+  },
+  "G26": {
+    "strong": "G26",
+    "griego": "ἀγάπη",
+    "transliteracion": "agapē",
+    "pronuncia": "ag-ah'-pay",
+    "definicion": "Amor, afecto, benevolencia, caridad; amor divino/cristiano",
+    "raiz": "De G25 (agapaō)",
+    "uso": "Usado 116x. Amor sacrificial, incondicional. Fruto del Espíritu (GAL 5:22).",
+    "referencias": ["JHN.3.16", "1CO.13.1-13", "ROM.5.5", "1JN.4.8", "1JN.4.16"]
+  },
+  "G3056": {
+    "strong": "G3056",
+    "griego": "λόγος",
+    "transliteracion": "logos",
+    "pronuncia": "log'-os",
+    "definicion": "Palabra, discurso, razón, cuenta, doctrina; el Verbo divino (Jn 1:1)",
+    "raiz": "De G3004 (legō, decir)",
+    "uso": "Usado 330x. En Jn 1:1, el Logos eterno, Cristo preexistente.",
+    "referencias": ["JHN.1.1", "JHN.1.14", "HEB.4.12", "1JN.1.1", "REV.19.13"]
+  },
+  "G2222": {
+    "strong": "G2222",
+    "griego": "ζωή",
+    "transliteracion": "zōē",
+    "pronuncia": "dzo-ay'",
+    "definicion": "Vida, vitalidad; vida eterna, vida divina en Cristo",
+    "raiz": "De G2198 (zaō, vivir)",
+    "uso": "Usado 135x. Contraste con 'bios' (vida biológica). Vida en Cristo (JN 1:4, 10:10).",
+    "referencias": ["JHN.1.4", "JHN.3.16", "JHN.10.10", "ROM.6.23", "1JN.5.11"]
+  }
+}

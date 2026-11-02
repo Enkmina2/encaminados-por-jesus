@@ -1,0 +1,336 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Maestro IA · Encaminados por Jesús</title>
+<meta name="description" content="Pregunta al Maestro IA por una frase, un versículo o una palabra de la Biblia.">
+<link rel="icon" href="logo.png">
+<style>
+:root{
+  --lino:#F6F5F0; --blanco:#FFFFFF; --bosque:#2E4A3E; --bosque-2:#3D6151;
+  --salvia:#DCE4DA; --cielo:#BCD3E2; --carbon:#1E2421; --gris:#56615B;
+  --linea:#E2E4DD; --vivo:#C0392B; --crema:#F2F4EF;
+  --f-ui:"Hanken Grotesk",system-ui,-apple-system,"Segoe UI",sans-serif;
+  --f-lectura:"Literata",Georgia,"Times New Roman",serif;
+}
+*{box-sizing:border-box}
+html,body{height:100%}
+body{margin:0;background:var(--lino);color:var(--carbon);font:400 16px/1.6 var(--f-ui);display:flex;flex-direction:column}
+a{color:var(--bosque)}
+.saltar{position:absolute;left:-999px}.saltar:focus{left:8px;top:8px;background:var(--blanco);padding:8px 12px;z-index:50}
+header{background:var(--blanco);border-bottom:1px solid var(--linea);padding:10px 16px;display:flex;align-items:center;gap:12px;flex-shrink:0}
+header .volver{display:inline-flex;align-items:center;gap:6px;text-decoration:none;font-weight:700;font-size:.9rem;padding:8px 12px;border:1px solid var(--linea);border-radius:999px}
+header .volver:hover{border-color:var(--bosque)}
+header h1{margin:0;font-size:1.1rem;font-weight:800;color:var(--bosque);flex:1;line-height:1.2}
+header h1 small{display:block;font-weight:500;color:var(--gris);font-size:.78rem}
+.btn-mini{background:var(--blanco);border:1px solid var(--linea);border-radius:999px;padding:8px 14px;font:700 .85rem var(--f-ui);cursor:pointer;color:var(--carbon)}
+.btn-mini:hover{border-color:var(--bosque);color:var(--bosque)}
+main{flex:1;min-height:0;display:flex;flex-direction:column;width:100%;max-width:820px;margin:0 auto;padding:0 12px}
+#chat{flex:1;overflow-y:auto;padding:18px 4px;display:flex;flex-direction:column;gap:14px;scroll-behavior:smooth}
+.msg{max-width:92%;padding:12px 16px;border-radius:18px;border:1px solid var(--linea);background:var(--blanco);overflow-wrap:anywhere}
+.msg.yo{align-self:flex-end;background:var(--bosque);color:var(--blanco);border-color:var(--bosque);border-bottom-right-radius:6px;white-space:pre-wrap}
+.msg.maestro{align-self:flex-start;border-bottom-left-radius:6px}
+.msg.maestro p{margin:0 0 .7em}.msg.maestro p:last-child{margin-bottom:0}
+.msg.maestro ul{margin:.2em 0 .7em;padding-left:1.2em}
+.msg.error{border-color:var(--vivo);color:var(--vivo)}
+.quien{display:block;font-size:.72rem;font-weight:800;letter-spacing:.06em;text-transform:uppercase;color:var(--bosque-2);margin-bottom:4px}
+.pensando{display:inline-flex;gap:4px}
+.pensando i{width:7px;height:7px;border-radius:50%;background:var(--bosque-2);opacity:.3;animation:p 1.1s infinite}
+.pensando i:nth-child(2){animation-delay:.18s}.pensando i:nth-child(3){animation-delay:.36s}
+@keyframes p{0%,80%,100%{opacity:.25}40%{opacity:1}}
+@media (prefers-reduced-motion:reduce){.pensando i{animation:none;opacity:.6}#chat{scroll-behavior:auto}}
+.citas{display:flex;flex-direction:column;gap:8px;align-self:flex-start;max-width:92%}
+.cita{background:var(--crema);border:1px solid var(--salvia);border-radius:14px;padding:10px 14px}
+.cita-ref{font-weight:800;color:var(--bosque);font-size:.85rem;margin-bottom:4px}
+.cita-ref .badge{display:inline-block;background:var(--cielo);color:var(--bosque);font-size:.68rem;padding:1px 8px;border-radius:999px;margin-left:6px;vertical-align:middle}
+.cita-texto{font-family:var(--f-lectura);font-size:1rem;line-height:1.75}
+.cita-texto .n{font:700 .7rem var(--f-ui);color:var(--bosque);vertical-align:super;margin-right:3px}
+.cita-en{font-family:var(--f-lectura);font-size:.92rem;color:var(--gris);margin-top:6px;padding-top:6px;border-top:1px dashed var(--linea)}
+.cita details{margin-top:6px;font-size:.85rem}
+.cita summary{cursor:pointer;color:var(--bosque);font-weight:700}
+.cita details li{margin:3px 0}
+.cita details .rt{font-family:var(--f-lectura);color:var(--gris)}
+.sugerencias{display:flex;flex-wrap:wrap;gap:8px;padding:0 4px 12px}
+.sugerencias button{background:var(--blanco);border:1px solid var(--salvia);color:var(--bosque);border-radius:999px;padding:8px 14px;font:600 .85rem var(--f-ui);cursor:pointer;text-align:left}
+.sugerencias button:hover{background:var(--salvia)}
+form{border-top:1px solid var(--linea);background:var(--lino);padding:12px 0 6px;flex-shrink:0}
+.fila{display:flex;gap:8px;align-items:flex-end}
+textarea{flex:1;border:1px solid var(--linea);border-radius:16px;padding:12px 14px;font:inherit;resize:none;min-height:48px;max-height:150px;background:var(--blanco);color:var(--carbon)}
+textarea:focus-visible,button:focus-visible,a:focus-visible,summary:focus-visible{outline:3px solid var(--cielo);outline-offset:2px}
+#enviar{background:var(--bosque);color:var(--blanco);border:none;border-radius:999px;padding:0 22px;height:48px;font:700 1rem var(--f-ui);cursor:pointer}
+#enviar:hover{background:var(--bosque-2)}#enviar:disabled{opacity:.5;cursor:not-allowed}
+.aviso{font-size:.74rem;color:var(--gris);text-align:center;margin:8px 0 4px}
+</style>
+</head>
+<body>
+<a class="saltar" href="#pregunta" data-i18n="saltar">Ir a la pregunta</a>
+<header>
+  <a class="volver" href="index.html" data-i18n="volver">← Inicio</a>
+  <h1><span data-i18n="titulo">Maestro IA</span><small data-i18n="subtitulo">Pregunta por una frase, un versículo o una palabra</small></h1>
+  <button class="btn-mini" id="nueva" type="button" data-i18n="nueva">Nueva conversación</button>
+</header>
+
+<main>
+  <div id="chat" role="log" aria-live="polite" aria-label="Conversación"></div>
+  <div class="sugerencias" id="sugerencias"></div>
+  <form id="form" autocomplete="off">
+    <div class="fila">
+      <textarea id="pregunta" rows="1" maxlength="1000" required aria-label="Tu pregunta"></textarea>
+      <button id="enviar" type="submit" data-i18n="enviar">Enviar</button>
+    </div>
+    <p class="aviso" data-i18n="aviso">El Maestro IA puede equivocarse. Contrasta siempre con la Biblia. Textos: Reina-Valera 1909 y King James (dominio público).</p>
+  </form>
+</main>
+
+<script>
+"use strict";
+/* ============ Configuración ============
+   URL del Worker de maestro-ia/ (ver maestro-ia/README.md). Vacío = modo sin IA
+   (solo muestra los versículos y referencias cruzadas de la biblioteca). */
+const API_URL = "";
+
+const BASE_BIB = "datos/biblioteca/";
+const MAX_VERSOS = 15;      // versículos por pasaje que se muestran/envían
+const MAX_PASAJES = 3;
+
+/* ============ Idioma (comparte la preferencia de la portada) ============ */
+const T = {
+  es: {
+    saltar:"Ir a la pregunta", volver:"← Inicio", titulo:"Maestro IA", subtitulo:"Pregunta por una frase, un versículo o una palabra",
+    nueva:"Nueva conversación", enviar:"Enviar", yo:"Tú", maestro:"Maestro IA",
+    aviso:"El Maestro IA puede equivocarse. Contrasta siempre con la Biblia. Textos: Reina-Valera 1909 y King James (dominio público).",
+    ph:"Ej: ¿Qué significa «Sea la luz»? ¿Qué quiso decir Jesús en Juan 14:6?",
+    bienvenida:"¡Paz! Soy el Maestro IA. Escribe un versículo (por ejemplo «Juan 3:16»), una frase o una palabra de la Biblia y te ayudo a entenderla. Puedes seguir preguntando todo lo que quieras.",
+    sugerencias:["¿Qué significa Juan 3:16?","Explícame Romanos 8:28","¿Qué quiere decir «fe» en la Biblia?","¿Qué es la gracia?","Salmo 23: ¿qué enseña?"],
+    sinIA:"Por ahora el Maestro IA no está conectado. Aquí tienes el texto y las referencias cruzadas de la biblioteca; vuelve pronto para la explicación completa.",
+    errorRed:"No pude responder ahora mismo. Inténtalo de nuevo en un momento.",
+    cruzadas:"Referencias cruzadas", mas:" (continúa…)", texto:"Texto", noEncontrado:"No encontré ese pasaje en la biblioteca.",
+  },
+  en: {
+    saltar:"Skip to question", volver:"← Home", titulo:"AI Teacher", subtitulo:"Ask about a phrase, a verse or a word",
+    nueva:"New conversation", enviar:"Send", yo:"You", maestro:"AI Teacher",
+    aviso:"The AI Teacher can make mistakes. Always check against the Bible. Texts: Reina-Valera 1909 and King James (public domain).",
+    ph:"E.g. What does “Let there be light” mean? What did Jesus mean in John 14:6?",
+    bienvenida:"Peace! I'm the AI Teacher. Type a verse (for example “John 3:16”), a phrase or a word from the Bible and I'll help you understand it. Ask as much as you like.",
+    sugerencias:["What does John 3:16 mean?","Explain Romans 8:28","What does “faith” mean in the Bible?","What is grace?","Psalm 23: what does it teach?"],
+    sinIA:"The AI Teacher is not connected yet. Here are the text and cross-references from the library; come back soon for the full explanation.",
+    errorRed:"I couldn't answer right now. Please try again in a moment.",
+    cruzadas:"Cross-references", mas:" (continues…)", texto:"Text", noEncontrado:"I couldn't find that passage in the library.",
+  },
+};
+const idioma = () => { try { return localStorage.getItem("epj-idioma") === "en" ? "en" : "es"; } catch (e) { return "es"; } };
+let L = idioma();
+const t = k => T[L][k];
+
+/* ============ Libros y nombres ============ */
+const IDS = "GEN EXO LEV NUM DEU JOS JDG RUT 1SA 2SA 1KI 2KI 1CH 2CH EZR NEH EST JOB PSA PRO ECC SNG ISA JER LAM EZK DAN HOS JOL AMO OBA JON MIC NAM HAB ZEP HAG ZEC MAL MAT MRK LUK JHN ACT ROM 1CO 2CO GAL EPH PHP COL 1TH 2TH 1TI 2TI TIT PHM HEB JAS 1PE 2PE 1JN 2JN 3JN JUD REV".split(" ");
+const EN_NOMBRES = ["Genesis","Exodus","Leviticus","Numbers","Deuteronomy","Joshua","Judges","Ruth","1 Samuel","2 Samuel","1 Kings","2 Kings","1 Chronicles","2 Chronicles","Ezra","Nehemiah","Esther","Job","Psalms","Proverbs","Ecclesiastes","Song of Solomon","Isaiah","Jeremiah","Lamentations","Ezekiel","Daniel","Hosea","Joel","Amos","Obadiah","Jonah","Micah","Nahum","Habakkuk","Zephaniah","Haggai","Zechariah","Malachi","Matthew","Mark","Luke","John","Acts","Romans","1 Corinthians","2 Corinthians","Galatians","Ephesians","Philippians","Colossians","1 Thessalonians","2 Thessalonians","1 Timothy","2 Timothy","Titus","Philemon","Hebrews","James","1 Peter","2 Peter","1 John","2 John","3 John","Jude","Revelation"];
+let ES_NOMBRES = [];                      // se carga de libros.json
+const ALIAS = new Map();                  // nombre normalizado -> ID
+
+const norm = s => s.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "").replace(/\./g, "").replace(/\s+/g, " ").trim();
+const addAlias = (a, id) => ALIAS.set(norm(a), id);
+
+function prepararAlias() {
+  IDS.forEach((id, i) => { addAlias(EN_NOMBRES[i], id); if (ES_NOMBRES[i]) addAlias(ES_NOMBRES[i], id); addAlias(id, id); });
+  const extra = {
+    GEN:"gn gen", EXO:"ex exo exod", LEV:"lv lev", NUM:"nm nu num", DEU:"dt deut", JOS:"jos josh", JDG:"jue jc jdg judg", RUT:"rt",
+    "1SA":"1 sam 1s", "2SA":"2 sam 2s", "1KI":"1 re 1 r 1 kgs", "2KI":"2 re 2 r 2 kgs", "1CH":"1 cr 1 chr", "2CH":"2 cr 2 chr",
+    EZR:"esd", NEH:"neh ne", EST:"est esth", JOB:"job jb", PSA:"sal salmo ps psalm psa", PRO:"pr prov", ECC:"ec ecl eclesiastes eccl",
+    SNG:"cant cantares ct song sos", ISA:"is isa", JER:"jer jr", LAM:"lam la", EZK:"ez eze ezek", DAN:"dn dan", HOS:"os hos",
+    JOL:"jl joel", AMO:"am amos", OBA:"abd ob obad", JON:"jon jonas", MIC:"miq mi mic", NAM:"nah na", HAB:"hab hb", ZEP:"sof zep zeph",
+    HAG:"hag hageo", ZEC:"zac zec zech", MAL:"mal",
+    MAT:"mt mat matt", MRK:"mr mc mar marcos mk mrk", LUK:"lc luc lk luke", JHN:"jn jua john jhn", ACT:"hch hechos act acts",
+    ROM:"ro rom rm", "1CO":"1 co 1 cor", "2CO":"2 co 2 cor", GAL:"ga gal", EPH:"ef efe eph", PHP:"fil flp phil php", COL:"col",
+    "1TH":"1 ts 1 tes 1 thess", "2TH":"2 ts 2 tes 2 thess", "1TI":"1 ti 1 tim", "2TI":"2 ti 2 tim", TIT:"tit tito", PHM:"flm filemon phm",
+    HEB:"he heb", JAS:"stg sant jas", "1PE":"1 pe 1 ped 1 pet", "2PE":"2 pe 2 ped 2 pet", "1JN":"1 jn 1 jua 1 john", "2JN":"2 jn 2 jua 2 john",
+    "3JN":"3 jn 3 jua 3 john", JUD:"jud judas", REV:"ap apoc apocalipsis rev revelacion revelaciones",
+  };
+  for (const [id, lista] of Object.entries(extra)) {
+    // los alias están separados por espacio; los de dos palabras empiezan por dígito («1 sam»)
+    const p = lista.split(" "); let i = 0;
+    while (i < p.length) { if (/^\d$/.test(p[i]) && p[i + 1]) { addAlias(p[i] + " " + p[i + 1], id); i += 2; } else { addAlias(p[i], id); i++; } }
+  }
+}
+const nombreLibro = id => (L === "en" ? EN_NOMBRES : ES_NOMBRES)[IDS.indexOf(id)] || id;
+
+/* ============ Detección de referencias ============ */
+const RE_REF = /(?:^|[^\p{L}\d])((?:[123]\s?)?[\p{L}]{2,}(?:\s(?:de\s(?:los\s)?)?[\p{L}]{3,})?\.?)\s?(\d{1,3})(?:\s?[:.,]\s?(\d{1,3})(?:\s?[-–]\s?(\d{1,3}))?)?/gu;
+function detectarRefs(texto) {
+  const res = [], vistos = new Set(), re = new RegExp(RE_REF.source, "gu");
+  let m;
+  while ((m = re.exec(texto))) {
+    let nombre = m[1], id = ALIAS.get(norm(nombre));
+    if (!id) {                              // p. ej. «explícame Romanos»: probar solo la última palabra
+      const pal = nombre.trim().split(/\s+/); id = ALIAS.get(norm(pal[pal.length - 1]));
+      if (!id && pal.length > 1) id = ALIAS.get(norm(pal.slice(-2).join(" ")));
+    }
+    if (!id) {                              // no era un libro: seguir justo después de esa palabra (el «1» de «1 Juan» puede ser el siguiente prefijo)
+      re.lastIndex = m.index + m[0].indexOf(nombre) + nombre.length; continue;
+    }
+    const cap = +m[2], v1 = m[3] ? +m[3] : 0, v2 = m[4] ? +m[4] : v1;
+    const k = `${id}.${cap}.${v1}.${v2}`;
+    if (!vistos.has(k)) { vistos.add(k); res.push({ id, cap, v1, v2 }); }
+    if (res.length >= MAX_PASAJES) break;
+  }
+  return res;
+}
+
+/* ============ Biblioteca (carga por libro, con caché) ============ */
+const cache = new Map();
+function cargar(carpeta, id) {
+  const k = carpeta + id;
+  if (!cache.has(k)) cache.set(k, fetch(`${BASE_BIB}${carpeta}/${id}.json`).then(r => r.ok ? r.json() : null).catch(() => null));
+  return cache.get(k);
+}
+async function versos(id, cap, v1, v2) {
+  const [rvr, kjv] = await Promise.all([cargar("textos/rvr1909", id), cargar("textos/kjv", id)]);
+  const a = rvr && rvr[cap]; if (!a) return null;
+  const b = (kjv && kjv[cap]) || [];
+  let ini = v1 || 1, fin = v1 ? v2 : Math.min(a.length, MAX_VERSOS), cortado = false;
+  fin = Math.min(fin, a.length);
+  if (fin - ini + 1 > MAX_VERSOS) { fin = ini + MAX_VERSOS - 1; cortado = true; }
+  if (v1 === 0 && a.length > MAX_VERSOS) cortado = true;
+  if (ini > a.length) return null;
+  const lista = [];
+  for (let n = ini; n <= fin; n++) lista.push({ n, rvr: a[n - 1] || "", kjv: b[n - 1] || "" });
+  return { id, cap, ini, fin, lista, cortado };
+}
+function etiqueta(p) {
+  return `${nombreLibro(p.id)} ${p.cap}:${p.ini}` + (p.fin > p.ini ? "–" + p.fin : "");
+}
+async function cruzadas(p) {
+  if (p.lista.length !== 1) return [];
+  const todas = await cargar("referencias", p.id);
+  const lista = (todas && todas[`${p.cap}.${p.ini}`]) || [];
+  const out = [];
+  for (const r of lista.slice(0, 5)) {
+    const [d, h] = r.split("-"), [lb, c, v] = d.split("."), fin = h ? +h.split(".")[2] : +v;
+    const x = await versos(lb, +c, +v, h && h.split(".")[1] === c ? fin : +v);
+    if (!x) continue;
+    out.push({ ref: `${nombreLibro(lb)} ${c}:${v}${fin !== +v && h.split(".")[1] === c ? "–" + fin : ""}`,
+               texto: x.lista.map(z => z.rvr).join(" "), textoEn: x.lista.map(z => z.kjv).join(" ") });
+  }
+  return out;
+}
+
+/* ============ Interfaz ============ */
+const $ = id => document.getElementById(id);
+const chat = $("chat"), form = $("form"), caja = $("pregunta"), btn = $("enviar");
+let historial = [], ocupado = false;
+
+function bajar() { chat.scrollTop = chat.scrollHeight; }
+function burbuja(clase, quien) {
+  const d = document.createElement("div"); d.className = "msg " + clase;
+  const q = document.createElement("span"); q.className = "quien"; q.textContent = quien; d.append(q);
+  chat.append(d); return d;
+}
+/* Markdown mínimo y seguro: párrafos, listas con «-»/«*» y **negrita**. Todo con textContent. */
+function inline(el, s) {
+  s.split(/(\*\*[^*]+\*\*)/g).forEach(parte => {
+    if (/^\*\*[^*]+\*\*$/.test(parte)) { const b = document.createElement("strong"); b.textContent = parte.slice(2, -2); el.append(b); }
+    else if (parte) el.append(document.createTextNode(parte.replace(/\*(?=\S)/g, "")));
+  });
+}
+function renderMd(cont, texto) {
+  let ul = null;
+  texto.replace(/\r/g, "").split("\n").forEach(l => {
+    const li = l.match(/^\s*[-*•]\s+(.*)/);
+    if (li) { if (!ul) { ul = document.createElement("ul"); cont.append(ul); } const e = document.createElement("li"); inline(e, li[1]); ul.append(e); return; }
+    ul = null;
+    if (!l.trim()) return;
+    const p = document.createElement("p"); inline(p, l.replace(/^#+\s*/, "")); cont.append(p);
+  });
+}
+function tarjetaCita(p, cruz) {
+  const c = document.createElement("div"); c.className = "cita";
+  const r = document.createElement("div"); r.className = "cita-ref"; r.textContent = etiqueta(p);
+  const b = document.createElement("span"); b.className = "badge"; b.textContent = L === "en" ? "KJV" : "RVR 1909"; r.append(b); c.append(r);
+  const principal = L === "en" ? "kjv" : "rvr", secundario = L === "en" ? "rvr" : "kjv";
+  const tx = document.createElement("div"); tx.className = "cita-texto";
+  p.lista.forEach(v => { const n = document.createElement("span"); n.className = "n"; n.textContent = v.n; tx.append(n, document.createTextNode(v[principal] + " ")); });
+  if (p.cortado) tx.append(document.createTextNode(t("mas")));
+  c.append(tx);
+  if (p.lista.length <= 3) {
+    const e = document.createElement("div"); e.className = "cita-en"; e.lang = L === "en" ? "es" : "en";
+    e.textContent = p.lista.map(v => v[secundario]).join(" ") + "  — " + (L === "en" ? "RVR 1909" : "KJV"); c.append(e);
+  }
+  if (cruz.length) {
+    const d = document.createElement("details"), s = document.createElement("summary"); s.textContent = t("cruzadas") + " (" + cruz.length + ")"; d.append(s);
+    const ul = document.createElement("ul");
+    cruz.forEach(x => { const li = document.createElement("li"), b = document.createElement("b"); b.textContent = x.ref + " "; const sp = document.createElement("span"); sp.className = "rt"; sp.textContent = (L === "en" ? x.textoEn : x.texto); li.append(b, sp); ul.append(li); });
+    d.append(ul); c.append(d);
+  }
+  return c;
+}
+function pensando() {
+  const d = burbuja("maestro", t("maestro")), s = document.createElement("span"); s.className = "pensando"; s.setAttribute("aria-label", "…");
+  s.innerHTML = "<i></i><i></i><i></i>"; d.append(s); bajar(); return d;
+}
+
+async function preguntar(texto) {
+  if (ocupado || !texto.trim()) return;
+  ocupado = true; btn.disabled = true; $("sugerencias").hidden = true;
+  burbuja("yo", t("yo")).append(document.createTextNode(texto)); bajar();
+
+  // 1) pasajes detectados en la pregunta
+  const refs = detectarRefs(texto), pasajes = [], contexto = [];
+  for (const r of refs) {
+    const p = await versos(r.id, r.cap, r.v1, r.v2); if (!p) continue;
+    const cruz = await cruzadas(p); pasajes.push({ p, cruz });
+    contexto.push({ ref: etiqueta(p), rvr: p.lista.map(v => `${v.n} ${v.rvr}`).join(" "), kjv: p.lista.map(v => `${v.n} ${v.kjv}`).join(" "),
+                    cruzadas: cruz.map(x => ({ ref: x.ref, texto: x.texto })) });
+  }
+  if (pasajes.length) {
+    const cont = document.createElement("div"); cont.className = "citas";
+    pasajes.forEach(x => cont.append(tarjetaCita(x.p, x.cruz))); chat.append(cont); bajar();
+  }
+
+  // 2) respuesta de la IA
+  const espera = pensando();
+  try {
+    if (!API_URL) throw new Error("sin-api");
+    const ctl = new AbortController(), to = setTimeout(() => ctl.abort(), 45000);
+    const r = await fetch(API_URL, { method: "POST", headers: { "Content-Type": "application/json" }, signal: ctl.signal,
+      body: JSON.stringify({ mensaje: texto, historial: historial.slice(-8), idioma: L, contexto }) });
+    clearTimeout(to);
+    const j = await r.json().catch(() => ({}));
+    if (!r.ok || !j.respuesta) throw new Error(j.error || "http");
+    espera.remove();
+    const m = burbuja("maestro", t("maestro")); renderMd(m, j.respuesta);
+    historial.push({ rol: "user", texto }, { rol: "model", texto: j.respuesta });
+  } catch (e) {
+    espera.remove();
+    const m = burbuja("maestro" + (e.message === "sin-api" ? "" : " error"), t("maestro"));
+    m.append(document.createTextNode(e.message === "sin-api" ? (pasajes.length ? t("sinIA") : t("sinIA")) : (e.message && e.message !== "http" && e.name !== "AbortError" && !/fetch|network/i.test(e.message) ? e.message : t("errorRed"))));
+  }
+  ocupado = false; btn.disabled = false; bajar(); caja.focus();
+}
+
+function nuevaConversacion() {
+  historial = []; chat.replaceChildren();
+  const m = burbuja("maestro", t("maestro")); m.append(document.createTextNode(t("bienvenida")));
+  const s = $("sugerencias"); s.hidden = false; s.replaceChildren();
+  t("sugerencias").forEach(x => { const b = document.createElement("button"); b.type = "button"; b.textContent = x; b.onclick = () => preguntar(x); s.append(b); });
+}
+function aplicarIdioma() {
+  document.documentElement.lang = L;
+  document.querySelectorAll("[data-i18n]").forEach(e => e.textContent = t(e.dataset.i18n));
+  caja.placeholder = t("ph");
+}
+function autoaltura() { caja.style.height = "auto"; caja.style.height = Math.min(caja.scrollHeight, 150) + "px"; }
+
+form.addEventListener("submit", e => { e.preventDefault(); const v = caja.value; caja.value = ""; autoaltura(); preguntar(v); });
+caja.addEventListener("keydown", e => { if (e.key === "Enter" && !e.shiftKey && !e.isComposing) { e.preventDefault(); form.requestSubmit(); } });
+caja.addEventListener("input", autoaltura);
+$("nueva").addEventListener("click", nuevaConversacion);
+addEventListener("storage", e => { if (e.key === "epj-idioma") { L = idioma(); aplicarIdioma(); } });
+
+(async function iniciar() {
+  try { const r = await fetch(BASE_BIB + "libros.json"); ES_NOMBRES = (await r.json()).libros.map(b => b.nombre); } catch (e) { ES_NOMBRES = EN_NOMBRES; }
+  prepararAlias(); aplicarIdioma(); nuevaConversacion();
+})();
+</script>
+</body>
+</html>
