@@ -372,60 +372,24 @@ function tarjetaCita(p, cruz) {
   }
   return c;
 }
-function pensando(textoInicial = "") {
+function pensando() {
   const d = burbuja("maestro", t("maestro"));
-  const p = document.createElement("span");
-  p.className = "pensando-texto";
-  p.style.fontSize = ".88rem";
-  p.style.color = "var(--gris)";
-  p.textContent = textoInicial ? " " + textoInicial : "";
   const s = document.createElement("span");
   s.className = "pensando";
   s.setAttribute("aria-label", "…");
   s.innerHTML = "<i></i><i></i><i></i>";
-  d.append(s, p);
-  d.actualizar = txt => { p.textContent = " " + txt; };
+  d.append(s);
   bajar();
   return d;
 }
 
-let listaModelosCache = null;
-async function obtenerModelosDisponibles(key) {
-  if (listaModelosCache && listaModelosCache.length) return listaModelosCache;
-  const defaults = ["gemini-3.8-flash", "gemini-2.0-flash", "gemini-2.0-flash-lite"];
-  try {
-    const ctl = new AbortController(), to = setTimeout(() => ctl.abort(), 6000);
-    const r = await fetch(`https://generativelanguage.googleapis.com/v1beta/models?key=${encodeURIComponent(key)}`, { signal: ctl.signal });
-    clearTimeout(to);
-    if (r.ok) {
-      const j = await r.json();
-      const list = (j.models || [])
-        .filter(m => Array.isArray(m.supportedGenerationMethods) && m.supportedGenerationMethods.includes("generateContent"))
-        .map(m => m.name.replace(/^models\//, ""))
-        .filter(m => !m.includes("2.5"));
-      console.log("Modelos detectados para tu clave:", list);
-      if (list.length) {
-        list.sort((a, b) => {
-          const score = x => {
-            if (x === "gemini-3.8-flash") return 100;
-            if (x === "gemini-2.0-flash") return 90;
-            if (x === "gemini-2.0-flash-lite") return 85;
-            if (x.includes("3.8")) return 80;
-            if (x.includes("2.0") && x.includes("flash")) return 70;
-            if (x.includes("flash")) return 60;
-            return 10;
-          };
-          return score(b) - score(a);
-        });
-        listaModelosCache = list;
-        return listaModelosCache;
-      }
-    }
-  } catch (e) {
-    console.warn("No se pudo consultar ListModels:", e);
+function obtenerModelosCandidatos() {
+  const preferido = (() => { try { return localStorage.getItem("epj-last-model"); } catch (e) { return null; } })();
+  const base = ["gemini-2.0-flash", "gemini-2.0-flash-lite", "gemini-3.8-flash"];
+  if (preferido && base.includes(preferido)) {
+    return [preferido, ...base.filter(m => m !== preferido)];
   }
-  listaModelosCache = defaults;
-  return listaModelosCache;
+  return base;
 }
 
 async function preguntar(texto) {
@@ -462,9 +426,8 @@ async function preguntar(texto) {
       if (!r.ok || !j.respuesta) throw new Error(j.error || "http");
       respuestaTexto = j.respuesta;
     } else {
-      // Llamada directa al API de Gemini usando la clave local con tolerancia y feedback en vivo
-      espera.actualizar(L === "en" ? "Consulting Gemini..." : "Consultando a Gemini...");
-      const modelos = await obtenerModelosDisponibles(key);
+      // Llamada directa al API de Gemini usando la clave local con alta velocidad y relevo invisible
+      const modelos = obtenerModelosCandidatos();
       let ctxPrompt = "";
       if (contexto.length) {
         ctxPrompt = (L === "en" ? "Bible text (public domain: RVR 1909 / KJV):\n" : "Texto bíblico (dominio público: RVR 1909 / KJV):\n");
@@ -478,12 +441,8 @@ async function preguntar(texto) {
       contents.push({ role: "user", parts: [{ text: (ctxPrompt ? ctxPrompt + "\n---\n" : "") + texto }] });
 
       let ultimoError = null;
-      for (let i = 0; i < modelos.length; i++) {
-        const modelo = modelos[i];
-        if (i > 0) {
-          espera.actualizar(L === "en" ? `Trying backup model (${modelo})...` : `Conectando con modelo de respaldo (${modelo})...`);
-        }
-        const ctl = new AbortController(), to = setTimeout(() => ctl.abort(), 18000);
+      for (const modelo of modelos) {
+        const ctl = new AbortController(), to = setTimeout(() => ctl.abort(), 12000);
         try {
           const url = `https://generativelanguage.googleapis.com/v1beta/models/${encodeURIComponent(modelo)}:generateContent?key=${encodeURIComponent(key)}`;
           const r = await fetch(url, {
@@ -500,7 +459,11 @@ async function preguntar(texto) {
           const j = await r.json().catch(() => ({}));
           if (r.ok) {
             respuestaTexto = (j.candidates?.[0]?.content?.parts || []).map(p => p.text || "").join("").trim();
-            if (respuestaTexto) { ultimoError = null; break; }
+            if (respuestaTexto) {
+              try { localStorage.setItem("epj-last-model", modelo); } catch (e) {}
+              ultimoError = null;
+              break;
+            }
           }
           console.warn(`Modelo ${modelo} falló (${r.status}):`, j.error?.message);
           ultimoError = j.error?.message || `HTTP ${r.status}`;
