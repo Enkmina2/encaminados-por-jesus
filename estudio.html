@@ -19,13 +19,15 @@ html,body{height:100%}
 body{margin:0;background:var(--lino);color:var(--carbon);font:400 16px/1.6 var(--f-ui);display:flex;flex-direction:column}
 a{color:var(--bosque)}
 .saltar{position:absolute;left:-999px}.saltar:focus{left:8px;top:8px;background:var(--blanco);padding:8px 12px;z-index:50}
-header{background:var(--blanco);border-bottom:1px solid var(--linea);padding:10px 16px;display:flex;align-items:center;gap:12px;flex-shrink:0}
+header{background:var(--blanco);border-bottom:1px solid var(--linea);padding:10px 16px;display:flex;align-items:center;gap:10px;flex-shrink:0;flex-wrap:wrap}
 header .volver{display:inline-flex;align-items:center;gap:6px;text-decoration:none;font-weight:700;font-size:.9rem;padding:8px 12px;border:1px solid var(--linea);border-radius:999px}
 header .volver:hover{border-color:var(--bosque)}
-header h1{margin:0;font-size:1.1rem;font-weight:800;color:var(--bosque);flex:1;line-height:1.2}
+header h1{margin:0;font-size:1.1rem;font-weight:800;color:var(--bosque);flex:1;min-width:180px;line-height:1.2}
 header h1 small{display:block;font-weight:500;color:var(--gris);font-size:.78rem}
-.btn-mini{background:var(--blanco);border:1px solid var(--linea);border-radius:999px;padding:8px 14px;font:700 .85rem var(--f-ui);cursor:pointer;color:var(--carbon)}
+.header-btns{display:flex;gap:8px;align-items:center}
+.btn-mini{background:var(--blanco);border:1px solid var(--linea);border-radius:999px;padding:8px 14px;font:700 .85rem var(--f-ui);cursor:pointer;color:var(--carbon);transition:all .15s}
 .btn-mini:hover{border-color:var(--bosque);color:var(--bosque)}
+.btn-mini.activo{background:var(--salvia);border-color:var(--bosque);color:var(--bosque)}
 main{flex:1;min-height:0;display:flex;flex-direction:column;width:100%;max-width:820px;margin:0 auto;padding:0 12px}
 #chat{flex:1;overflow-y:auto;padding:18px 4px;display:flex;flex-direction:column;gap:14px;scroll-behavior:smooth}
 .msg{max-width:92%;padding:12px 16px;border-radius:18px;border:1px solid var(--linea);background:var(--blanco);overflow-wrap:anywhere}
@@ -57,10 +59,25 @@ main{flex:1;min-height:0;display:flex;flex-direction:column;width:100%;max-width
 form{border-top:1px solid var(--linea);background:var(--lino);padding:12px 0 6px;flex-shrink:0}
 .fila{display:flex;gap:8px;align-items:flex-end}
 textarea{flex:1;border:1px solid var(--linea);border-radius:16px;padding:12px 14px;font:inherit;resize:none;min-height:48px;max-height:150px;background:var(--blanco);color:var(--carbon)}
-textarea:focus-visible,button:focus-visible,a:focus-visible,summary:focus-visible{outline:3px solid var(--cielo);outline-offset:2px}
+textarea:focus-visible,button:focus-visible,a:focus-visible,summary:focus-visible,input:focus-visible{outline:3px solid var(--cielo);outline-offset:2px}
 #enviar{background:var(--bosque);color:var(--blanco);border:none;border-radius:999px;padding:0 22px;height:48px;font:700 1rem var(--f-ui);cursor:pointer}
 #enviar:hover{background:var(--bosque-2)}#enviar:disabled{opacity:.5;cursor:not-allowed}
 .aviso{font-size:.74rem;color:var(--gris);text-align:center;margin:8px 0 4px}
+
+/* Modal de configuración */
+dialog{border:1px solid var(--linea);border-radius:18px;padding:24px;background:var(--blanco);color:var(--carbon);max-width:460px;width:92%;box-shadow:0 14px 40px rgba(0,0,0,.18)}
+dialog::backdrop{background:rgba(0,0,0,.45);backdrop-filter:blur(2px)}
+dialog h2{margin:0 0 10px;font-size:1.18rem;color:var(--bosque)}
+dialog p{font-size:.88rem;color:var(--gris);margin:0 0 12px;line-height:1.5}
+dialog a{font-weight:700;text-decoration:none}
+dialog a:hover{text-decoration:underline}
+dialog input{width:100%;border:1px solid var(--linea);border-radius:10px;padding:12px 14px;font:inherit;font-size:.92rem;margin:8px 0 16px;box-sizing:border-box}
+dialog .dialog-btns{display:flex;gap:8px;justify-content:flex-end;flex-wrap:wrap}
+.btn-secundario{background:transparent;border:1px solid var(--linea);border-radius:999px;padding:8px 16px;font:700 .85rem var(--f-ui);cursor:pointer;color:var(--gris)}
+.btn-secundario:hover{border-color:var(--carbon);color:var(--carbon)}
+.btn-primario{background:var(--bosque);color:var(--blanco);border:none;border-radius:999px;padding:8px 20px;font:700 .85rem var(--f-ui);cursor:pointer}
+.btn-primario:hover{background:var(--bosque-2)}
+.btn-peligro{background:transparent;border:1px solid var(--vivo);color:var(--vivo);border-radius:999px;padding:8px 14px;font:700 .82rem var(--f-ui);cursor:pointer;margin-right:auto}
 </style>
 </head>
 <body>
@@ -68,7 +85,10 @@ textarea:focus-visible,button:focus-visible,a:focus-visible,summary:focus-visibl
 <header>
   <a class="volver" href="index.html" data-i18n="volver">← Inicio</a>
   <h1><span data-i18n="titulo">Maestro IA</span><small data-i18n="subtitulo">Pregunta por una frase, un versículo o una palabra</small></h1>
-  <button class="btn-mini" id="nueva" type="button" data-i18n="nueva">Nueva conversación</button>
+  <div class="header-btns">
+    <button class="btn-mini" id="nueva" type="button" data-i18n="nueva">Nueva conversación</button>
+    <button class="btn-mini" id="btn-config" type="button" title="Configurar clave Gemini">⚙️ Conectar IA</button>
+  </div>
 </header>
 
 <main>
@@ -83,16 +103,55 @@ textarea:focus-visible,button:focus-visible,a:focus-visible,summary:focus-visibl
   </form>
 </main>
 
+<dialog id="modal-config">
+  <h2>⚙️ Conectar con Gemini</h2>
+  <p>Introduce tu clave gratuita de la API de Google Gemini para recibir respuestas y explicaciones del Maestro IA. La clave se guarda únicamente en tu navegador.</p>
+  <p><a href="https://aistudio.google.com/" target="_blank" rel="noopener">👉 Obtener clave gratis en Google AI Studio (sin tarjeta)</a></p>
+  <label for="input-key" style="font-size:.82rem;font-weight:700;color:var(--bosque);display:block;margin-top:6px">Clave API de Gemini:</label>
+  <input type="password" id="input-key" placeholder="Pega aquí tu clave (AIzaSy...)" autocomplete="off">
+  <div class="dialog-btns">
+    <button type="button" class="btn-peligro" id="borrar-key">Borrar clave</button>
+    <button type="button" class="btn-secundario" id="cerrar-modal">Cancelar</button>
+    <button type="button" class="btn-primario" id="guardar-key">Guardar</button>
+  </div>
+</dialog>
+
 <script>
 "use strict";
 /* ============ Configuración ============
-   URL del Worker de maestro-ia/ (ver maestro-ia/README.md). Vacío = modo sin IA
-   (solo muestra los versículos y referencias cruzadas de la biblioteca). */
+   URL del Worker de maestro-ia/ (ver maestro-ia/README.md).
+   Si está vacío, busca la clave en localStorage ("epj-gemini-key") para llamadas directas. */
 const API_URL = "";
 
 const BASE_BIB = "datos/biblioteca/";
 const MAX_VERSOS = 15;      // versículos por pasaje que se muestran/envían
 const MAX_PASAJES = 3;
+
+/* ============ Instrucción del sistema para la IA ============ */
+const SISTEMA = {
+  es: `Eres el «Maestro IA» del portal cristiano «Encaminados por Jesús». Ayudas a personas que quieren entender una frase, un versículo o una palabra de la Biblia, y conversas con ellas con calidez, humildad y claridad.
+
+Reglas:
+- Basa tus respuestas en la Biblia. Si se adjunta «Texto bíblico», úsalo como fuente principal y cita siempre la referencia (libro capítulo:versículo). No inventes versículos ni citas: si no estás seguro de una cita o de un dato, dilo.
+- Distingue lo que el texto dice (observación) de lo que significa (interpretación) y de cómo aplicarlo (aplicación).
+- Para palabras, explica el sentido en el idioma original (hebreo/griego) solo cuando estés seguro, con transliteración sencilla, y relaciónalo con el contexto.
+- Lenguaje sencillo y pastoral. Respuestas breves (máx. ~250 palabras) salvo que pidan más. Puedes usar listas cortas y **negritas**. Termina, cuando venga al caso, con una pregunta breve para seguir profundizando.
+- El portal sostiene la doctrina de la Unicidad de Dios. Cuando la pregunta toque ese tema, preséntala con respeto y con apoyo bíblico, y reconoce con honestidad que otras tradiciones cristianas lo entienden de otra manera.
+- No hables de política ni des consejos médicos, legales o financieros. Si alguien está en crisis o corre peligro, anímale con cariño a buscar ayuda inmediata (servicios de emergencia o un pastor de confianza).
+- Si piden algo ajeno a la Biblia o la fe, redirige amablemente.
+- Responde en español.`,
+  en: `You are the "AI Teacher" of the Christian portal "Encaminados por Jesús". You help people who want to understand a phrase, a verse or a word from the Bible, and you talk with them warmly, humbly and clearly.
+
+Rules:
+- Ground your answers in the Bible. If "Bible text" is attached, use it as your main source and always cite the reference (book chapter:verse). Never invent verses or quotes: if you are unsure about a quote or a fact, say so.
+- Distinguish what the text says (observation) from what it means (interpretation) and how to apply it (application).
+- For words, explain the original-language sense (Hebrew/Greek) only when you are sure, with simple transliteration, and tie it to the context.
+- Simple, pastoral language. Short answers (max ~250 words) unless asked for more. Short lists and **bold** are fine. When appropriate, end with a brief question to go deeper.
+- The portal holds the Oneness doctrine of God. When a question touches it, present it respectfully with biblical support, and honestly acknowledge that other Christian traditions understand it differently.
+- No politics, and no medical, legal or financial advice. If someone is in crisis or danger, lovingly encourage them to seek immediate help (emergency services or a trusted pastor).
+- If asked about something unrelated to the Bible or faith, kindly redirect.
+- Answer in English.`,
+};
 
 /* ============ Idioma (comparte la preferencia de la portada) ============ */
 const T = {
@@ -103,7 +162,7 @@ const T = {
     ph:"Ej: ¿Qué significa «Sea la luz»? ¿Qué quiso decir Jesús en Juan 14:6?",
     bienvenida:"¡Paz! Soy el Maestro IA. Escribe un versículo (por ejemplo «Juan 3:16»), una frase o una palabra de la Biblia y te ayudo a entenderla. Puedes seguir preguntando todo lo que quieras.",
     sugerencias:["¿Qué significa Juan 3:16?","Explícame Romanos 8:28","¿Qué quiere decir «fe» en la Biblia?","¿Qué es la gracia?","Salmo 23: ¿qué enseña?"],
-    sinIA:"Por ahora el Maestro IA no está conectado. Aquí tienes el texto y las referencias cruzadas de la biblioteca; vuelve pronto para la explicación completa.",
+    sinIA:"El Maestro IA necesita estar conectado a Gemini para generar explicaciones.",
     errorRed:"No pude responder ahora mismo. Inténtalo de nuevo en un momento.",
     cruzadas:"Referencias cruzadas", mas:" (continúa…)", texto:"Texto", noEncontrado:"No encontré ese pasaje en la biblioteca.",
   },
@@ -114,7 +173,7 @@ const T = {
     ph:"E.g. What does “Let there be light” mean? What did Jesus mean in John 14:6?",
     bienvenida:"Peace! I'm the AI Teacher. Type a verse (for example “John 3:16”), a phrase or a word from the Bible and I'll help you understand it. Ask as much as you like.",
     sugerencias:["What does John 3:16 mean?","Explain Romans 8:28","What does “faith” mean in the Bible?","What is grace?","Psalm 23: what does it teach?"],
-    sinIA:"The AI Teacher is not connected yet. Here are the text and cross-references from the library; come back soon for the full explanation.",
+    sinIA:"The AI Teacher needs to be connected to Gemini to generate explanations.",
     errorRed:"I couldn't answer right now. Please try again in a moment.",
     cruzadas:"Cross-references", mas:" (continues…)", texto:"Text", noEncontrado:"I couldn't find that passage in the library.",
   },
@@ -148,7 +207,6 @@ function prepararAlias() {
     "3JN":"3 jn 3 jua 3 john", JUD:"jud judas", REV:"ap apoc apocalipsis rev revelacion revelaciones",
   };
   for (const [id, lista] of Object.entries(extra)) {
-    // los alias están separados por espacio; los de dos palabras empiezan por dígito («1 sam»)
     const p = lista.split(" "); let i = 0;
     while (i < p.length) { if (/^\d$/.test(p[i]) && p[i + 1]) { addAlias(p[i] + " " + p[i + 1], id); i += 2; } else { addAlias(p[i], id); i++; } }
   }
@@ -162,11 +220,11 @@ function detectarRefs(texto) {
   let m;
   while ((m = re.exec(texto))) {
     let nombre = m[1], id = ALIAS.get(norm(nombre));
-    if (!id) {                              // p. ej. «explícame Romanos»: probar solo la última palabra
+    if (!id) {
       const pal = nombre.trim().split(/\s+/); id = ALIAS.get(norm(pal[pal.length - 1]));
       if (!id && pal.length > 1) id = ALIAS.get(norm(pal.slice(-2).join(" ")));
     }
-    if (!id) {                              // no era un libro: seguir justo después de esa palabra (el «1» de «1 Juan» puede ser el siguiente prefijo)
+    if (!id) {
       re.lastIndex = m.index + m[0].indexOf(nombre) + nombre.length; continue;
     }
     const cap = +m[2], v1 = m[3] ? +m[3] : 0, v2 = m[4] ? +m[4] : v1;
@@ -218,7 +276,52 @@ async function cruzadas(p) {
 /* ============ Interfaz ============ */
 const $ = id => document.getElementById(id);
 const chat = $("chat"), form = $("form"), caja = $("pregunta"), btn = $("enviar");
+const modalConfig = $("modal-config"), inputKey = $("input-key"), btnConfig = $("btn-config");
 let historial = [], ocupado = false;
+
+function getKey() {
+  try { return localStorage.getItem("epj-gemini-key") || ""; } catch (e) { return ""; }
+}
+function setKey(k) {
+  try {
+    if (k) localStorage.setItem("epj-gemini-key", k.trim());
+    else localStorage.removeItem("epj-gemini-key");
+  } catch (e) {}
+  actualizarEstadoConfig();
+}
+function actualizarEstadoConfig() {
+  const tiene = !!getKey() || !!API_URL;
+  if (tiene) {
+    btnConfig.textContent = "⚡ IA Conectada";
+    btnConfig.classList.add("activo");
+  } else {
+    btnConfig.textContent = "⚙️ Conectar IA";
+    btnConfig.classList.remove("activo");
+  }
+}
+
+function abrirConfig() {
+  inputKey.value = getKey();
+  modalConfig.showModal();
+}
+function cerrarConfig() { modalConfig.close(); }
+
+$("btn-config").onclick = abrirConfig;
+$("cerrar-modal").onclick = cerrarConfig;
+$("guardar-key").onclick = () => {
+  setKey(inputKey.value);
+  cerrarConfig();
+  if (getKey()) {
+    const m = burbuja("maestro", t("maestro"));
+    m.append(document.createTextNode(L === "en" ? "✓ Gemini connected! Ask me anything about the Bible." : "✓ ¡Clave de Gemini guardada! Pregúntame lo que desees sobre la Biblia."));
+    bajar();
+  }
+};
+$("borrar-key").onclick = () => {
+  setKey("");
+  inputKey.value = "";
+  cerrarConfig();
+};
 
 function bajar() { chat.scrollTop = chat.scrollHeight; }
 function burbuja(clase, quien) {
@@ -226,7 +329,6 @@ function burbuja(clase, quien) {
   const q = document.createElement("span"); q.className = "quien"; q.textContent = quien; d.append(q);
   chat.append(d); return d;
 }
-/* Markdown mínimo y seguro: párrafos, listas con «-»/«*» y **negrita**. Todo con textContent. */
 function inline(el, s) {
   s.split(/(\*\*[^*]+\*\*)/g).forEach(parte => {
     if (/^\*\*[^*]+\*\*$/.test(parte)) { const b = document.createElement("strong"); b.textContent = parte.slice(2, -2); el.append(b); }
@@ -290,20 +392,78 @@ async function preguntar(texto) {
   // 2) respuesta de la IA
   const espera = pensando();
   try {
-    if (!API_URL) throw new Error("sin-api");
-    const ctl = new AbortController(), to = setTimeout(() => ctl.abort(), 45000);
-    const r = await fetch(API_URL, { method: "POST", headers: { "Content-Type": "application/json" }, signal: ctl.signal,
-      body: JSON.stringify({ mensaje: texto, historial: historial.slice(-8), idioma: L, contexto }) });
-    clearTimeout(to);
-    const j = await r.json().catch(() => ({}));
-    if (!r.ok || !j.respuesta) throw new Error(j.error || "http");
+    const key = getKey();
+    if (!API_URL && !key) throw new Error("sin-api");
+
+    let respuestaTexto = "";
+    if (API_URL) {
+      const ctl = new AbortController(), to = setTimeout(() => ctl.abort(), 45000);
+      const r = await fetch(API_URL, { method: "POST", headers: { "Content-Type": "application/json" }, signal: ctl.signal,
+        body: JSON.stringify({ mensaje: texto, historial: historial.slice(-8), idioma: L, contexto }) });
+      clearTimeout(to);
+      const j = await r.json().catch(() => ({}));
+      if (!r.ok || !j.respuesta) throw new Error(j.error || "http");
+      respuestaTexto = j.respuesta;
+    } else {
+      // Llamada directa al API de Gemini usando la clave local
+      const modelo = "gemini-2.5-flash";
+      const ctl = new AbortController(), to = setTimeout(() => ctl.abort(), 45000);
+      let ctxPrompt = "";
+      if (contexto.length) {
+        ctxPrompt = (L === "en" ? "Bible text (public domain: RVR 1909 / KJV):\n" : "Texto bíblico (dominio público: RVR 1909 / KJV):\n");
+        for (const c of contexto.slice(0, 4)) {
+          ctxPrompt += `\n[${c.ref}]\nRVR1909: ${c.rvr}\nKJV: ${c.kjv}\n`;
+          for (const x of (c.cruzadas || []).slice(0, 3)) ctxPrompt += `  ↔ ${x.ref}: ${x.texto}\n`;
+        }
+      }
+      const contents = historial.slice(-8).map(h => ({ role: h.rol === "model" ? "model" : "user", parts: [{ text: h.texto }] }));
+      while (contents.length && contents[0].role !== "user") contents.shift();
+      contents.push({ role: "user", parts: [{ text: (ctxPrompt ? ctxPrompt + "\n---\n" : "") + texto }] });
+
+      const url = `https://generativelanguage.googleapis.com/v1beta/models/${encodeURIComponent(modelo)}:generateContent?key=${encodeURIComponent(key)}`;
+      const r = await fetch(url, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        signal: ctl.signal,
+        body: JSON.stringify({
+          systemInstruction: { parts: [{ text: SISTEMA[L] }] },
+          contents,
+          generationConfig: { temperature: 0.5, maxOutputTokens: 1024 }
+        })
+      });
+      clearTimeout(to);
+      const j = await r.json().catch(() => ({}));
+      if (!r.ok) {
+        if (r.status === 400 || r.status === 403) throw new Error("clave-invalida");
+        if (r.status === 429) throw new Error("cuota-excedida");
+        throw new Error(j.error?.message || "http");
+      }
+      respuestaTexto = (j.candidates?.[0]?.content?.parts || []).map(p => p.text || "").join("").trim();
+      if (!respuestaTexto) throw new Error("sin-respuesta");
+    }
+
     espera.remove();
-    const m = burbuja("maestro", t("maestro")); renderMd(m, j.respuesta);
-    historial.push({ rol: "user", texto }, { rol: "model", texto: j.respuesta });
+    const m = burbuja("maestro", t("maestro")); renderMd(m, respuestaTexto);
+    historial.push({ rol: "user", texto }, { rol: "model", texto: respuestaTexto });
   } catch (e) {
     espera.remove();
     const m = burbuja("maestro" + (e.message === "sin-api" ? "" : " error"), t("maestro"));
-    m.append(document.createTextNode(e.message === "sin-api" ? (pasajes.length ? t("sinIA") : t("sinIA")) : (e.message && e.message !== "http" && e.name !== "AbortError" && !/fetch|network/i.test(e.message) ? e.message : t("errorRed"))));
+    if (e.message === "sin-api") {
+      m.append(document.createTextNode(t("sinIA") + " "));
+      const btnK = document.createElement("button");
+      btnK.className = "btn-mini";
+      btnK.style.marginTop = "8px";
+      btnK.style.display = "inline-block";
+      btnK.textContent = L === "en" ? "🔑 Connect free Gemini key" : "🔑 Conectar clave gratuita de Gemini";
+      btnK.onclick = () => abrirConfig();
+      m.append(document.createElement("br"), btnK);
+    } else if (e.message === "clave-invalida") {
+      m.append(document.createTextNode(L === "en" ? "Invalid Gemini key. Please check it in settings." : "La clave de Gemini no es válida o está restringida. Por favor revísala en el botón ⚙️ Conectar IA."));
+    } else if (e.message === "cuota-excedida") {
+      m.append(document.createTextNode(L === "en" ? "Too many requests. Please wait a moment." : "Demasiadas consultas en poco tiempo. Espera un momento y vuelve a intentarlo."));
+    } else {
+      m.append(document.createTextNode(t("errorRed")));
+    }
   }
   ocupado = false; btn.disabled = false; bajar(); caja.focus();
 }
@@ -329,7 +489,7 @@ addEventListener("storage", e => { if (e.key === "epj-idioma") { L = idioma(); a
 
 (async function iniciar() {
   try { const r = await fetch(BASE_BIB + "libros.json"); ES_NOMBRES = (await r.json()).libros.map(b => b.nombre); } catch (e) { ES_NOMBRES = EN_NOMBRES; }
-  prepararAlias(); aplicarIdioma(); nuevaConversacion();
+  prepararAlias(); aplicarIdioma(); actualizarEstadoConfig(); nuevaConversacion();
 })();
 </script>
 </body>
