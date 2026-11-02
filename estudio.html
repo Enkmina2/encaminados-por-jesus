@@ -371,6 +371,30 @@ function pensando() {
   s.innerHTML = "<i></i><i></i><i></i>"; d.append(s); bajar(); return d;
 }
 
+let modeloCache = null;
+async function obtenerModelo(key) {
+  if (modeloCache) return modeloCache;
+  try {
+    const r = await fetch(`https://generativelanguage.googleapis.com/v1beta/models?key=${encodeURIComponent(key)}`);
+    if (r.ok) {
+      const j = await r.json();
+      const list = (j.models || []).filter(m => Array.isArray(m.supportedGenerationMethods) && m.supportedGenerationMethods.includes("generateContent"));
+      console.log("Modelos disponibles:", list.map(m => m.name));
+      const preferidos = ["gemini-2.0-flash", "gemini-2.5-flash", "gemini-1.5-flash-latest", "gemini-1.5-flash", "gemini-1.5-flash-8b", "gemini-2.0-flash-exp", "gemini-1.5-pro"];
+      for (const p of preferidos) {
+        const h = list.find(m => m.name === `models/${p}` || m.name === p);
+        if (h) { modeloCache = h.name.replace(/^models\//, ""); return modeloCache; }
+      }
+      const flash = list.find(m => m.name.includes("flash"));
+      if (flash) { modeloCache = flash.name.replace(/^models\//, ""); return modeloCache; }
+      if (list.length) { modeloCache = list[0].name.replace(/^models\//, ""); return modeloCache; }
+    }
+  } catch (e) {
+    console.warn("No se pudo detectar el modelo dinámicamente:", e);
+  }
+  return "gemini-2.0-flash";
+}
+
 async function preguntar(texto) {
   if (ocupado || !texto.trim()) return;
   ocupado = true; btn.disabled = true; $("sugerencias").hidden = true;
@@ -405,8 +429,8 @@ async function preguntar(texto) {
       if (!r.ok || !j.respuesta) throw new Error(j.error || "http");
       respuestaTexto = j.respuesta;
     } else {
-      // Llamada directa al API de Gemini usando la clave local
-      const modelo = "gemini-1.5-flash";
+      // Llamada directa al API de Gemini usando la clave local (detecta el modelo óptimo automáticamente)
+      const modelo = await obtenerModelo(key);
       const ctl = new AbortController(), to = setTimeout(() => ctl.abort(), 45000);
       let ctxPrompt = "";
       if (contexto.length) {

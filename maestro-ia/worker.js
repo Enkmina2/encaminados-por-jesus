@@ -94,7 +94,7 @@ export default {
     const ctx = textoContexto(cuerpo.contexto, idioma);
     const ultimo = (ctx ? ctx + "\n---\n" : "") + mensaje;
 
-    const modelo = env.GEMINI_MODEL || "gemini-1.5-flash";
+    const modelo = env.GEMINI_MODEL || "gemini-2.0-flash";
     const url = `https://generativelanguage.googleapis.com/v1beta/models/${encodeURIComponent(modelo)}:generateContent`;
 
     let r;
