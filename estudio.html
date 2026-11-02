@@ -87,7 +87,7 @@ dialog .dialog-btns{display:flex;gap:8px;justify-content:flex-end;flex-wrap:wrap
   <h1><span data-i18n="titulo">Maestro IA</span><small data-i18n="subtitulo">Pregunta por una frase, un versículo o una palabra</small></h1>
   <div class="header-btns">
     <button class="btn-mini" id="nueva" type="button" data-i18n="nueva">Nueva conversación</button>
-    <button class="btn-mini" id="btn-config" type="button" title="Configurar clave Gemini">⚙️ Conectar IA</button>
+    <button class="btn-mini" id="btn-config" type="button" style="display:none">⚙️ Conectar IA</button>
   </div>
 </header>
 
@@ -124,7 +124,7 @@ dialog .dialog-btns{display:flex;gap:8px;justify-content:flex-end;flex-wrap:wrap
 /* ============ Configuración ============
    URL del Worker de maestro-ia/ (ver maestro-ia/README.md).
    Si está vacío, busca la clave en localStorage ("epj-gemini-key") para llamadas directas. */
-const API_URL = "";
+const API_URL = "https://maestro-ia.icemansag.workers.dev";
 
 const BASE_BIB = "datos/biblioteca/";
 const MAX_VERSOS = 15;      // versículos por pasaje que se muestran/envían

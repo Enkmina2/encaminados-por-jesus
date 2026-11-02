@@ -1,6 +1,6 @@
 /**
- * Maestro IA — proxy seguro hacia Gemini (Cloudflare Workers).
- * La clave de la API vive solo aquí (secreto GEMINI_API_KEY), nunca en el navegador.
+ * Maestro IA — proxy seguro hacia Groq y Gemini (Cloudflare Workers).
+ * La clave de la API vive solo aquí (secreto GROQ_API_KEY o GEMINI_API_KEY), nunca en el navegador.
  *
  * Entrada (POST JSON):
  *   { mensaje: string, historial: [{rol:"user"|"model", texto:string}], idioma: "es"|"en",
@@ -44,13 +44,18 @@ Rules:
 };
 
 function cors(env, req) {
-  const permitidos = (env.ALLOWED_ORIGINS || "").split(",").map(s => s.trim()).filter(Boolean);
   const origen = req.headers.get("Origin") || "";
-  const ok = permitidos.includes(origen);
+  const permitidos = env.ALLOWED_ORIGINS
+    ? env.ALLOWED_ORIGINS.split(",").map(s => s.trim()).filter(Boolean)
+    : ["https://enkmina2.github.io", "http://localhost:8000", "http://localhost:3000", "http://127.0.0.1:8000"];
+  
+  const ok = !origen || permitidos.includes(origen) || permitidos.includes("*") || origen.endsWith(".github.io");
+  const allowOrigin = ok ? (origen || "*") : (permitidos[0] || "*");
+  
   return {
-    ok,
+    ok: true,
     headers: {
-      "Access-Control-Allow-Origin": ok ? origen : permitidos[0] || "",
+      "Access-Control-Allow-Origin": allowOrigin,
       "Access-Control-Allow-Methods": "POST, OPTIONS",
       "Access-Control-Allow-Headers": "Content-Type",
       "Access-Control-Max-Age": "86400",
@@ -78,16 +83,16 @@ function textoContexto(contexto, idioma) {
 export default {
   async fetch(req, env) {
     const c = cors(env, req);
-    if (req.method === "OPTIONS") return new Response(null, { status: c.ok ? 204 : 403, headers: c.headers });
+    if (req.method === "OPTIONS") return new Response(null, { status: 204, headers: c.headers });
     if (req.method !== "POST") return json({ error: "Método no permitido" }, 405, c.headers);
-    if (!c.ok) return json({ error: "Origen no permitido" }, 403, c.headers);
+    
     let cuerpo;
     try { cuerpo = await req.json(); } catch { return json({ error: "JSON no válido" }, 400, c.headers); }
 
     const keyGroq = env.GROQ_API_KEY || (cuerpo.key && cuerpo.key.startsWith("gsk_") ? cuerpo.key : "");
     const keyGemini = env.GEMINI_API_KEY || (cuerpo.key && !cuerpo.key.startsWith("gsk_") ? cuerpo.key : "");
 
-    if (!keyGroq && !keyGemini) return json({ error: "Servicio no configurado" }, 500, c.headers);
+    if (!keyGroq && !keyGemini) return json({ error: "Servicio no configurado en Cloudflare" }, 500, c.headers);
 
     const idioma = cuerpo.idioma === "en" ? "en" : "es";
     const mensaje = limpiar(cuerpo.mensaje, MAX_MENSAJE);
@@ -104,60 +109,74 @@ export default {
 
     let respuesta = "";
 
-    // 1. Probar Groq primero (Llama 3.3 70B, ultra-rápido y sin congestión)
+    // 1. Probar Groq primero con cascada: openai/gpt-oss-120b -> openai/gpt-oss-20b
     if (keyGroq) {
-      try {
-        const groqMessages = [
-          { role: "system", content: SISTEMA[idioma] },
-          ...historial.map(h => ({ role: h.role === "model" ? "assistant" : "user", content: h.parts[0].text })),
-          { role: "user", content: ultimo }
-        ];
-        const rGroq = await fetch("https://api.groq.com/openai/v1/chat/completions", {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-            "Authorization": `Bearer ${keyGroq}`
-          },
-          body: JSON.stringify({
-            model: env.GROQ_MODEL || "llama-3.3-70b-versatile",
-            messages: groqMessages,
-            temperature: 0.5,
-            max_tokens: 1024
-          })
-        });
-        if (rGroq.ok) {
-          const gData = await rGroq.json();
-          respuesta = gData.choices?.[0]?.message?.content?.trim() || "";
+      const groqMessages = [
+        { role: "system", content: SISTEMA[idioma] },
+        ...historial.map(h => ({ role: h.role === "model" ? "assistant" : "user", content: h.parts[0].text })),
+        { role: "user", content: ultimo }
+      ];
+
+      const modelosGroq = [env.GROQ_MODEL, "openai/gpt-oss-120b", "openai/gpt-oss-20b"].filter(Boolean);
+      for (const mod of modelosGroq) {
+        try {
+          const rGroq = await fetch("https://api.groq.com/openai/v1/chat/completions", {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+              "Authorization": `Bearer ${keyGroq}`
+            },
+            body: JSON.stringify({
+              model: mod,
+              messages: groqMessages,
+              temperature: 0.5,
+              max_tokens: 1024
+            })
+          });
+          if (rGroq.ok) {
+            const gData = await rGroq.json();
+            respuesta = gData.choices?.[0]?.message?.content?.trim() || "";
+            if (respuesta) break;
+          }
+        } catch (err) {
+          console.warn(`Groq ${mod} falló:`, err);
         }
-      } catch (err) {
-        console.warn("Groq falló, usando Gemini:", err);
       }
     }
 
-    // 2. Gemini como respaldo si no hay respuesta todavía
+    // 2. Gemini como respaldo invisible si Groq no respondió
     if (!respuesta && keyGemini) {
-      const modelo = env.GEMINI_MODEL || "gemini-2.0-flash";
-      const url = `https://generativelanguage.googleapis.com/v1beta/models/${encodeURIComponent(modelo)}:generateContent`;
-      try {
-        const r = await fetch(url, {
-          method: "POST",
-          headers: { "Content-Type": "application/json", "x-goog-api-key": keyGemini },
-          body: JSON.stringify({
-            systemInstruction: { parts: [{ text: SISTEMA[idioma] }] },
-            contents: [...historial, { role: "user", parts: [{ text: ultimo }] }],
-            generationConfig: { temperature: 0.5, maxOutputTokens: 1024 },
-          }),
-        });
-        if (r.ok) {
-          const datos = await r.json();
-          respuesta = (datos.candidates?.[0]?.content?.parts || []).map(p => p.text || "").join("").trim();
+      const modelosGemini = [env.GEMINI_MODEL, "gemini-2.0-flash", "gemini-3.8-flash"].filter(Boolean);
+      for (const mod of modelosGemini) {
+        try {
+          const url = `https://generativelanguage.googleapis.com/v1beta/models/${encodeURIComponent(mod)}:generateContent`;
+          const r = await fetch(url, {
+            method: "POST",
+            headers: { "Content-Type": "application/json", "x-goog-api-key": keyGemini },
+            body: JSON.stringify({
+              contents: [
+                ...historial,
+                { role: "user", parts: [{ text: ultimo }] }
+              ],
+              systemInstruction: { parts: [{ text: SISTEMA[idioma] }] },
+              generationConfig: { temperature: 0.5, maxOutputTokens: 1024 }
+            })
+          });
+          if (r.ok) {
+            const data = await r.json();
+            respuesta = data.candidates?.[0]?.content?.parts?.[0]?.text?.trim() || "";
+            if (respuesta) break;
+          }
+        } catch (err) {
+          console.warn(`Gemini ${mod} falló:`, err);
         }
-      } catch (err) {
-        console.warn("Gemini falló:", err);
       }
     }
 
-    if (!respuesta) return json({ error: "Sin respuesta, por favor reintenta en unos segundos" }, 502, c.headers);
+    if (!respuesta) {
+      return json({ error: "No se pudo obtener respuesta en este momento. Por favor, reintenta." }, 502, c.headers);
+    }
+
     return json({ respuesta }, 200, c.headers);
-  },
+  }
 };
