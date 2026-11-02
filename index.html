@@ -543,7 +543,6 @@ textarea{min-height:130px;resize:vertical}
     <div class="barra">
       <a class="marca" href="./"><img src="img/logo-96.png" alt="" width="36" height="36"><span>Encaminados por Jesús</span></a>
       <nav class="menu" id="menu" aria-label="Secciones">
-        <a href="estudio.html" class="menu-maestro"><svg class="icono icono-t"><use href="#i-bot"/></svg><span data-i18n="maestro-ia-menu">Maestro IA (Preguntas y estudio)</span></a>
         <a href="#estudios" data-i18n="estudios-etiqueta">Estudios</a><a href="#biblia" data-i18n="biblia-etiqueta">Biblia</a><a href="#musica" data-i18n="musica-etiqueta">Música</a><a href="#directo" data-i18n="directo-etiqueta">Directo</a><a href="#noticias" data-i18n="noticias-etiqueta">Noticias</a><a href="#oracion" data-i18n="oracion-etiqueta">Oración</a>
       </nav>
       <a class="boton boton-maestro" href="estudio.html" title="Consultar al Maestro IA"><svg class="icono icono-t"><use href="#i-bot"/></svg><span class="texto-largo" data-i18n="maestro-ia-btn">Maestro IA</span><span class="texto-corto" data-i18n="maestro-ia-corto">IA</span></a>
@@ -1275,12 +1274,17 @@ subir.addEventListener("click", () => { scrollTo({ top: 0 }); document.querySele
 
 /* menú: se resalta la sección en la que estás */
 if ("IntersectionObserver" in window) {
-  const enlaces = [...document.querySelectorAll("#menu a")];
+  const enlaces = [...document.querySelectorAll("#menu a")].filter(a => a.hash && a.hash.startsWith("#") && a.hash.length > 1);
   const espia = new IntersectionObserver(es => es.forEach(en => {
     if (!en.isIntersecting) return;
     enlaces.forEach(a => { const si = a.hash === "#" + en.target.id; a.classList.toggle("actual", si); if (si) a.setAttribute("aria-current", "true"); else a.removeAttribute("aria-current"); });
   }), { rootMargin: "-45% 0px -50% 0px" });
-  enlaces.forEach(a => { const s = document.querySelector(a.hash); if (s) espia.observe(s); });
+  enlaces.forEach(a => {
+    try {
+      const s = document.querySelector(a.hash);
+      if (s) espia.observe(s);
+    } catch (e) {}
+  });
 }
 
 /* aparición suave al bajar (si el visitante no pidió reducir el movimiento) */
