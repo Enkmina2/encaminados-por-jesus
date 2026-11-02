@@ -40,25 +40,36 @@ def consultar_groq(key, mensaje, historial, idioma):
         messages.append({"role": "assistant" if h.get("rol") == "model" else "user", "content": h.get("texto", "")})
     messages.append({"role": "user", "content": mensaje})
 
-    payload = json.dumps({
-        "model": "llama-3.3-70b-versatile",
-        "messages": messages,
-        "temperature": 0.5,
-        "max_tokens": 1024
-    }).encode("utf-8")
+    # Probar llama-3.3-70b-versatile o fallback a llama-3.1-8b-instant
+    modelos = ["llama-3.3-70b-versatile", "llama-3.1-8b-instant"]
+    ultimo_error = None
+    for modelo in modelos:
+        payload = json.dumps({
+            "model": modelo,
+            "messages": messages,
+            "temperature": 0.5,
+            "max_tokens": 1024
+        }).encode("utf-8")
 
-    req = urllib.request.Request(url, data=payload, headers={
-        "Content-Type": "application/json",
-        "Authorization": f"Bearer {key}",
-        "User-Agent": "EncaminadosPorJesus/1.0"
-    })
-    with urllib.request.urlopen(req, timeout=30) as r:
-        data = json.loads(r.read().decode("utf-8"))
-        return data["choices"][0]["message"]["content"].strip()
+        req = urllib.request.Request(url, data=payload, headers={
+            "Content-Type": "application/json",
+            "Authorization": f"Bearer {key}",
+            "User-Agent": "EncaminadosPorJesus/1.0"
+        })
+        try:
+            with urllib.request.urlopen(req, timeout=30) as r:
+                data = json.loads(r.read().decode("utf-8"))
+                return data["choices"][0]["message"]["content"].strip()
+        except urllib.error.HTTPError as e:
+            ultimo_error = e
+            if e.code == 404:
+                continue
+            raise e
+    if ultimo_error:
+        raise ultimo_error
 
 def consultar_gemini(key, mensaje, historial, idioma):
-    modelo = "gemini-2.0-flash"
-    url = f"https://generativelanguage.googleapis.com/v1beta/models/{modelo}:generateContent?key={key}"
+    modelos = ["gemini-3.8-flash", "gemini-2.0-flash"]
     contents = []
     for h in (historial or [])[-6:]:
         contents.append({"role": "model" if h.get("rol") == "model" else "user", "parts": [{"text": h.get("texto", "")}]})
@@ -72,10 +83,21 @@ def consultar_gemini(key, mensaje, historial, idioma):
         "generationConfig": {"temperature": 0.5, "maxOutputTokens": 1024}
     }).encode("utf-8")
 
-    req = urllib.request.Request(url, data=payload, headers={"Content-Type": "application/json"})
-    with urllib.request.urlopen(req, timeout=30) as r:
-        data = json.loads(r.read().decode("utf-8"))
-        return data["candidates"][0]["content"]["parts"][0]["text"].strip()
+    ultimo_error = None
+    for modelo in modelos:
+        url = f"https://generativelanguage.googleapis.com/v1beta/models/{modelo}:generateContent?key={key}"
+        req = urllib.request.Request(url, data=payload, headers={"Content-Type": "application/json"})
+        try:
+            with urllib.request.urlopen(req, timeout=30) as r:
+                data = json.loads(r.read().decode("utf-8"))
+                return data["candidates"][0]["content"]["parts"][0]["text"].strip()
+        except urllib.error.HTTPError as e:
+            ultimo_error = e
+            if e.code == 404:
+                continue
+            raise e
+    if ultimo_error:
+        raise ultimo_error
 
 class Manejador(http.server.SimpleHTTPRequestHandler):
     def __init__(self, *args, **kwargs):
@@ -114,7 +136,12 @@ class Manejador(http.server.SimpleHTTPRequestHandler):
             except urllib.error.HTTPError as e:
                 err_txt = e.read().decode("utf-8", errors="ignore")
                 print(f"[Error API {e.code}]: {err_txt}", file=sys.stderr)
-                self.enviar_json({"error": f"Error del proveedor ({e.code}): reintenta en un momento."}, 502)
+                try:
+                    j_err = json.loads(err_txt)
+                    msg = j_err.get("error", {}).get("message") or err_txt
+                except Exception:
+                    msg = err_txt
+                self.enviar_json({"error": msg or f"Error del proveedor ({e.code})"}, 502)
             except Exception as e:
                 print(f"[Error interno]: {e}", file=sys.stderr)
                 self.enviar_json({"error": str(e)}, 500)
