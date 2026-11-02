@@ -81,10 +81,13 @@ export default {
     if (req.method === "OPTIONS") return new Response(null, { status: c.ok ? 204 : 403, headers: c.headers });
     if (req.method !== "POST") return json({ error: "Método no permitido" }, 405, c.headers);
     if (!c.ok) return json({ error: "Origen no permitido" }, 403, c.headers);
-    if (!env.GEMINI_API_KEY) return json({ error: "Servicio no configurado" }, 500, c.headers);
-
     let cuerpo;
     try { cuerpo = await req.json(); } catch { return json({ error: "JSON no válido" }, 400, c.headers); }
+
+    const keyGroq = env.GROQ_API_KEY || (cuerpo.key && cuerpo.key.startsWith("gsk_") ? cuerpo.key : "");
+    const keyGemini = env.GEMINI_API_KEY || (cuerpo.key && !cuerpo.key.startsWith("gsk_") ? cuerpo.key : "");
+
+    if (!keyGroq && !keyGemini) return json({ error: "Servicio no configurado" }, 500, c.headers);
 
     const idioma = cuerpo.idioma === "en" ? "en" : "es";
     const mensaje = limpiar(cuerpo.mensaje, MAX_MENSAJE);
@@ -94,34 +97,67 @@ export default {
       .slice(-MAX_HISTORIAL)
       .map(h => ({ role: h.rol === "model" ? "model" : "user", parts: [{ text: limpiar(h.texto, 2000) }] }))
       .filter(h => h.parts[0].text);
-    // Gemini exige que la conversación empiece por «user»
     while (historial.length && historial[0].role !== "user") historial.shift();
 
     const ctx = textoContexto(cuerpo.contexto, idioma);
     const ultimo = (ctx ? ctx + "\n---\n" : "") + mensaje;
 
-    const modelo = env.GEMINI_MODEL || "gemini-3.8-flash";
-    const url = `https://generativelanguage.googleapis.com/v1beta/models/${encodeURIComponent(modelo)}:generateContent`;
+    let respuesta = "";
 
-    let r;
-    try {
-      r = await fetch(url, {
-        method: "POST",
-        headers: { "Content-Type": "application/json", "x-goog-api-key": env.GEMINI_API_KEY },
-        body: JSON.stringify({
-          systemInstruction: { parts: [{ text: SISTEMA[idioma] }] },
-          contents: [...historial, { role: "user", parts: [{ text: ultimo }] }],
-          generationConfig: { temperature: 0.5, maxOutputTokens: 1024 },
-        }),
-      });
-    } catch {
-      return json({ error: "No se pudo contactar con el servicio de IA" }, 502, c.headers);
+    // 1. Probar Groq primero (Llama 3.3 70B, ultra-rápido y sin congestión)
+    if (keyGroq) {
+      try {
+        const groqMessages = [
+          { role: "system", content: SISTEMA[idioma] },
+          ...historial.map(h => ({ role: h.role === "model" ? "assistant" : "user", content: h.parts[0].text })),
+          { role: "user", content: ultimo }
+        ];
+        const rGroq = await fetch("https://api.groq.com/openai/v1/chat/completions", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            "Authorization": `Bearer ${keyGroq}`
+          },
+          body: JSON.stringify({
+            model: env.GROQ_MODEL || "llama-3.3-70b-versatile",
+            messages: groqMessages,
+            temperature: 0.5,
+            max_tokens: 1024
+          })
+        });
+        if (rGroq.ok) {
+          const gData = await rGroq.json();
+          respuesta = gData.choices?.[0]?.message?.content?.trim() || "";
+        }
+      } catch (err) {
+        console.warn("Groq falló, usando Gemini:", err);
+      }
     }
-    if (!r.ok) return json({ error: r.status === 429 ? "Demasiadas consultas, inténtalo en un momento" : "Error del servicio de IA" }, 502, c.headers);
 
-    const datos = await r.json();
-    const respuesta = (datos.candidates?.[0]?.content?.parts || []).map(p => p.text || "").join("").trim();
-    if (!respuesta) return json({ error: "Sin respuesta, reformula la pregunta" }, 502, c.headers);
+    // 2. Gemini como respaldo si no hay respuesta todavía
+    if (!respuesta && keyGemini) {
+      const modelo = env.GEMINI_MODEL || "gemini-2.0-flash";
+      const url = `https://generativelanguage.googleapis.com/v1beta/models/${encodeURIComponent(modelo)}:generateContent`;
+      try {
+        const r = await fetch(url, {
+          method: "POST",
+          headers: { "Content-Type": "application/json", "x-goog-api-key": keyGemini },
+          body: JSON.stringify({
+            systemInstruction: { parts: [{ text: SISTEMA[idioma] }] },
+            contents: [...historial, { role: "user", parts: [{ text: ultimo }] }],
+            generationConfig: { temperature: 0.5, maxOutputTokens: 1024 },
+          }),
+        });
+        if (r.ok) {
+          const datos = await r.json();
+          respuesta = (datos.candidates?.[0]?.content?.parts || []).map(p => p.text || "").join("").trim();
+        }
+      } catch (err) {
+        console.warn("Gemini falló:", err);
+      }
+    }
+
+    if (!respuesta) return json({ error: "Sin respuesta, por favor reintenta en unos segundos" }, 502, c.headers);
     return json({ respuesta }, 200, c.headers);
   },
 };
