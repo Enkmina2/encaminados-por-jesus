@@ -268,15 +268,13 @@ async function cruzadas(p) {
   if (p.lista.length !== 1) return [];
   const todas = await cargar("referencias", p.id);
   const lista = (todas && todas[`${p.cap}.${p.ini}`]) || [];
-  const out = [];
-  for (const r of lista.slice(0, 5)) {
+  return lista.slice(0, 5).map(r => {
     const [d, h] = r.split("-"), [lb, c, v] = d.split("."), fin = h ? +h.split(".")[2] : +v;
-    const x = await versos(lb, +c, +v, h && h.split(".")[1] === c ? fin : +v);
-    if (!x) continue;
-    out.push({ ref: `${nombreLibro(lb)} ${c}:${v}${fin !== +v && h.split(".")[1] === c ? "–" + fin : ""}`,
-               texto: x.lista.map(z => z.rvr).join(" "), textoEn: x.lista.map(z => z.kjv).join(" ") });
-  }
-  return out;
+    return {
+      lb, c, v, fin,
+      ref: `${nombreLibro(lb)} ${c}:${v}${fin !== +v && h && h.split(".")[1] === c ? "–" + fin : ""}`
+    };
+  });
 }
 
 /* ============ Interfaz ============ */
@@ -365,10 +363,30 @@ function tarjetaCita(p, cruz) {
     e.textContent = p.lista.map(v => v[secundario]).join(" ") + "  — " + (L === "en" ? "RVR 1909" : "KJV"); c.append(e);
   }
   if (cruz.length) {
-    const d = document.createElement("details"), s = document.createElement("summary"); s.textContent = t("cruzadas") + " (" + cruz.length + ")"; d.append(s);
+    const d = document.createElement("details"), s = document.createElement("summary");
+    s.textContent = t("cruzadas") + " (" + cruz.length + ")";
+    d.append(s);
     const ul = document.createElement("ul");
-    cruz.forEach(x => { const li = document.createElement("li"), b = document.createElement("b"); b.textContent = x.ref + " "; const sp = document.createElement("span"); sp.className = "rt"; sp.textContent = (L === "en" ? x.textoEn : x.texto); li.append(b, sp); ul.append(li); });
-    d.append(ul); c.append(d);
+    cruz.forEach(x => {
+      const li = document.createElement("li"), b = document.createElement("b");
+      b.textContent = x.ref;
+      li.append(b);
+      d.addEventListener("toggle", async () => {
+        if (d.open && !li.dataset.cargado) {
+          li.dataset.cargado = "1";
+          const verso = await versos(x.lb, +x.c, +x.v, x.fin);
+          if (verso) {
+            const sp = document.createElement("span");
+            sp.className = "rt";
+            sp.textContent = " — " + (L === "en" ? verso.lista.map(z => z.kjv).join(" ") : verso.lista.map(z => z.rvr).join(" "));
+            li.append(sp);
+          }
+        }
+      }, { once: true });
+      ul.append(li);
+    });
+    d.append(ul);
+    c.append(d);
   }
   return c;
 }
@@ -397,20 +415,7 @@ async function preguntar(texto) {
   ocupado = true; btn.disabled = true; $("sugerencias").hidden = true;
   burbuja("yo", t("yo")).append(document.createTextNode(texto)); bajar();
 
-  // 1) pasajes detectados en la pregunta
-  const refs = detectarRefs(texto), pasajes = [], contexto = [];
-  for (const r of refs) {
-    const p = await versos(r.id, r.cap, r.v1, r.v2); if (!p) continue;
-    const cruz = await cruzadas(p); pasajes.push({ p, cruz });
-    contexto.push({ ref: etiqueta(p), rvr: p.lista.map(v => `${v.n} ${v.rvr}`).join(" "), kjv: p.lista.map(v => `${v.n} ${v.kjv}`).join(" "),
-                    cruzadas: cruz.map(x => ({ ref: x.ref, texto: x.texto })) });
-  }
-  if (pasajes.length) {
-    const cont = document.createElement("div"); cont.className = "citas";
-    pasajes.forEach(x => cont.append(tarjetaCita(x.p, x.cruz))); chat.append(cont); bajar();
-  }
-
-  // 2) respuesta de la IA
+  const key = getKey();
   const espera = burbuja("maestro", t("maestro"));
   const puntos = document.createElement("span");
   puntos.className = "pensando";
@@ -419,39 +424,52 @@ async function preguntar(texto) {
   espera.append(puntos);
   bajar();
 
+  // 1) Pasajes bíblicos en paralelo (sin bloquear a la IA)
+  const refs = detectarRefs(texto);
+  const promesaPasajes = (async () => {
+    const pasajes = [];
+    for (const r of refs) {
+      const p = await versos(r.id, r.cap, r.v1, r.v2);
+      if (!p) continue;
+      const cruz = await cruzadas(p);
+      pasajes.push({ p, cruz });
+    }
+    return pasajes;
+  })();
+
+  promesaPasajes.then(pasajes => {
+    if (pasajes.length) {
+      const cont = document.createElement("div"); cont.className = "citas";
+      pasajes.forEach(x => cont.append(tarjetaCita(x.p, x.cruz)));
+      chat.insertBefore(cont, espera);
+      bajar();
+    }
+  });
+
+  // 2) Consulta directa e inmediata a Gemini
   try {
-    const key = getKey();
     if (!API_URL && !key) throw new Error("sin-api");
 
     let respuestaTexto = "";
     if (API_URL) {
-      const ctl = new AbortController(), to = setTimeout(() => ctl.abort(), 45000);
-      const r = await fetch(API_URL, { method: "POST", headers: { "Content-Type": "application/json" }, signal: ctl.signal,
-        body: JSON.stringify({ mensaje: texto, historial: historial.slice(-8), idioma: L, contexto }) });
+      const ctl = new AbortController(), to = setTimeout(() => ctl.abort(), 30000);
+      const r = await fetch(API_URL, {
+        method: "POST", headers: { "Content-Type": "application/json" }, signal: ctl.signal,
+        body: JSON.stringify({ mensaje: texto, historial: historial.slice(-8), idioma: L })
+      });
       clearTimeout(to);
       const j = await r.json().catch(() => ({}));
       if (!r.ok || !j.respuesta) throw new Error(j.error || "http");
       respuestaTexto = j.respuesta;
-      puntos.remove();
-      renderMd(espera, respuestaTexto);
     } else {
-      // Llamada directa usando la clave local con alta velocidad
       const modelos = obtenerModelosCandidatos();
-      let ctxPrompt = "";
-      if (contexto.length) {
-        ctxPrompt = (L === "en" ? "Bible text (public domain: RVR 1909 / KJV):\n" : "Texto bíblico (dominio público: RVR 1909 / KJV):\n");
-        for (const c of contexto.slice(0, 4)) {
-          ctxPrompt += `\n[${c.ref}]\nRVR1909: ${c.rvr}\nKJV: ${c.kjv}\n`;
-          for (const x of (c.cruzadas || []).slice(0, 3)) ctxPrompt += `  ↔ ${x.ref}: ${x.texto}\n`;
-        }
-      }
       const contents = historial.slice(-8).map(h => ({ role: h.rol === "model" ? "model" : "user", parts: [{ text: h.texto }] }));
       while (contents.length && contents[0].role !== "user") contents.shift();
-      contents.push({ role: "user", parts: [{ text: (ctxPrompt ? ctxPrompt + "\n---\n" : "") + texto }] });
+      contents.push({ role: "user", parts: [{ text: texto }] });
 
       let ultimoError = null;
       for (const modelo of modelos) {
-        const ctl = new AbortController(), to = setTimeout(() => ctl.abort(), 30000);
+        const ctl = new AbortController(), to = setTimeout(() => ctl.abort(), 20000);
         try {
           const url = `https://generativelanguage.googleapis.com/v1beta/models/${encodeURIComponent(modelo)}:generateContent?key=${encodeURIComponent(key)}`;
           const r = await fetch(url, {
@@ -492,9 +510,10 @@ async function preguntar(texto) {
         }
         throw new Error(ultimoError || "sin-respuesta");
       }
-      renderMd(espera, respuestaTexto);
     }
 
+    puntos.remove();
+    renderMd(espera, respuestaTexto);
     historial.push({ rol: "user", texto }, { rol: "model", texto: respuestaTexto });
   } catch (e) {
     espera.remove();
