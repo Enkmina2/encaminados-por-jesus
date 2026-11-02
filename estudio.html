@@ -406,7 +406,7 @@ async function preguntar(texto) {
       respuestaTexto = j.respuesta;
     } else {
       // Llamada directa al API de Gemini usando la clave local
-      const modelo = "gemini-2.5-flash";
+      const modelo = "gemini-1.5-flash";
       const ctl = new AbortController(), to = setTimeout(() => ctl.abort(), 45000);
       let ctxPrompt = "";
       if (contexto.length) {
@@ -434,7 +434,9 @@ async function preguntar(texto) {
       clearTimeout(to);
       const j = await r.json().catch(() => ({}));
       if (!r.ok) {
-        if (r.status === 400 || r.status === 403) throw new Error("clave-invalida");
+        console.error("Gemini API Error:", r.status, j);
+        if (r.status === 400 && j.error?.message?.includes("API_KEY_INVALID")) throw new Error("clave-invalida");
+        if (r.status === 403) throw new Error("clave-invalida");
         if (r.status === 429) throw new Error("cuota-excedida");
         throw new Error(j.error?.message || "http");
       }
@@ -462,7 +464,8 @@ async function preguntar(texto) {
     } else if (e.message === "cuota-excedida") {
       m.append(document.createTextNode(L === "en" ? "Too many requests. Please wait a moment." : "Demasiadas consultas en poco tiempo. Espera un momento y vuelve a intentarlo."));
     } else {
-      m.append(document.createTextNode(t("errorRed")));
+      console.error("Error en Maestro IA:", e);
+      m.append(document.createTextNode((e.message && e.message !== "http" && !/fetch/i.test(e.message)) ? `Error: ${e.message}` : t("errorRed")));
     }
   }
   ocupado = false; btn.disabled = false; bajar(); caja.focus();
