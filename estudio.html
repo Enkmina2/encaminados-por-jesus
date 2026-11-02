@@ -366,33 +366,60 @@ function tarjetaCita(p, cruz) {
   }
   return c;
 }
-function pensando() {
-  const d = burbuja("maestro", t("maestro")), s = document.createElement("span"); s.className = "pensando"; s.setAttribute("aria-label", "…");
-  s.innerHTML = "<i></i><i></i><i></i>"; d.append(s); bajar(); return d;
+function pensando(textoInicial = "") {
+  const d = burbuja("maestro", t("maestro"));
+  const p = document.createElement("span");
+  p.className = "pensando-texto";
+  p.style.fontSize = ".88rem";
+  p.style.color = "var(--gris)";
+  p.textContent = textoInicial ? " " + textoInicial : "";
+  const s = document.createElement("span");
+  s.className = "pensando";
+  s.setAttribute("aria-label", "…");
+  s.innerHTML = "<i></i><i></i><i></i>";
+  d.append(s, p);
+  d.actualizar = txt => { p.textContent = " " + txt; };
+  bajar();
+  return d;
 }
 
-let modeloCache = null;
-async function obtenerModelo(key) {
-  if (modeloCache) return modeloCache;
+let listaModelosCache = null;
+async function obtenerModelosDisponibles(key) {
+  if (listaModelosCache && listaModelosCache.length) return listaModelosCache;
+  const defaults = ["gemini-3.8-flash", "gemini-2.0-flash", "gemini-2.0-flash-lite"];
   try {
-    const r = await fetch(`https://generativelanguage.googleapis.com/v1beta/models?key=${encodeURIComponent(key)}`);
+    const ctl = new AbortController(), to = setTimeout(() => ctl.abort(), 6000);
+    const r = await fetch(`https://generativelanguage.googleapis.com/v1beta/models?key=${encodeURIComponent(key)}`, { signal: ctl.signal });
+    clearTimeout(to);
     if (r.ok) {
       const j = await r.json();
-      const list = (j.models || []).filter(m => Array.isArray(m.supportedGenerationMethods) && m.supportedGenerationMethods.includes("generateContent"));
-      console.log("Modelos disponibles:", list.map(m => m.name));
-      const preferidos = ["gemini-3.8-flash", "gemini-3-flash", "gemini-2.0-flash", "gemini-1.5-flash"];
-      for (const p of preferidos) {
-        const h = list.find(m => m.name === `models/${p}` || m.name === p);
-        if (h) { modeloCache = h.name.replace(/^models\//, ""); return modeloCache; }
+      const list = (j.models || [])
+        .filter(m => Array.isArray(m.supportedGenerationMethods) && m.supportedGenerationMethods.includes("generateContent"))
+        .map(m => m.name.replace(/^models\//, ""))
+        .filter(m => !m.includes("2.5"));
+      console.log("Modelos detectados para tu clave:", list);
+      if (list.length) {
+        list.sort((a, b) => {
+          const score = x => {
+            if (x === "gemini-3.8-flash") return 100;
+            if (x === "gemini-2.0-flash") return 90;
+            if (x === "gemini-2.0-flash-lite") return 85;
+            if (x.includes("3.8")) return 80;
+            if (x.includes("2.0") && x.includes("flash")) return 70;
+            if (x.includes("flash")) return 60;
+            return 10;
+          };
+          return score(b) - score(a);
+        });
+        listaModelosCache = list;
+        return listaModelosCache;
       }
-      const flash = list.find(m => m.name.includes("flash") && !m.name.includes("2.5"));
-      if (flash) { modeloCache = flash.name.replace(/^models\//, ""); return modeloCache; }
-      if (list.length) { modeloCache = list[0].name.replace(/^models\//, ""); return modeloCache; }
     }
   } catch (e) {
-    console.warn("No se pudo detectar el modelo dinámicamente:", e);
+    console.warn("No se pudo consultar ListModels:", e);
   }
-  return "gemini-3.8-flash";
+  listaModelosCache = defaults;
+  return listaModelosCache;
 }
 
 async function preguntar(texto) {
@@ -429,9 +456,9 @@ async function preguntar(texto) {
       if (!r.ok || !j.respuesta) throw new Error(j.error || "http");
       respuestaTexto = j.respuesta;
     } else {
-      // Llamada directa al API de Gemini usando la clave local con tolerancia a alta demanda
-      const modelosCandidatos = ["gemini-3.8-flash", "gemini-2.0-flash", "gemini-2.0-flash-lite"];
-      const ctl = new AbortController(), to = setTimeout(() => ctl.abort(), 45000);
+      // Llamada directa al API de Gemini usando la clave local con tolerancia y feedback en vivo
+      espera.actualizar(L === "en" ? "Consulting Gemini..." : "Consultando a Gemini...");
+      const modelos = await obtenerModelosDisponibles(key);
       let ctxPrompt = "";
       if (contexto.length) {
         ctxPrompt = (L === "en" ? "Bible text (public domain: RVR 1909 / KJV):\n" : "Texto bíblico (dominio público: RVR 1909 / KJV):\n");
@@ -445,7 +472,12 @@ async function preguntar(texto) {
       contents.push({ role: "user", parts: [{ text: (ctxPrompt ? ctxPrompt + "\n---\n" : "") + texto }] });
 
       let ultimoError = null;
-      for (const modelo of modelosCandidatos) {
+      for (let i = 0; i < modelos.length; i++) {
+        const modelo = modelos[i];
+        if (i > 0) {
+          espera.actualizar(L === "en" ? `Trying backup model (${modelo})...` : `Conectando con modelo de respaldo (${modelo})...`);
+        }
+        const ctl = new AbortController(), to = setTimeout(() => ctl.abort(), 18000);
         try {
           const url = `https://generativelanguage.googleapis.com/v1beta/models/${encodeURIComponent(modelo)}:generateContent?key=${encodeURIComponent(key)}`;
           const r = await fetch(url, {
@@ -458,21 +490,22 @@ async function preguntar(texto) {
               generationConfig: { temperature: 0.5, maxOutputTokens: 1024 }
             })
           });
+          clearTimeout(to);
           const j = await r.json().catch(() => ({}));
           if (r.ok) {
             respuestaTexto = (j.candidates?.[0]?.content?.parts || []).map(p => p.text || "").join("").trim();
             if (respuestaTexto) { ultimoError = null; break; }
           }
-          console.warn(`Modelo ${modelo} no disponible (${r.status}):`, j.error?.message);
+          console.warn(`Modelo ${modelo} falló (${r.status}):`, j.error?.message);
           ultimoError = j.error?.message || `HTTP ${r.status}`;
           if (r.status === 400 && j.error?.message?.includes("API_KEY_INVALID")) throw new Error("clave-invalida");
           if (r.status === 403) throw new Error("clave-invalida");
         } catch (err) {
+          clearTimeout(to);
           if (err.message === "clave-invalida") throw err;
-          ultimoError = err.message;
+          ultimoError = err.name === "AbortError" ? "Tiempo de espera agotado" : err.message;
         }
       }
-      clearTimeout(to);
       if (!respuestaTexto) {
         if (ultimoError && (ultimoError.includes("high demand") || ultimoError.includes("503"))) {
           throw new Error("Los servidores de Gemini tienen alta demanda en este momento. Por favor espera unos segundos y reintenta.");
