@@ -2,6 +2,20 @@
  "canal": "UCba5HqD3ftT7QIRCyMqfXyA",
  "videos": [
   {
+   "id": "LzTWev08V0w",
+   "titulo": "La palabra",
+   "fecha": "2026-11-03",
+   "corto": true,
+   "enlace": "https://www.youtube.com/shorts/LzTWev08V0w"
+  },
+  {
+   "id": "RtwkfBKMaag",
+   "titulo": "La sal",
+   "fecha": "2026-11-02",
+   "corto": true,
+   "enlace": "https://www.youtube.com/shorts/RtwkfBKMaag"
+  },
+  {
    "id": "SLGMn4QJpI8",
    "titulo": "El valle escarpado",
    "fecha": "2026-11-02",
@@ -28,20 +42,6 @@
    "fecha": "2026-10-31",
    "corto": true,
    "enlace": "https://www.youtube.com/shorts/bSCxi9kr_Ww"
-  },
-  {
-   "id": "3BlwciDhTpI",
-   "titulo": "Incredulidad",
-   "fecha": "2026-10-31",
-   "corto": true,
-   "enlace": "https://www.youtube.com/shorts/3BlwciDhTpI"
-  },
-  {
-   "id": "S93g16OvtOw",
-   "titulo": "Creciendo",
-   "fecha": "2026-10-30",
-   "corto": true,
-   "enlace": "https://www.youtube.com/shorts/S93g16OvtOw"
   }
  ]
 }
