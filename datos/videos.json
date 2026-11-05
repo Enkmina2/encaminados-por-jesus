@@ -2,6 +2,20 @@
  "canal": "UCba5HqD3ftT7QIRCyMqfXyA",
  "videos": [
   {
+   "id": "pUAsKiE7t3o",
+   "titulo": "El espejo",
+   "fecha": "2026-11-05",
+   "corto": true,
+   "enlace": "https://www.youtube.com/shorts/pUAsKiE7t3o"
+  },
+  {
+   "id": "jXNoyZD2JY8",
+   "titulo": "Vuelve",
+   "fecha": "2026-11-04",
+   "corto": true,
+   "enlace": "https://www.youtube.com/shorts/jXNoyZD2JY8"
+  },
+  {
    "id": "rNfp7_dNuOI",
    "titulo": "Celos",
    "fecha": "2026-11-04",
@@ -28,20 +42,6 @@
    "fecha": "2026-11-02",
    "corto": true,
    "enlace": "https://www.youtube.com/shorts/RtwkfBKMaag"
-  },
-  {
-   "id": "SLGMn4QJpI8",
-   "titulo": "El valle escarpado",
-   "fecha": "2026-11-02",
-   "corto": true,
-   "enlace": "https://www.youtube.com/shorts/SLGMn4QJpI8"
-  },
-  {
-   "id": "wMOPN5NzSMw",
-   "titulo": "El gorrión y el tamarisco",
-   "fecha": "2026-11-01",
-   "corto": true,
-   "enlace": "https://www.youtube.com/shorts/wMOPN5NzSMw"
   }
  ]
 }
