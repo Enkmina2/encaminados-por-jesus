@@ -2,6 +2,20 @@
  "canal": "UCba5HqD3ftT7QIRCyMqfXyA",
  "videos": [
   {
+   "id": "KCjcrN8iWWg",
+   "titulo": "Madre",
+   "fecha": "2026-11-06",
+   "corto": true,
+   "enlace": "https://www.youtube.com/shorts/KCjcrN8iWWg"
+  },
+  {
+   "id": "m6grgwcLQ-I",
+   "titulo": "El metro",
+   "fecha": "2026-11-05",
+   "corto": true,
+   "enlace": "https://www.youtube.com/shorts/m6grgwcLQ-I"
+  },
+  {
    "id": "pUAsKiE7t3o",
    "titulo": "El espejo",
    "fecha": "2026-11-05",
@@ -28,20 +42,6 @@
    "fecha": "2026-11-03",
    "corto": true,
    "enlace": "https://www.youtube.com/shorts/E-arOh4o46o"
-  },
-  {
-   "id": "LzTWev08V0w",
-   "titulo": "La palabra",
-   "fecha": "2026-11-03",
-   "corto": true,
-   "enlace": "https://www.youtube.com/shorts/LzTWev08V0w"
-  },
-  {
-   "id": "RtwkfBKMaag",
-   "titulo": "La sal",
-   "fecha": "2026-11-02",
-   "corto": true,
-   "enlace": "https://www.youtube.com/shorts/RtwkfBKMaag"
   }
  ]
 }
