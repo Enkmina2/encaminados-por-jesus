@@ -1,0 +1,35 @@
+# Cuando se publican contenidos nuevos (días del tema, pasaje de la semana o «hoy en el mundo»),
+# avisa por Telegram con el bot del vigilante. Ver scripts/avisar_publicacion.py.
+name: Avisar de contenidos nuevos
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - datos/dias.json
+      - datos/pasajes-siguientes.json
+  workflow_dispatch:          # a mano (pestaña Actions), para probar
+    inputs:
+      antes:
+        description: "Commit con el que comparar (vacío = el anterior al último)"
+        required: false
+        default: ""
+
+permissions:
+  contents: read
+
+jobs:
+  avisar:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0      # hace falta el historial para comparar con el commit de antes del push
+      - name: Mandar el aviso por Telegram
+        # a mano, el mensaje lleva «🧪 PRUEBA» delante
+        run: python3 scripts/avisar_publicacion.py ${{ github.event_name == 'workflow_dispatch' && '--prueba' || '' }}
+        env:
+          ANTES: ${{ github.event.before || inputs.antes }}
+          DESPUES: ${{ github.sha }}
+          TELEGRAM_TOKEN: ${{ secrets.TELEGRAM_TOKEN }}
+          TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
