@@ -2,6 +2,27 @@
  "canal": "UCba5HqD3ftT7QIRCyMqfXyA",
  "videos": [
   {
+   "id": "kOcQgKPjoBw",
+   "titulo": "El pan de cada dia",
+   "fecha": "2026-11-08",
+   "corto": true,
+   "enlace": "https://www.youtube.com/shorts/kOcQgKPjoBw"
+  },
+  {
+   "id": "LmYI93juczw",
+   "titulo": "Música Cristiana de Navidad 🎄 3 Horas Instrumental para Orar, Descansar y Dormir | Chimenea y Nieve",
+   "fecha": "2026-11-08",
+   "corto": false,
+   "enlace": "https://www.youtube.com/watch?v=LmYI93juczw"
+  },
+  {
+   "id": "5jm7Cq_51_k",
+   "titulo": "El olivar del pleito",
+   "fecha": "2026-11-07",
+   "corto": true,
+   "enlace": "https://www.youtube.com/shorts/5jm7Cq_51_k"
+  },
+  {
    "id": "kixO4uVk_LI",
    "titulo": "El enojo",
    "fecha": "2026-11-07",
@@ -21,27 +42,6 @@
    "fecha": "2026-11-06",
    "corto": true,
    "enlace": "https://www.youtube.com/shorts/KCjcrN8iWWg"
-  },
-  {
-   "id": "m6grgwcLQ-I",
-   "titulo": "El metro",
-   "fecha": "2026-11-05",
-   "corto": true,
-   "enlace": "https://www.youtube.com/shorts/m6grgwcLQ-I"
-  },
-  {
-   "id": "pUAsKiE7t3o",
-   "titulo": "El espejo",
-   "fecha": "2026-11-05",
-   "corto": true,
-   "enlace": "https://www.youtube.com/shorts/pUAsKiE7t3o"
-  },
-  {
-   "id": "jXNoyZD2JY8",
-   "titulo": "Vuelve",
-   "fecha": "2026-11-04",
-   "corto": true,
-   "enlace": "https://www.youtube.com/shorts/jXNoyZD2JY8"
   }
  ]
 }
