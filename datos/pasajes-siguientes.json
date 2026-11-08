@@ -82,7 +82,7 @@
     },
     {
      "n": 14,
-     "texto": "Sea, pues, que la doncella a quien yo dijere: Baja tu cántaro, te ruego, para que yo beba, y ella respondiere: Bebe, y también daré de beber a tus camellos; que sea ésta la que tú has destinado para tu siervo Isaac; y en esto conoceré que habrás hecho misericordia con mi señor.",
+     "texto": "Sea, pues, que la doncella a quien yo dijere: Baja tu cántaro, te ruego, para que yo beba, y ella respondiere: Bebe, y también daré de beber a tus camellos; que sea esta la que tú has destinado para tu siervo Isaac; y en esto conoceré que habrás hecho misericordia con mi señor.",
      "texto_en": "And let it come to pass, that the damsel to whom I shall say, Let down thy pitcher, I pray thee, that I may drink; and she shall say, Drink, and I will give thy camels drink also: let the same be she that thou hast appointed for thy servant Isaac; and thereby shall I know that thou hast shewed kindness unto my master."
     },
     {
@@ -149,6 +149,78 @@
      "n": 27,
      "texto": "y dijo: Bendito sea Jehová, Dios de mi amo Abraham, que no apartó de mi amo su misericordia y su verdad, guiándome Jehová en el camino a casa de los hermanos de mi amo.",
      "texto_en": "And he said, Blessed be the Lord God of my master Abraham, who hath not left destitute my master of his mercy and his truth: I being in the way, the Lord led me to the house of my master’s brethren."
+    }
+   ]
+  },
+  {
+   "desde": "2026-11-15",
+   "referencia": "Génesis 28:10-22",
+   "referencia_en": "Genesis 28:10-22",
+   "versiculos": [
+    {
+     "n": 10,
+     "texto": "Salió, pues, Jacob de Beerseba, y fue a Harán.",
+     "texto_en": "And Jacob went out from Beer–sheba, and went toward Haran."
+    },
+    {
+     "n": 11,
+     "texto": "Y llegó a un cierto lugar, y durmió allí, porque ya el sol se había puesto; y tomó de las piedras de aquel paraje y puso a su cabecera, y se acostó en aquel lugar.",
+     "texto_en": "And he lighted upon a certain place, and tarried there all night, because the sun was set; and he took of the stones of that place, and put them for his pillows, and lay down in that place to sleep."
+    },
+    {
+     "n": 12,
+     "texto": "Y soñó: y he aquí una escalera que estaba apoyada en tierra, y su extremo tocaba en el cielo; y he aquí ángeles de Dios que subían y descendían por ella.",
+     "texto_en": "And he dreamed, and behold a ladder set up on the earth, and the top of it reached to heaven: and behold the angels of God ascending and descending on it."
+    },
+    {
+     "n": 13,
+     "texto": "Y he aquí, Jehová estaba en lo alto de ella, el cual dijo: Yo soy Jehová, el Dios de Abraham tu padre, y el Dios de Isaac; la tierra en que estás acostado te la daré a ti y a tu descendencia.",
+     "texto_en": "And, behold, the Lord stood above it, and said, I am the Lord God of Abraham thy father, and the God of Isaac: the land whereon thou liest, to thee will I give it, and to thy seed;"
+    },
+    {
+     "n": 14,
+     "texto": "Será tu descendencia como el polvo de la tierra, y te extenderás al occidente, al oriente, al norte y al sur; y todas las familias de la tierra serán benditas en ti y en tu simiente.",
+     "texto_en": "And thy seed shall be as the dust of the earth, and thou shalt spread abroad to the west, and to the east, and to the north, and to the south: and in thee and in thy seed shall all the families of the earth be blessed."
+    },
+    {
+     "n": 15,
+     "texto": "He aquí, yo estoy contigo, y te guardaré por dondequiera que fueres, y volveré a traerte a esta tierra; porque no te dejaré hasta que haya hecho lo que te he dicho.",
+     "texto_en": "And, behold, I am with thee, and will keep thee in all places whither thou goest, and will bring thee again into this land; for I will not leave thee, until I have done that which I have spoken to thee of."
+    },
+    {
+     "n": 16,
+     "texto": "Y despertó Jacob de su sueño, y dijo: Ciertamente Jehová está en este lugar, y yo no lo sabía.",
+     "texto_en": "And Jacob awaked out of his sleep, and he said, Surely the Lord is in this place; and I knew it not."
+    },
+    {
+     "n": 17,
+     "texto": "Y tuvo miedo, y dijo: ¡Cuán terrible es este lugar! No es otra cosa que casa de Dios, y puerta del cielo.",
+     "texto_en": "And he was afraid, and said, How dreadful is this place! this is none other but the house of God, and this is the gate of heaven."
+    },
+    {
+     "n": 18,
+     "texto": "Y se levantó Jacob de mañana, y tomó la piedra que había puesto de cabecera, y la alzó por señal, y derramó aceite encima de ella.",
+     "texto_en": "And Jacob rose up early in the morning, and took the stone that he had put for his pillows, and set it up for a pillar, and poured oil upon the top of it."
+    },
+    {
+     "n": 19,
+     "texto": "Y llamó el nombre de aquel lugar Bet-el, aunque Luz era el nombre de la ciudad primero.",
+     "texto_en": "And he called the name of that place Beth–el: but the name of that city was called Luz at the first."
+    },
+    {
+     "n": 20,
+     "texto": "E hizo Jacob voto, diciendo: Si fuere Dios conmigo, y me guardare en este viaje en que voy, y me diere pan para comer y vestido para vestir,",
+     "texto_en": "And Jacob vowed a vow, saying, If God will be with me, and will keep me in this way that I go, and will give me bread to eat, and raiment to put on,"
+    },
+    {
+     "n": 21,
+     "texto": "y si volviere en paz a casa de mi padre, Jehová será mi Dios.",
+     "texto_en": "So that I come again to my father’s house in peace; then shall the Lord be my God:"
+    },
+    {
+     "n": 22,
+     "texto": "Y esta piedra que he puesto por señal, será casa de Dios; y de todo lo que me dieres, el diezmo apartaré para ti.",
+     "texto_en": "And this stone, which I have set for a pillar, shall be God’s house: and of all that thou shalt give me I will surely give the tenth unto thee."
     }
    ]
   }
