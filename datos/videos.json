@@ -2,6 +2,20 @@
  "canal": "UCba5HqD3ftT7QIRCyMqfXyA",
  "videos": [
   {
+   "id": "xJaTI-AGyf0",
+   "titulo": "Trata a todos como si fueran El",
+   "fecha": "2026-11-10",
+   "corto": true,
+   "enlace": "https://www.youtube.com/shorts/xJaTI-AGyf0"
+  },
+  {
+   "id": "7XeHv34iZrE",
+   "titulo": "Porque tu estaras conmigo",
+   "fecha": "2026-11-09",
+   "corto": true,
+   "enlace": "https://www.youtube.com/shorts/7XeHv34iZrE"
+  },
+  {
    "id": "Wngv2xAQqLM",
    "titulo": "La enfermera en llanto",
    "fecha": "2026-11-09",
@@ -28,20 +42,6 @@
    "fecha": "2026-11-08",
    "corto": false,
    "enlace": "https://www.youtube.com/watch?v=LmYI93juczw"
-  },
-  {
-   "id": "5jm7Cq_51_k",
-   "titulo": "El olivar del pleito",
-   "fecha": "2026-11-07",
-   "corto": true,
-   "enlace": "https://www.youtube.com/shorts/5jm7Cq_51_k"
-  },
-  {
-   "id": "kixO4uVk_LI",
-   "titulo": "El enojo",
-   "fecha": "2026-11-07",
-   "corto": true,
-   "enlace": "https://www.youtube.com/shorts/kixO4uVk_LI"
   }
  ]
 }
