@@ -2,6 +2,20 @@
  "canal": "UCba5HqD3ftT7QIRCyMqfXyA",
  "videos": [
   {
+   "id": "M7xNj1kvVOU",
+   "titulo": "El cordón de tres hilos",
+   "fecha": "2026-11-11",
+   "corto": true,
+   "enlace": "https://www.youtube.com/shorts/M7xNj1kvVOU"
+  },
+  {
+   "id": "FxqLUASx4Jk",
+   "titulo": "La niña del último banco",
+   "fecha": "2026-11-10",
+   "corto": true,
+   "enlace": "https://www.youtube.com/shorts/FxqLUASx4Jk"
+  },
+  {
    "id": "xJaTI-AGyf0",
    "titulo": "Trata a todos como si fueran El",
    "fecha": "2026-11-10",
@@ -28,20 +42,6 @@
    "fecha": "2026-11-08",
    "corto": true,
    "enlace": "https://www.youtube.com/shorts/cptOtvDED4M"
-  },
-  {
-   "id": "kOcQgKPjoBw",
-   "titulo": "El pan de cada dia",
-   "fecha": "2026-11-08",
-   "corto": true,
-   "enlace": "https://www.youtube.com/shorts/kOcQgKPjoBw"
-  },
-  {
-   "id": "LmYI93juczw",
-   "titulo": "Música Cristiana de Navidad 🎄 3 Horas Instrumental para Orar, Descansar y Dormir | Chimenea y Nieve",
-   "fecha": "2026-11-08",
-   "corto": false,
-   "enlace": "https://www.youtube.com/watch?v=LmYI93juczw"
   }
  ]
 }
