@@ -2,6 +2,20 @@
  "canal": "UCba5HqD3ftT7QIRCyMqfXyA",
  "videos": [
   {
+   "id": "5qtDsLv8Ld8",
+   "titulo": "Lo que el dinero no compra - Parte 1 La carta",
+   "fecha": "2026-11-12",
+   "corto": true,
+   "enlace": "https://www.youtube.com/shorts/5qtDsLv8Ld8"
+  },
+  {
+   "id": "pOq4YcP7dsA",
+   "titulo": "El diagnóstico",
+   "fecha": "2026-11-11",
+   "corto": true,
+   "enlace": "https://www.youtube.com/shorts/pOq4YcP7dsA"
+  },
+  {
    "id": "M7xNj1kvVOU",
    "titulo": "El cordón de tres hilos",
    "fecha": "2026-11-11",
@@ -28,20 +42,6 @@
    "fecha": "2026-11-09",
    "corto": true,
    "enlace": "https://www.youtube.com/shorts/7XeHv34iZrE"
-  },
-  {
-   "id": "Wngv2xAQqLM",
-   "titulo": "La enfermera en llanto",
-   "fecha": "2026-11-09",
-   "corto": true,
-   "enlace": "https://www.youtube.com/shorts/Wngv2xAQqLM"
-  },
-  {
-   "id": "cptOtvDED4M",
-   "titulo": "El siempre tiene algo para ti",
-   "fecha": "2026-11-08",
-   "corto": true,
-   "enlace": "https://www.youtube.com/shorts/cptOtvDED4M"
   }
  ]
 }
