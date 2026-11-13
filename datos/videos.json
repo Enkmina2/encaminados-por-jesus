@@ -2,6 +2,20 @@
  "canal": "UCba5HqD3ftT7QIRCyMqfXyA",
  "videos": [
   {
+   "id": "BQHMcs5l9H8",
+   "titulo": "Lo que el dinero no compra - Parte 3 La verdad de Marta",
+   "fecha": "2026-11-13",
+   "corto": true,
+   "enlace": "https://www.youtube.com/shorts/BQHMcs5l9H8"
+  },
+  {
+   "id": "xMYLGnLZ-XQ",
+   "titulo": "Lo que el dinero no compra - Parte 2 La confesion",
+   "fecha": "2026-11-12",
+   "corto": true,
+   "enlace": "https://www.youtube.com/shorts/xMYLGnLZ-XQ"
+  },
+  {
    "id": "5qtDsLv8Ld8",
    "titulo": "Lo que el dinero no compra - Parte 1 La carta",
    "fecha": "2026-11-12",
@@ -28,20 +42,6 @@
    "fecha": "2026-11-10",
    "corto": true,
    "enlace": "https://www.youtube.com/shorts/FxqLUASx4Jk"
-  },
-  {
-   "id": "xJaTI-AGyf0",
-   "titulo": "Trata a todos como si fueran El",
-   "fecha": "2026-11-10",
-   "corto": true,
-   "enlace": "https://www.youtube.com/shorts/xJaTI-AGyf0"
-  },
-  {
-   "id": "7XeHv34iZrE",
-   "titulo": "Porque tu estaras conmigo",
-   "fecha": "2026-11-09",
-   "corto": true,
-   "enlace": "https://www.youtube.com/shorts/7XeHv34iZrE"
   }
  ]
 }
