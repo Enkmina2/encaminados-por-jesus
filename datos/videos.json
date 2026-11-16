@@ -2,6 +2,13 @@
  "canal": "UCba5HqD3ftT7QIRCyMqfXyA",
  "videos": [
   {
+   "id": "vYGRRKCxCkw",
+   "titulo": "El inquilino anónimo",
+   "fecha": "2026-11-16",
+   "corto": true,
+   "enlace": "https://www.youtube.com/shorts/vYGRRKCxCkw"
+  },
+  {
    "id": "Rv-yl6OkgHc",
    "titulo": "Elegido",
    "fecha": "2026-11-15",
@@ -35,13 +42,6 @@
    "fecha": "2026-11-14",
    "corto": true,
    "enlace": "https://www.youtube.com/shorts/FHmGdjift8A"
-  },
-  {
-   "id": "_TiagQ9g60M",
-   "titulo": "Lo que el dinero no compra - Parte 4 Lo que no se paga con dinero",
-   "fecha": "2026-11-13",
-   "corto": true,
-   "enlace": "https://www.youtube.com/shorts/_TiagQ9g60M"
   }
  ]
 }
