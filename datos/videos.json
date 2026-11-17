@@ -2,6 +2,13 @@
  "canal": "UCba5HqD3ftT7QIRCyMqfXyA",
  "videos": [
   {
+   "id": "Kmf_a1Nlb-k",
+   "titulo": "Donde tú vayas",
+   "fecha": "2026-11-17",
+   "corto": true,
+   "enlace": "https://www.youtube.com/shorts/Kmf_a1Nlb-k"
+  },
+  {
    "id": "76RXGTKVm84",
    "titulo": "El currículum",
    "fecha": "2026-11-16",
@@ -35,13 +42,6 @@
    "fecha": "2026-11-14",
    "corto": true,
    "enlace": "https://www.youtube.com/shorts/OEdFy2bxe_M"
-  },
-  {
-   "id": "2RiiTBxPfHs",
-   "titulo": "Lo que el dinero no compra | Película cristiana completa",
-   "fecha": "2026-11-14",
-   "corto": false,
-   "enlace": "https://www.youtube.com/watch?v=2RiiTBxPfHs"
   }
  ]
 }
