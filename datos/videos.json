@@ -2,6 +2,13 @@
  "canal": "UCba5HqD3ftT7QIRCyMqfXyA",
  "videos": [
   {
+   "id": "76RXGTKVm84",
+   "titulo": "El currículum",
+   "fecha": "2026-11-16",
+   "corto": true,
+   "enlace": "https://www.youtube.com/shorts/76RXGTKVm84"
+  },
+  {
    "id": "vYGRRKCxCkw",
    "titulo": "El inquilino anónimo",
    "fecha": "2026-11-16",
@@ -35,13 +42,6 @@
    "fecha": "2026-11-14",
    "corto": false,
    "enlace": "https://www.youtube.com/watch?v=2RiiTBxPfHs"
-  },
-  {
-   "id": "FHmGdjift8A",
-   "titulo": "Lo que el dinero no compra - Parte 5 Quiero intentarlo",
-   "fecha": "2026-11-14",
-   "corto": true,
-   "enlace": "https://www.youtube.com/shorts/FHmGdjift8A"
   }
  ]
 }
