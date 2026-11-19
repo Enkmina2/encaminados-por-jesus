@@ -2,6 +2,13 @@
  "canal": "UCba5HqD3ftT7QIRCyMqfXyA",
  "videos": [
   {
+   "id": "8cEMGFTj2rw",
+   "titulo": "Película cristiana: lo que el hijo confesó de noche a su hermana | Cap. 3",
+   "fecha": "2026-11-19",
+   "corto": true,
+   "enlace": "https://www.youtube.com/shorts/8cEMGFTj2rw"
+  },
+  {
    "id": "9WDC7qV1K20",
    "titulo": "Película cristiana: su hijo vuelve tras 10 años y esto le dice el padre | Cap. 2",
    "fecha": "2026-11-18",
@@ -35,13 +42,6 @@
    "fecha": "2026-11-16",
    "corto": true,
    "enlace": "https://www.youtube.com/shorts/76RXGTKVm84"
-  },
-  {
-   "id": "vYGRRKCxCkw",
-   "titulo": "El inquilino anónimo",
-   "fecha": "2026-11-16",
-   "corto": true,
-   "enlace": "https://www.youtube.com/shorts/vYGRRKCxCkw"
   }
  ]
 }
