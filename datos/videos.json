@@ -2,6 +2,13 @@
  "canal": "UCba5HqD3ftT7QIRCyMqfXyA",
  "videos": [
   {
+   "id": "9WDC7qV1K20",
+   "titulo": "Película cristiana: su hijo vuelve tras 10 años y esto le dice el padre | Cap. 2",
+   "fecha": "2026-11-18",
+   "corto": true,
+   "enlace": "https://www.youtube.com/shorts/9WDC7qV1K20"
+  },
+  {
    "id": "AZizJ55Bk4k",
    "titulo": "Película cristiana: pone un plato cada domingo para el hijo que se fue | Cap. 1",
    "fecha": "2026-11-18",
@@ -35,13 +42,6 @@
    "fecha": "2026-11-16",
    "corto": true,
    "enlace": "https://www.youtube.com/shorts/vYGRRKCxCkw"
-  },
-  {
-   "id": "Rv-yl6OkgHc",
-   "titulo": "Elegido",
-   "fecha": "2026-11-15",
-   "corto": true,
-   "enlace": "https://www.youtube.com/shorts/Rv-yl6OkgHc"
   }
  ]
 }
