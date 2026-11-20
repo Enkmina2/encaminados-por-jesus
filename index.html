@@ -419,6 +419,16 @@ textarea{min-height:130px;resize:vertical}
 .red-tarjeta{display:flex;align-items:center;gap:14px;background:rgba(255,255,255,.82);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);border:1px solid var(--linea);border-radius:var(--radio);padding:16px 18px;text-decoration:none;color:var(--carbon);min-height:76px;transition:transform .25s ease,box-shadow .25s ease,border-color .25s ease}
 .red-tarjeta:hover{transform:translateY(-3px);box-shadow:0 18px 36px -24px rgba(30,36,33,.5);border-color:#D2D7CE}
 .red-tarjeta:active{transform:scale(.98)}
+.libros{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,460px),1fr));gap:22px}
+.libro{display:flex;gap:22px;align-items:flex-start;background:rgba(255,255,255,.82);border:1px solid var(--linea);border-radius:var(--radio);padding:22px;transition:transform .25s ease,box-shadow .25s ease}
+.libro:hover{transform:translateY(-3px);box-shadow:0 18px 36px -24px rgba(30,36,33,.5)}
+.libro img{width:140px;height:auto;flex:none;border-radius:6px;box-shadow:0 14px 28px -14px rgba(30,36,33,.6)}
+.libro-texto{display:flex;flex-direction:column;gap:8px;min-width:0}
+.libro h3{margin:0;font:600 1.35rem/1.2 var(--f-lectura);color:var(--carbon)}
+.libro-sub{font-size:.9rem;font-weight:700;color:var(--bosque-2)}
+.libro p{margin:0;color:var(--gris);font-size:.97rem}
+.libro .boton{align-self:flex-start;margin-top:6px}
+@media (max-width:520px){.libro{flex-direction:column;align-items:center;text-align:center}.libro .boton{align-self:center}.libro img{width:160px}}
 .red-icono{width:46px;height:46px;border-radius:14px;display:grid;place-items:center;flex:none;color:#fff;transition:transform .25s ease}
 .red-icono svg{width:22px;height:22px}
 .red-tarjeta:hover .red-icono{transform:rotate(-6deg) scale(1.06)}
@@ -791,6 +801,34 @@ textarea{min-height:130px;resize:vertical}
         <button class="boton boton-bosque" type="submit" style="align-self:flex-start"><svg class="icono icono-t"><use href="#i-send"/></svg><span data-i18n="btn-enviar">Enviar petición</span></button>
         <div class="estado" id="o-estado" role="status" tabindex="-1" hidden></div>
       </form>
+    </div>
+  </section>
+
+  <!-- Nuestros libros (Amazon) -->
+  <section class="seccion banda" id="libros" aria-labelledby="t-libros">
+    <div class="contenedor">
+      <div class="cabeza"><span class="etiqueta" data-i18n="libros-etiqueta">Libros</span><h2 id="t-libros" data-i18n="libros-h2">Nuestros libros</h2>
+        <p data-i18n="libros-p">Historias de fe para leer en familia, en tapa blanda y en Kindle.</p></div>
+      <div class="libros">
+        <article class="libro">
+          <img src="img/libro-la-profecia.webp" alt="Portada de La Profecía" width="180" height="288" loading="lazy">
+          <div class="libro-texto">
+            <h3>La Profecía</h3>
+            <span class="libro-sub" data-i18n="libro1-sub">Sin Código, libro 1</span>
+            <p data-i18n="libro1-p">En Prisma, un Código bajo la piel decide cuánto vales. Jonás no tiene ninguno… hasta que encuentra una profecía escrita con la letra de su madre. Con un juego de preguntas y sopa de letras en cada capítulo.</p>
+            <a class="boton boton-bosque" href="https://www.amazon.es/dp/B0HSBJZY4D" target="_blank" rel="noopener"><svg class="icono icono-t"><use href="#i-book-open"/></svg><span data-i18n="libro-amazon">Ver en Amazon</span></a>
+          </div>
+        </article>
+        <article class="libro">
+          <img src="img/libro-todo-lo-que-podia-salir-mal.webp" alt="Portada de Todo lo que podía salir mal" width="180" height="288" loading="lazy">
+          <div class="libro-texto">
+            <h3>Todo lo que podía salir mal</h3>
+            <span class="libro-sub" data-i18n="libro2-sub">Una novela del hijo pródigo</span>
+            <p data-i18n="libro2-p">Andrés vuelve al pueblo una noche de tormenta y llama a la puerta del padre al que robó hace diez años. Una historia de perdón entre padres, hijos y hermanos.</p>
+            <a class="boton boton-bosque" href="https://www.amazon.es/dp/B0HS7J68YW" target="_blank" rel="noopener"><svg class="icono icono-t"><use href="#i-book-open"/></svg><span data-i18n="libro-amazon">Ver en Amazon</span></a>
+          </div>
+        </article>
+      </div>
     </div>
   </section>
 
@@ -1550,6 +1588,15 @@ if (document.documentElement.classList.contains("anim")) {
         "btn-enviar": "Enviar petición",
         "msg-recibida": "Hemos recibido tu petición. Nuestra comunidad orará por ti.",
 
+        // Libros
+        "libros-etiqueta": "Libros",
+        "libros-h2": "Nuestros libros",
+        "libros-p": "Historias de fe para leer en familia, en tapa blanda y en Kindle.",
+        "libro1-sub": "Sin Código, libro 1",
+        "libro1-p": "En Prisma, un Código bajo la piel decide cuánto vales. Jonás no tiene ninguno… hasta que encuentra una profecía escrita con la letra de su madre. Con un juego de preguntas y sopa de letras en cada capítulo.",
+        "libro2-sub": "Una novela del hijo pródigo",
+        "libro2-p": "Andrés vuelve al pueblo una noche de tormenta y llama a la puerta del padre al que robó hace diez años. Una historia de perdón entre padres, hijos y hermanos.",
+        "libro-amazon": "Ver en Amazon",
         // Redes
         "redes-etiqueta": "Redes",
         "redes-h2": "Síguenos",
@@ -1707,6 +1754,15 @@ if (document.documentElement.classList.contains("anim")) {
         "btn-enviar": "Send Request",
         "msg-recibida": "We have received your request. Our community will pray for you.",
 
+        // Books
+        "libros-etiqueta": "Books",
+        "libros-h2": "Our books",
+        "libros-p": "Stories of faith to read as a family, in paperback and on Kindle (in Spanish).",
+        "libro1-sub": "Sin Código, book 1",
+        "libro1-p": "In Prisma, a Code under the skin decides how much you are worth. Jonás has none… until he finds a prophecy written in his mother's handwriting. With a quiz and a word search in every chapter.",
+        "libro2-sub": "A novel of the prodigal son",
+        "libro2-p": "Andrés returns to the village on a stormy night and knocks on the door of the father he robbed ten years ago. A story of forgiveness between parents, children and siblings.",
+        "libro-amazon": "See on Amazon",
         // Social
         "redes-etiqueta": "Social",
         "redes-h2": "Follow Us",
