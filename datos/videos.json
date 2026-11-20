@@ -2,6 +2,13 @@
  "canal": "UCba5HqD3ftT7QIRCyMqfXyA",
  "videos": [
   {
+   "id": "3ls2Dmh9VMI",
+   "titulo": "Película cristiana: la niña pregunta por la silla vacía y encuentra un sobre | Cap. 4",
+   "fecha": "2026-11-19",
+   "corto": true,
+   "enlace": "https://www.youtube.com/shorts/3ls2Dmh9VMI"
+  },
+  {
    "id": "8cEMGFTj2rw",
    "titulo": "Película cristiana: lo que el hijo confesó de noche a su hermana | Cap. 3",
    "fecha": "2026-11-19",
@@ -35,13 +42,6 @@
    "fecha": "2026-11-17",
    "corto": true,
    "enlace": "https://www.youtube.com/shorts/Kmf_a1Nlb-k"
-  },
-  {
-   "id": "76RXGTKVm84",
-   "titulo": "El currículum",
-   "fecha": "2026-11-16",
-   "corto": true,
-   "enlace": "https://www.youtube.com/shorts/76RXGTKVm84"
   }
  ]
 }
