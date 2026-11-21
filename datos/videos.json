@@ -2,6 +2,13 @@
  "canal": "UCba5HqD3ftT7QIRCyMqfXyA",
  "videos": [
   {
+   "id": "GOyld-VAeNY",
+   "titulo": "Película cristiana completa: La silla vacía | El perdón y el hijo pródigo",
+   "fecha": "2026-11-20",
+   "corto": false,
+   "enlace": "https://www.youtube.com/watch?v=GOyld-VAeNY"
+  },
+  {
    "id": "yD1YbZK3mcM",
    "titulo": "Película cristiana: la carta que su madre le dejó antes de morir | Cap. 5",
    "fecha": "2026-11-20",
@@ -35,13 +42,6 @@
    "fecha": "2026-11-18",
    "corto": true,
    "enlace": "https://www.youtube.com/shorts/AZizJ55Bk4k"
-  },
-  {
-   "id": "Gku8YfdP01w",
-   "titulo": "Creo, ayuda mi incredulidad",
-   "fecha": "2026-11-17",
-   "corto": true,
-   "enlace": "https://www.youtube.com/shorts/Gku8YfdP01w"
   }
  ]
 }
