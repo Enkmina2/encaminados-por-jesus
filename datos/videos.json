@@ -2,6 +2,13 @@
  "canal": "UCba5HqD3ftT7QIRCyMqfXyA",
  "videos": [
   {
+   "id": "DIHsE3v3MKw",
+   "titulo": "Paciencia: Dios no llega tarde, llega a tiempo | Historia cristiana",
+   "fecha": "2026-11-22",
+   "corto": true,
+   "enlace": "https://www.youtube.com/shorts/DIHsE3v3MKw"
+  },
+  {
    "id": "LhwvZwXW3lM",
    "titulo": "Orgullo: antes de caer, casi siempre hay orgullo | Historia cristiana",
    "fecha": "2026-11-21",
@@ -35,13 +42,6 @@
    "fecha": "2026-11-19",
    "corto": true,
    "enlace": "https://www.youtube.com/shorts/3ls2Dmh9VMI"
-  },
-  {
-   "id": "8cEMGFTj2rw",
-   "titulo": "Película cristiana: lo que el hijo confesó de noche a su hermana | Cap. 3",
-   "fecha": "2026-11-19",
-   "corto": true,
-   "enlace": "https://www.youtube.com/shorts/8cEMGFTj2rw"
   }
  ]
 }
