@@ -2,6 +2,13 @@
  "canal": "UCba5HqD3ftT7QIRCyMqfXyA",
  "videos": [
   {
+   "id": "LhwvZwXW3lM",
+   "titulo": "Orgullo: antes de caer, casi siempre hay orgullo | Historia cristiana",
+   "fecha": "2026-11-21",
+   "corto": true,
+   "enlace": "https://www.youtube.com/shorts/LhwvZwXW3lM"
+  },
+  {
    "id": "3bybm8tNkDY",
    "titulo": "La envidia: lo que envidias de otro quizá es lo que más le duele | Historia cristiana",
    "fecha": "2026-11-21",
@@ -35,13 +42,6 @@
    "fecha": "2026-11-19",
    "corto": true,
    "enlace": "https://www.youtube.com/shorts/8cEMGFTj2rw"
-  },
-  {
-   "id": "9WDC7qV1K20",
-   "titulo": "Película cristiana: su hijo vuelve tras 10 años y esto le dice el padre | Cap. 2",
-   "fecha": "2026-11-18",
-   "corto": true,
-   "enlace": "https://www.youtube.com/shorts/9WDC7qV1K20"
   }
  ]
 }
