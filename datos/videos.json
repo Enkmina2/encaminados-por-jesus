@@ -2,6 +2,13 @@
  "canal": "UCba5HqD3ftT7QIRCyMqfXyA",
  "videos": [
   {
+   "id": "N8gxGUHK12I",
+   "titulo": "Nueva vida: Dios no mira lo que fuiste, mira lo que puedes ser | Historia cristiana",
+   "fecha": "2026-11-24",
+   "corto": true,
+   "enlace": "https://www.youtube.com/shorts/N8gxGUHK12I"
+  },
+  {
    "id": "OR_wcSftONE",
    "titulo": "Abuelos: tus padres no necesitan regalos, necesitan tu tiempo | Historia cristiana",
    "fecha": "2026-11-24",
@@ -35,13 +42,6 @@
    "fecha": "2026-11-22",
    "corto": true,
    "enlace": "https://www.youtube.com/shorts/DIHsE3v3MKw"
-  },
-  {
-   "id": "LhwvZwXW3lM",
-   "titulo": "Orgullo: antes de caer, casi siempre hay orgullo | Historia cristiana",
-   "fecha": "2026-11-21",
-   "corto": true,
-   "enlace": "https://www.youtube.com/shorts/LhwvZwXW3lM"
   }
  ]
 }
