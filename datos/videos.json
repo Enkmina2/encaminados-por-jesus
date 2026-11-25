@@ -2,6 +2,13 @@
  "canal": "UCba5HqD3ftT7QIRCyMqfXyA",
  "videos": [
   {
+   "id": "3Gj1TyWovn0",
+   "titulo": "Ángeles: hay puertas que cuestan abrir, pero valen la pena | Historia cristiana",
+   "fecha": "2026-11-25",
+   "corto": true,
+   "enlace": "https://www.youtube.com/shorts/3Gj1TyWovn0"
+  },
+  {
    "id": "N8gxGUHK12I",
    "titulo": "Nueva vida: Dios no mira lo que fuiste, mira lo que puedes ser | Historia cristiana",
    "fecha": "2026-11-24",
@@ -35,13 +42,6 @@
    "fecha": "2026-11-22",
    "corto": true,
    "enlace": "https://www.youtube.com/shorts/xAm4R5JAPPE"
-  },
-  {
-   "id": "DIHsE3v3MKw",
-   "titulo": "Paciencia: Dios no llega tarde, llega a tiempo | Historia cristiana",
-   "fecha": "2026-11-22",
-   "corto": true,
-   "enlace": "https://www.youtube.com/shorts/DIHsE3v3MKw"
   }
  ]
 }
