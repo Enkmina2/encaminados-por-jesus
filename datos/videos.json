@@ -2,6 +2,13 @@
  "canal": "UCba5HqD3ftT7QIRCyMqfXyA",
  "videos": [
   {
+   "id": "wzK-EM8pKzU",
+   "titulo": "Película cristiana: la Torre Iris y el mensaje al revés | La Profecía, cap. 4",
+   "fecha": "2026-11-26",
+   "corto": true,
+   "enlace": "https://www.youtube.com/shorts/wzK-EM8pKzU"
+  },
+  {
    "id": "ZEu8uIVqr-g",
    "titulo": "Autoestima: Dios no hace nada roto | Historia cristiana",
    "fecha": "2026-11-25",
@@ -35,13 +42,6 @@
    "fecha": "2026-11-23",
    "corto": true,
    "enlace": "https://www.youtube.com/shorts/o5nuagUcDnQ"
-  },
-  {
-   "id": "RxpDq1nGjOQ",
-   "titulo": "La ira de un padre: tu hijo no oye tus gritos, oye tu corazón | Historia cristiana",
-   "fecha": "2026-11-23",
-   "corto": true,
-   "enlace": "https://www.youtube.com/shorts/RxpDq1nGjOQ"
   }
  ]
 }
