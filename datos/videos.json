@@ -2,6 +2,13 @@
  "canal": "UCba5HqD3ftT7QIRCyMqfXyA",
  "videos": [
   {
+   "id": "ZEu8uIVqr-g",
+   "titulo": "Autoestima: Dios no hace nada roto | Historia cristiana",
+   "fecha": "2026-11-25",
+   "corto": true,
+   "enlace": "https://www.youtube.com/shorts/ZEu8uIVqr-g"
+  },
+  {
    "id": "3Gj1TyWovn0",
    "titulo": "Ángeles: hay puertas que cuestan abrir, pero valen la pena | Historia cristiana",
    "fecha": "2026-11-25",
@@ -35,13 +42,6 @@
    "fecha": "2026-11-23",
    "corto": true,
    "enlace": "https://www.youtube.com/shorts/RxpDq1nGjOQ"
-  },
-  {
-   "id": "xAm4R5JAPPE",
-   "titulo": "Gracias a Dios: ¿cuándo fue la última vez que diste las gracias? | Historia cristiana",
-   "fecha": "2026-11-22",
-   "corto": true,
-   "enlace": "https://www.youtube.com/shorts/xAm4R5JAPPE"
   }
  ]
 }
