@@ -967,6 +967,29 @@ function abrirEstudio() { const id = decodeURIComponent(location.hash.slice(1));
 const fechaLarga = f => new Date(f + "T12:00:00").toLocaleDateString("es-ES", { weekday: "long", day: "numeric", month: "long" });
 const enlaceBG = cita => "https://www.biblegateway.com/passage/?search=" + encodeURIComponent(cita) + "&version=RVR1960";
 function hoyISO() { const h = new Date(); return h.getFullYear() + "-" + String(h.getMonth() + 1).padStart(2, "0") + "-" + String(h.getDate()).padStart(2, "0"); }
+/* Reflexión del día: sale de la misma entrada de datos/dias.json (versículo, resumen, estudio y «para hoy») */
+function pintarReflexion(dia, conEstudio, en) {
+  const art = document.getElementById("reflexion-caminar-en-su-luz");
+  if (!art) return;
+  const est = dia.estudio && dia.estudio.parrafos && dia.estudio.parrafos.length ? dia.estudio : (conEstudio && conEstudio.estudio) || null;
+  if (!est) { art.hidden = true; return; }
+  const v = dia.versiculo || {};
+  const cita = en && v.texto_en ? v.texto_en : (v.texto || "");
+  const parrafos = en && est.parrafos_en && est.parrafos_en.length ? est.parrafos_en : est.parrafos;
+  const resumen = en && est.resumen_en ? est.resumen_en : (est.resumen || "");
+  const oracion = en && dia.para_hoy_en ? dia.para_hoy_en : (dia.para_hoy || "");
+  const tema = en && dia.tema_en ? dia.tema_en : (dia.tema || "");
+  art.hidden = false;
+  const c = art.querySelector(".cita"), ref = document.createElement("span");
+  ref.textContent = v.referencia || "";
+  c.replaceChildren(document.createTextNode(cita ? "“" + cita + "”" : ""), ref);
+  art.querySelector(".resumen").textContent = resumen;
+  art.querySelector("summary").textContent = (en ? "Read the reflection: " : "Leer la reflexión: ") + tema;
+  const txt = art.querySelector(".texto");
+  txt.replaceChildren(...parrafos.map(p => { const e = document.createElement("p"); e.textContent = p; return e; }));
+  if (oracion) { const o = document.createElement("p"); o.className = "oracion"; o.textContent = oracion; txt.append(o); }
+}
+
 function pintarDia(d) {
   const hoy = hoyISO();
   const dias = (d && d.dias || []).filter(x => x.aprobado !== false && x.fecha <= hoy).sort((a, b) => a.fecha < b.fecha ? -1 : 1);
@@ -974,6 +997,7 @@ function pintarDia(d) {
   const exacto = dias[dias.length - 1].fecha === hoy ? dias[dias.length - 1] : null;
   const dia = dias[dias.length - 1];                                   // hoy, o el último disponible
   const conEstudio = [...dias].reverse().find(x => x.estudio && x.estudio.parrafos && x.estudio.parrafos.length);
+  pintarReflexion(dia, conEstudio, window.idiomaActual === "en");
   const v = dia.versiculo || {};
   /* portada */
   document.getElementById("vd-tema").textContent = dia.tema || "";
@@ -1933,6 +1957,7 @@ if (document.documentElement.classList.contains("anim")) {
       const exacto = dias[dias.length - 1].fecha === hoy ? dias[dias.length - 1] : null;
       const dia = dias[dias.length - 1];
       const conEstudio = [...dias].reverse().find(x => x.estudio && x.estudio.parrafos && x.estudio.parrafos.length);
+  pintarReflexion(dia, conEstudio, window.idiomaActual === "en");
       const v = dia.versiculo || {};
       /* portada */
       document.getElementById("vd-tema").textContent = isEn && dia.tema_en ? dia.tema_en : (dia.tema || "");
