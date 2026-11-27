@@ -2,6 +2,13 @@
  "canal": "UCba5HqD3ftT7QIRCyMqfXyA",
  "videos": [
   {
+   "id": "Gw6M61xPvqw",
+   "titulo": "Película cristiana: Jonás maldijo a Dios y Él no lo soltó | La Profecía, cap. 5",
+   "fecha": "2026-11-26",
+   "corto": true,
+   "enlace": "https://www.youtube.com/shorts/Gw6M61xPvqw"
+  },
+  {
    "id": "wzK-EM8pKzU",
    "titulo": "Película cristiana: la Torre Iris y el mensaje al revés | La Profecía, cap. 4",
    "fecha": "2026-11-26",
@@ -35,13 +42,6 @@
    "fecha": "2026-11-24",
    "corto": true,
    "enlace": "https://www.youtube.com/shorts/OR_wcSftONE"
-  },
-  {
-   "id": "o5nuagUcDnQ",
-   "titulo": "Chismes: una palabra puede destruir a una persona | Historia cristiana",
-   "fecha": "2026-11-23",
-   "corto": true,
-   "enlace": "https://www.youtube.com/shorts/o5nuagUcDnQ"
   }
  ]
 }
