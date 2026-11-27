@@ -2,6 +2,13 @@
  "canal": "UCba5HqD3ftT7QIRCyMqfXyA",
  "videos": [
   {
+   "id": "89r3yahtMFE",
+   "titulo": "Película cristiana: Su madre dejó una nota para cuando tuviera miedo | La Profecía, cap. 6",
+   "fecha": "2026-11-27",
+   "corto": true,
+   "enlace": "https://www.youtube.com/shorts/89r3yahtMFE"
+  },
+  {
    "id": "Gw6M61xPvqw",
    "titulo": "Película cristiana: Jonás maldijo a Dios y Él no lo soltó | La Profecía, cap. 5",
    "fecha": "2026-11-26",
@@ -35,13 +42,6 @@
    "fecha": "2026-11-24",
    "corto": true,
    "enlace": "https://www.youtube.com/shorts/N8gxGUHK12I"
-  },
-  {
-   "id": "OR_wcSftONE",
-   "titulo": "Abuelos: tus padres no necesitan regalos, necesitan tu tiempo | Historia cristiana",
-   "fecha": "2026-11-24",
-   "corto": true,
-   "enlace": "https://www.youtube.com/shorts/OR_wcSftONE"
   }
  ]
 }
