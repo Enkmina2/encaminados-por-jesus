@@ -987,6 +987,13 @@ function pintarReflexion(dia, conEstudio, en) {
   art.querySelector("summary").textContent = (en ? "Read the reflection: " : "Leer la reflexión: ") + tema;
   const txt = art.querySelector(".texto");
   txt.replaceChildren(...parrafos.map(p => { const e = document.createElement("p"); e.textContent = p; return e; }));
+  const cc = (dia.concordancia && dia.concordancia.length ? dia.concordancia : (conEstudio && conEstudio.concordancia) || []);
+  if (cc.length) {
+    const r = document.createElement("p"); r.className = "refs-reflexion";
+    const etq = document.createElement("strong"); etq.textContent = en ? "Related passages: " : "Pasajes relacionados: ";
+    r.append(etq, document.createTextNode(cc.map(x => x.cita).join(" · ")));
+    txt.append(r);
+  }
   if (oracion) { const o = document.createElement("p"); o.className = "oracion"; o.textContent = oracion; txt.append(o); }
 }
 
