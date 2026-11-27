@@ -83,7 +83,7 @@ def avanzar(lectura, textos):
 
 def llamar_modelo(prompt):
     cuerpo = json.dumps({
-        "model": MODELO, "max_tokens": 8000,
+        "model": MODELO, "max_tokens": 16000,
         "system": INSTRUCCIONES,
         "messages": [{"role": "user", "content": prompt}],
     }).encode("utf-8")
@@ -92,8 +92,13 @@ def llamar_modelo(prompt):
         "x-api-key": os.environ["ANTHROPIC_API_KEY"]})
     with urllib.request.urlopen(req, timeout=180) as r:
         respuesta = json.load(r)
+    if respuesta.get("stop_reason") == "max_tokens":
+        raise SystemExit("La respuesta del modelo se cortó por longitud. No se ha escrito nada.")
     texto = "".join(b.get("text", "") for b in respuesta["content"] if b["type"] == "text")
-    return json.loads(texto[texto.index("{"): texto.rindex("}") + 1])
+    try:
+        return json.loads(texto[texto.index("{"): texto.rindex("}") + 1])
+    except json.JSONDecodeError as e:
+        raise SystemExit(f"El modelo devolvió un JSON no válido ({e}). No se ha escrito nada.")
 
 
 def main():
@@ -119,9 +124,17 @@ def main():
     for _ in pendientes:
         ref = siguiente_versiculo(lectura, textos)
         if ref is None:
-            raise SystemExit(f"Falta el texto RVR1960 de {lectura['libro']} {lectura['capitulo']}:{lectura['versiculo']} en {RUTA_TEXTOS}.")
+            break  # se acabaron los textos disponibles: se genera hasta aquí
         refs.append((lectura["libro"], lectura["capitulo"], lectura["versiculo"], ref))
-        avanzar(lectura, textos)
+        try:
+            avanzar(lectura, textos)
+        except SystemExit:
+            # último versículo de los textos: la lectura queda apuntando al siguiente que falte
+            lectura["versiculo"] += 1
+            break
+    if not refs:
+        raise SystemExit(f"Falta el texto RVR1960 de {lectura['libro']} {lectura['capitulo']}:{lectura['versiculo']} en {RUTA_TEXTOS}.")
+    pendientes = pendientes[:len(refs)]
 
     # Una sola llamada para todo el mes
     lineas = []
@@ -132,7 +145,7 @@ def main():
         "Escribe un día por línea del calendario. Para cada fecha devuelve un objeto con esta forma exacta:\n"
         '{"dias":[{"fecha":"AAAA-MM-DD","tema":"...","estudio":{"resumen":"...","parrafos":["...","..."]},'
         '"para_hoy":"..."}]}\n'
-        "El tema es breve. El resumen es una frase. Los párrafos son dos o tres. «para_hoy» es una acción concreta. "
+        "El tema es breve. El resumen es una frase. Los párrafos son dos, de unas 50 palabras cada uno, sin comillas dobles dentro del texto (usa «»). «para_hoy» es una acción concreta. "
         "En el estudio, relaciona el versículo del Nuevo Testamento con uno de los paralelos del Antiguo Testamento indicados.\n\n"
         + "\n".join(lineas)
     )
