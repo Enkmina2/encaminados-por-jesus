@@ -1,0 +1,59 @@
+# Genera los días del mes siguiente el día 25 de cada mes y avisa por Telegram.
+# Hasta que exista datos/rvr1960-nt.json con el texto del Nuevo Testamento, falla y avisa por Telegram.
+name: Generar el mes de contenido
+
+on:
+  schedule:
+    - cron: "0 9 25 * *"      # día 25 a las 9:00 UTC (10:00 o 11:00 en España)
+  workflow_dispatch:
+    inputs:
+      mes:
+        description: "Mes a generar (AAAA-MM). Vacío = mes siguiente."
+        required: false
+        default: ""
+
+permissions:
+  contents: write
+
+jobs:
+  generar:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Generar los días del mes
+        id: generar
+        env:
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+          MES: ${{ github.event.inputs.mes }}
+        run: |
+          set -o pipefail
+          python3 scripts/generar_mes.py $MES 2>&1 | tee resultado.txt
+
+      - name: Guardar si hay cambios
+        if: steps.generar.outcome == 'success'
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add datos/dias.json datos/lectura.json
+          git diff --cached --quiet || git commit -m "Generar el mes de contenido"
+          git pull --rebase origin main
+          git push origin main
+
+      - name: Aviso por Telegram
+        if: always()
+        env:
+          TOKEN: ${{ secrets.TELEGRAM_TOKEN }}
+          CHAT: ${{ secrets.TELEGRAM_CHAT_ID }}
+          RESULTADO: ${{ steps.generar.outcome }}
+        run: |
+          if [ "$RESULTADO" = "success" ]; then
+            TEXTO="✅ Contenido del mes publicado: $(tail -n 1 resultado.txt 2>/dev/null)"
+          else
+            TEXTO="❌ No se ha generado el mes. Revisa la ejecución: $GITHUB_SERVER_URL/$GITHUB_REPOSITORY/actions/runs/$GITHUB_RUN_ID"
+          fi
+          curl -s "https://api.telegram.org/bot${TOKEN}/sendMessage" --data-urlencode "chat_id=${CHAT}" --data-urlencode "text=${TEXTO}" > /dev/null
