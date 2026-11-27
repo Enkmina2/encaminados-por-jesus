@@ -42,3 +42,9 @@ Para revisar una tarea: claude.ai → tareas programadas → comprobar que tiene
 - `datos/concordancia-nt.json`: para cada versículo del Antiguo Testamento, hasta 5 pasajes del Nuevo Testamento que lo citan, cumplen o iluminan. Formato: `"Gen.28.12": ["Juan 1:51", ...]`.
 - Origen: referencias cruzadas de openbible.info (licencia CC BY, https://www.openbible.info/labs/cross-references/). Ordenadas por votos y solo desde el Antiguo Testamento.
 - No se filtra ningún pasaje por doctrina: los textos se explican en el estudio desde la unicidad (Dios manifestado en carne).
+
+## Texto RVR1960 del Nuevo Testamento
+
+- `datos/rvr1960-nt.json`: un versículo por entrada, con clave «Libro cap:ver». Lo usa `scripts/generar_mes.py` para el versículo de cada día.
+- Por ahora solo contiene Mateo 1, copiado de un repositorio público (josevladimir/bible-json). Esa licencia MIT cubre su código, no el texto de la RVR1960, que tiene copyright de las Sociedades Bíblicas Unidas. Por eso solo se publica una cita corta por día y, al aprobar, conviene contrastar cada versículo con BibleGateway.
+- Para seguir con otros libros hay que añadir sus versículos con el mismo criterio.
