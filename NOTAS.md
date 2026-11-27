@@ -36,3 +36,9 @@ Para revisar una tarea: claude.ai → tareas programadas → comprobar que tiene
 - Renovar el acceso de escritura de la tarea semanal.
 - Revisar que los días del 5 de diciembre en adelante existan antes de cada fin de semana.
 - Tienda `enkmina2shop.es`: verificar en Google Search Console (registro TXT en DonDominio).
+
+## Concordancia del Nuevo Testamento
+
+- `datos/concordancia-nt.json`: para cada versículo del Antiguo Testamento, hasta 5 pasajes del Nuevo Testamento que lo citan, cumplen o iluminan. Formato: `"Gen.28.12": ["Juan 1:51", ...]`.
+- Origen: referencias cruzadas de openbible.info (licencia CC BY, https://www.openbible.info/labs/cross-references/). Ordenadas por votos y solo desde el Antiguo Testamento.
+- No se filtra ningún pasaje por doctrina: los textos se explican en el estudio desde la unicidad (Dios manifestado en carne).
