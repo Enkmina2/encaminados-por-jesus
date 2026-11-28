@@ -2,6 +2,13 @@
  "canal": "UCba5HqD3ftT7QIRCyMqfXyA",
  "videos": [
   {
+   "id": "0SuyjW60Fx8",
+   "titulo": "Película cristiana: «Nadie es desecho», el final de La Profecía | La Profecía, cap. 8",
+   "fecha": "2026-11-28",
+   "corto": true,
+   "enlace": "https://www.youtube.com/shorts/0SuyjW60Fx8"
+  },
+  {
    "id": "le5k3fJnofo",
    "titulo": "Película cristiana: Alma salta la valla en El Gran Sellado | La Profecía, cap. 7",
    "fecha": "2026-11-27",
@@ -35,13 +42,6 @@
    "fecha": "2026-11-25",
    "corto": true,
    "enlace": "https://www.youtube.com/shorts/ZEu8uIVqr-g"
-  },
-  {
-   "id": "3Gj1TyWovn0",
-   "titulo": "Ángeles: hay puertas que cuestan abrir, pero valen la pena | Historia cristiana",
-   "fecha": "2026-11-25",
-   "corto": true,
-   "enlace": "https://www.youtube.com/shorts/3Gj1TyWovn0"
   }
  ]
 }
